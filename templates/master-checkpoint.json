@@ -1,0 +1,17 @@
+{
+  "last_run": "2026-06-16T00:00:00Z",
+  "consecutive_on_project": 0,
+  "active_project": null,
+  "projects": {
+    "project-name": {
+      "status": "active",
+      "priority": 1,
+      "current_task": "first-task-id",
+      "health": "unknown",
+      "last_sha": "",
+      "blocker": null,
+      "last_review": null,
+      "review_quality": null
+    }
+  }
+}
