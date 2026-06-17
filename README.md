@@ -93,7 +93,8 @@ dev-loop/
 │   ├── checkpoint.json           # Blank checkpoint
 │   └── master-checkpoint.json    # Blank master checkpoint
 └── skills/
-    ├── coach-agent.md            # Coach role reference
-    ├── player-agent.md           # Player role reference
-    └── writing-tasks.md          # Task writing guidelines
+    ├── coach-agent.md                 # Coach role reference
+    ├── player-agent.md                # Player role reference
+    ├── spec-driven-project-audit.md   # Playwright-first audit protocol
+    └── writing-tasks.md               # Task writing guidelines
 ```
