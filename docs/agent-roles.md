@@ -37,7 +37,10 @@
 3. Read the diff
 4. Run tests yourself
 5. Verify each criterion with evidence
-6. Output: `DECISION: APPROVE | FIX | REVERT`
+6. Run live site browser QA (navigate, interact, check console)
+7. Probe for spec gaps (delegated to up to 3 parallel subagents)
+8. Discover external sources (session histories, GitHub, web research — also delegated)
+9. Output: `DECISION: APPROVE | FIX | REVERT`
 
 **Evidence gates** (from g3 / Block AI Research):
 | # | Gate | What It Prevents |

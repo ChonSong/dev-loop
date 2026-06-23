@@ -1,15 +1,44 @@
-# Dev Loop — Autonomous Coach/Player Development System
+# Dev Loop — Autonomous Development System
 
-A structured autonomous development loop where **Player** agents implement tasks from a backlog and **Coach** agents adversarially review each commit. Inspired by g3's dialectical autocoding (Block AI Research, Dec 2025) and built by composing patterns from 10+ existing agent skills.
+A multi-loop autonomous development system:
+- **Player** agents implement tasks from a backlog
+- **Coach** agents adversarially review each commit, probe for gaps, and generate the next batch of tasks
+- **Self-Improvement Engine** (SIE) scans every 48h for coverage blind spots, processes learnings, and authors skills
+
+Inspired by g3's dialectical autocoding (Block AI Research, Dec 2025) and built by composing patterns from 10+ existing agent skills.
 
 ## Core Concept
 
+Three autonomous loops with increasing cycle times:
+
 ```
-AGENTS.md (tasks + criteria)  ──→  Player (implements, tests, commits)
-         ↑                              │
-         │                              ▼
-    Coach (reviews, approves,       Checkpoint.json
-    generates next tasks)         (state tracking)
+┌──────────────────────────────────────────────────┐
+│              PLAYER/COACH LOOP                   │
+│           (every 30m — implementation)            │
+│                                                    │
+│  AGENTS.md (tasks + criteria)  ──→  Player        │
+│       ↑                              │             │
+│       │                              ▼             │
+│  Coach (reviews, approves,      Checkpoint.json    │
+│  probes gaps, generates tasks)  (state tracking)   │
+│                                                    │
+│  Coach uses delegation to parallelize:             │
+│  • External discovery (5 sources)                  │
+│  • Spec gap detection (6 independent checks)       │
+│  • Live DOM comparison (reference vs clone)        │
+└──────────────────────┬───────────────────────────┘
+                       │ feeds learnings
+                       ▼
+┌──────────────────────────────────────────────────┐
+│         SELF-IMPROVEMENT ENGINE (SIE)             │
+│           (every 48h — meta-improvement)           │
+│                                                    │
+│  Phase 0: Coverage blind-spot scan (delegates     │
+│           per-project audit to subagents)          │
+│  Phase 1: Scan .learnings for recurring errors    │
+│  Phase 2: Research + author skills                │
+│  Phase 3: Commit and push                         │
+└──────────────────────────────────────────────────┘
 ```
 
 Each repo describes itself via `AGENTS.md` + `.checkpoint.json`. The loop discovers repos by scanning for these files.
@@ -73,9 +102,9 @@ Copy `templates/checkpoint.json` to the repo root. Set `current_task` to the fir
 
 Copy `templates/master-checkpoint.json` to `~/.hermes/master-checkpoint.json`. Add your project entry.
 
-### 4. Cron jobs handle the rest
+| 4. Cron jobs handle the rest
 
-The Player cron runs hourly and picks up any repo with both AGENTS.md + checkpoint. The Coach runs 5 minutes later and reviews.
+The Player cron runs every 30min and picks up any repo with both AGENTS.md + checkpoint. The Coach runs 5 minutes later and reviews. The SIE runs every 48h scanning for coverage blind spots and authoring skills.
 
 ## Repository Structure
 
@@ -83,7 +112,7 @@ The Player cron runs hourly and picks up any repo with both AGENTS.md + checkpoi
 dev-loop/
 ├── README.md                     # This file
 ├── docs/
-│   ├── architecture.md           # Full loop design
+│   ├── architecture.md           # Full loop design (incl. SIE + RSI)
 │   ├── agent-roles.md            # Coach and Player responsibilities
 │   ├── project-onboarding.md     # Step-by-step project setup
 │   ├── scoring-model.md          # Backlog prioritisation formula
@@ -95,6 +124,6 @@ dev-loop/
 └── skills/
     ├── coach-agent.md                 # Coach role reference
     ├── player-agent.md                # Player role reference
-    ├── spec-driven-project-audit.md   # Playwright-first audit protocol
+    ├── self-improvement-engine.md     # SIE role reference
     └── writing-tasks.md               # Task writing guidelines
 ```
