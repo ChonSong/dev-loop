@@ -58,6 +58,11 @@ INSUFFICIENT_PATTERNS = [
     r"no.*regression",
 ]
 
+MULTI_PROJECT_REQUIRED = [
+    r"polytopia",
+    r"gto.wizard",
+]
+
 
 def read_checkpoint(checkpoint_path: str) -> dict | None:
     """Read .checkpoint.json from the project repo."""
@@ -146,6 +151,15 @@ def main():
     if insufficient:
         print(f"FAIL: Coach used insufficient-work pattern(s): {insufficient}")
         print("  Project needs actual browser QA, not health-check shortcuts.")
+        sys.exit(1)
+
+    # Check multi-project coverage (MANDATORY every cycle)
+    multi = check_evidence(notes, MULTI_PROJECT_REQUIRED)
+    if len(multi) < 2:
+        print(f"FAIL: Only {len(multi)}/2 projects referenced in verdict notes")
+        print("  Coach MUST check BOTH polytopia-clone AND gto-wizard-clone every cycle.")
+        print(f"  Found: {multi}")
+        print(f"  Hint: include project names like 'polytopia' and 'gto-wizard' in the verdict notes.")
         sys.exit(1)
 
     # Check for required evidence
