@@ -1,26 +1,26 @@
 {
-  "last_run": "2026-06-24T14:39:00Z",
-  "consecutive_on_project": 5,
+  "last_run": "2026-06-24T17:00:00Z",
+  "consecutive_on_project": 2,
   "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "fix-mobile-game-scaling",
+      "current_task": "fix-ai-difficulty-levels",
       "health": "452_pass_0_error_0_fail",
-      "last_sha": "0579514",
+      "last_sha": "5252aef",
       "blocker": null,
-      "last_review": "2026-06-24T12:50:00Z",
-      "review_quality": "no_new_player_work"
+      "last_review": "2026-06-24T15:45:00Z",
+      "review_quality": "approved"
     },
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "fix-solver-docker-build",
-      "health": "build_passes_site_200_25_api_pass_67_vitest_pass_139_e2e_pass_3_pre_existing_fail",
-      "last_sha": "235df85",
+      "current_task": "tbd",
+      "health": "build_passes_site_200_0_js_errors",
+      "last_sha": "ce56bb0",
       "blocker": null,
-      "last_review": "2026-06-24T14:39:00Z",
+      "last_review": "2026-06-24T17:00:00Z",
       "review_quality": "approved"
     }
   }
