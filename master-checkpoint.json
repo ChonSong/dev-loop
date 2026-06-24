@@ -1,17 +1,17 @@
 {
-  "last_run": "2026-06-24T18:50:00Z",
+  "last_run": "2026-06-24T09:06:00Z",
   "consecutive_on_project": 1,
   "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "add-speed-control-tests",
-      "health": "457_pass_0_error_0_fail",
-      "last_sha": "c50a6c6",
+      "current_task": "fix-hud-tribe-name-truncation",
+      "health": "481_pass_0_error_0_fail",
+      "last_sha": "a505805",
       "blocker": null,
-      "last_review": "2026-06-24T18:50:00Z",
-      "review_quality": "stalled-tasks-generated"
+      "last_review": "2026-06-24T09:06:00Z",
+      "review_quality": "approved"
     },
     "gto-wizard-clone": {
       "status": "active",
@@ -20,8 +20,8 @@
       "health": "build_passes_site_200_0_js_errors",
       "last_sha": "5a72beb",
       "blocker": null,
-      "last_review": "2026-06-24T18:50:00Z",
-      "review_quality": "approved"
+      "last_review": "2026-06-24T09:06:00Z",
+      "review_quality": "visual-gaps-generated"
     }
   }
 }
