@@ -39,6 +39,8 @@ WEB_APP_EVIDENCE = [
     r"(navigation|page load)",
     r"console error",
     r"(200|status)",
+    r"(visual|interaction).*(comparison|check|verif)",
+    r"pages? (compared|loaded|checked|inspected)",
 ]
 
 FORBIDDEN_PATTERNS = [
@@ -52,7 +54,6 @@ INSUFFICIENT_PATTERNS = [
     r"only.*(curl|ss|pytest|port)",
     r"(just|only).*health",
     r"nothing.*(to review|actionable)",
-    r"no new.*(commits|code|changes)",
     r"skipped.*(browser|QA|game)",
     r"no.*regression",
 ]

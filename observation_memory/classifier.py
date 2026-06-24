@@ -21,7 +21,7 @@ FAILURE_CHECKS: list[tuple[list[str], str, float]] = [
         0.85,
     ),
     (["hook_not_runnable", "hook failed", "hook registry", "hook"], "hook_failure", 0.80),
-    (["not found", "no element", "strict mode violation", "selector"], "element_not_found", 0.80),
+    (["not found", "no element", "strict mode violation", "selector", "be visible"], "element_not_found", 0.80),
     (["assert", "expected", "verify"], "assertion_failure", 0.75),
     (["econnrefused", "enotfound", "network", "docker"], "infrastructure", 0.70),
 ]
