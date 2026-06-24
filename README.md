@@ -3,6 +3,7 @@
 A multi-loop autonomous development system:
 - **Player** agents implement tasks from a backlog
 - **Coach** agents adversarially review each commit, probe for gaps, and generate the next batch of tasks
+- **Observation Memory** (`coach_memory.py`) — persistent, self-correcting behavioral knowledge store for the Coach. FTS5 query, trust-scored observations, circuit breaker for safety. Ported from agent-qa's A.U.D.N. curator pattern.
 - **Self-Improvement Engine** (SIE) scans every 48h for coverage blind spots, processes learnings, and authors skills
 
 Inspired by g3's dialectical autocoding (Block AI Research, Dec 2025) and built by composing patterns from 10+ existing agent skills.
@@ -11,34 +12,36 @@ Inspired by g3's dialectical autocoding (Block AI Research, Dec 2025) and built 
 
 Three autonomous loops with increasing cycle times, plus an auto-generated E2E test layer:
 
-```
-┌──────────────────────────────────────────────────┐
-│              PLAYER/COACH LOOP                   │
-│           (every 30m — implementation)            │
-│                                                    │
-│  AGENTS.md (tasks + criteria)  ──→  Player        │
-│       ↑                              │             │
-│       │                              ▼             │
-│  Coach (reviews, approves,      Checkpoint.json    │
-│  probes gaps, generates tasks)  (state tracking)   │
-│                                                    │
-│  Coach uses delegation to parallelize:             │
-│  • External discovery (5 sources)                  │
-│  • Spec gap detection (6 independent checks)       │
-│  • Live DOM comparison (reference vs clone)        │
-└──────────────────────┬───────────────────────────┘
-                       │ feeds learnings
-                       ▼
-┌──────────────────────────────────────────────────┐
-│         SELF-IMPROVEMENT ENGINE (SIE)             │
-│           (every 48h — meta-improvement)           │
-│                                                    │
-│  Phase 0: Coverage blind-spot scan (delegates     │
-│           per-project audit to subagents)          │
-│  Phase 1: Scan .learnings for recurring errors    │
-│  Phase 2: Research + author skills                │
-│  Phase 3: Commit and push                         │
-└──────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph PLAYER_COACH["PLAYER/COACH LOOP (every 30m)"]
+        AGENTS[AGENTS.md] -->|tasks + criteria| Player
+        Player -->|implemented code| Checkpoint
+        Checkpoint -->|review request| Coach
+        Coach -->|reviews, approves, probes gaps| AGENTS
+        Coach -->|generates tasks| AGENTS
+
+        subgraph Memory["Observation Memory Layer (coach_memory.py)"]
+            direction LR
+            BRKR[Circuit Breaker] -->|if not tripped| INDEX[Memory Index]
+            INDEX -->|injected context| Coach
+            Coach -->|post-review findings| CURATOR[AUDN Curator]
+            CURATOR -->|add/confirm/deprecate| STORE[Observation Store]
+        end
+
+        Coach -.->|parallelize| D1[External discovery: 5 sources]
+        Coach -.->|parallelize| D2[Spec gap detection: 6 checks]
+        Coach -.->|parallelize| D3[Live DOM comparison]
+    end
+
+    PLAYER_COACH -->|learnings| SIE
+
+    subgraph SELF_IMP["SELF-IMPROVEMENT ENGINE (every 48h)"]
+        P0[Phase 0: Coverage blind-spot scan]
+        P1[Phase 1: Scan .learnings for errors]
+        P2[Phase 2: Research + author skills]
+        P3[Phase 3: Commit + push]
+    end
 ```
 
 Each repo describes itself via `AGENTS.md` + `.checkpoint.json`. The loop discovers repos by scanning for these files.
@@ -117,7 +120,10 @@ dev-loop/
 │   ├── project-onboarding.md     # Step-by-step project setup
 │   ├── scoring-model.md          # Backlog prioritisation formula
 │   ├── cron-setup.md             # Cron job configuration reference
-│   └── e2e-infrastructure.md     # E2E test infra: POM design, file layout, agent resp.
+│   ├── e2e-infrastructure.md     # E2E test infra: POM design, file layout, agent resp.
+│   └── observation-memory.md     # Observation memory: curator, breaker, classifier
+├── observation_memory/           # Python library: store, index, curator, breaker, classifier, similarity
+├── coach_memory.py               # Coach integration CLI (inject, curate, classify, breaker)
 ├── templates/
 │   ├── AGENTS.md                 # Blank AGENTS.md
 │   ├── checkpoint.json           # Blank checkpoint
