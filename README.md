@@ -85,6 +85,46 @@ Both the Player and Coach agents were designed by studying ~12 existing skills i
 | **doc-driven-dev-loop** | Per-repo AGENTS.md + checkpoint.json + round-robin scheduling | The foundation both agents operate on |
 | **phased-project-runner** | Time budget with hard limits + graceful degradation | Each phase has a target and a hard limit, with a defined fallback when exceeded |
 
+## How the Dev Loop Improves Itself
+
+The dev loop is self-referential — it can detect its own gaps, investigate external systems for solutions, and port those solutions back into the loop. The observation memory module is the first example of this.
+
+### The Gap
+
+The Coach had no persistent memory. Every session started cold — same UI quirks, same async load patterns, same flaky selectors had to be rediscovered. The `memory` tool and `session_search` stored unstructured notes, but there was no behavioral knowledge store the Coach could query before a review or update after one.
+
+### The Investigation
+
+We identified [vostride/agent-qa](https://github.com/vostride/agent-qa) — an open-source LLM-powered E2E testing harness whose core agent loop closely mirrors the Coach/Player architecture. The full investigation:
+
+1. **Repository reconnaissance** — cloned the 144★ TypeScript monorepo, mapped its 9 packages (core, cli, web, android, ios, mcp, ids, dashboard-server, dashboard-ui)
+2. **Architecture extraction** — read 10 key source files totaling 150KB+ (loop.ts 39KB, curator.ts 24KB, runner.ts 32KB, agent-qa-server.ts, verifier.ts, planner.ts, circuit-breaker.ts, similarity.ts, memory-index.ts, file-cache.ts)
+3. **Pattern documentation** — extracted 10 architectural patterns into `coach-agent/references/agent-qa-architecture.md`, with applicability assessment and priority ranking for our loop
+4. **Comparison mapping** — identified what agent-qa does that we don't (memory curator, action cache, verifier phase, circuit breaker) and what we do that agent-qa doesn't (multi-agent delegation, skill system, cron pipeline)
+
+### The Port
+
+Three patterns were immediately actionable and directly ported — the remaining seven are documented for future work:
+
+| Pattern | Ported | File | Key Mechanism |
+|---------|--------|------|---------------|
+| **A.U.D.N. Curator** | ✅ | `curator.py` | LLM evaluates each review, makes Add/Update/Deprecate/Noop decisions. Auto-deprecates injected observations on failure. Trust scoring 0-1. |
+| **Circuit Breaker** | ✅ | `circuit_breaker.py` | 20-run rolling window per project. Trips when memory-wrapped runs fail 15% more than baseline. Stays tripped until fixed. |
+| **Failure Classifier** | ✅ | `classifier.py` | Rule-based 7-needle priority matcher. No LLM call. 8 categories from timeout to infrastructure. |
+| **FTS5 Memory Index** | ✅ | `index.py` | Stopword-stripped OR queries for high recall. Similarity fallback. Trust-weighted ordering. |
+| **Jaccard Dedup** | ✅ | `similarity.py` | Title-aware 0.85 threshold. Prevents observation bloat without an LLM call. |
+| Action Cache | 📋 | — | Sub-action cache with prefix invalidation. Lower priority — needs Player integration. |
+| Verifier Phase | 📋 | — | Separate LLM check after stepComplete. Needs Player integration. |
+| Secrets Redaction | 📋 | — | Required if caching sub-actions with embedded secrets. |
+| Memory Depth Tiers | 📋 | — | Already partially handled (product/task/suite in store.py). |
+| Forced Tool Calls | 📋 | — | Deeper change to how Player generates actions. |
+
+### The Build
+
+The port itself followed the dev loop pattern: the Coach investigated (this README section documents that investigation), identified the work, and the implementation was done in a single focused session — ~90 minutes from repository discovery to merged commit. Each component was tested in isolation (pytest-style assertions in `cli.py`), then integrated end-to-end, then pushed as runnable code.
+
+The meta-lesson: **the dev loop can improve itself.** When the Coach notices a systemic gap (like "I keep rediscovering the same facts"), it can research external projects, extract the solution pattern, and build it — turning an expensive recurring problem into a solved one.
+
 ## Quick Start
 
 ### 1. Add AGENTS.md to a repo
