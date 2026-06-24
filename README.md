@@ -164,6 +164,7 @@ dev-loop/
 │   └── observation-memory.md     # Observation memory: curator, breaker, classifier
 ├── observation_memory/           # Python library: store, index, curator, breaker, classifier, similarity
 ├── coach_memory.py               # Coach integration CLI (inject, curate, classify, breaker)
+├── enforce_qa_gate.py            # Post-cycle gate — rejects rubber-stamp approvals
 ├── templates/
 │   ├── AGENTS.md                 # Blank AGENTS.md
 │   ├── checkpoint.json           # Blank checkpoint
