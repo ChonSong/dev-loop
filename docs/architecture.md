@@ -42,13 +42,42 @@ The dev loop implements a **dialectical autocoding** pattern — two agents with
      └─────────────────────────────────────────────────────┘
 ```
 
-## Three Loops
+## Three Loops + E2E Test Layer
 
-| Loop | Frequency | Role | Toolsets Include |
-|------|-----------|------|-----------------|
-| **Player** | Every 30min (:00) | Implements one task | terminal, file, web |
-| **Coach** | Every 30min (:05) | Reviews commits, probes gaps, generates tasks | terminal, file, web, browser, session_search, **delegation** |
-| **SIE** | Every 48h | Scans coverage blind spots, authors skills | terminal, file, **delegation** |
+| Loop | Frequency | Role | Tests Run | Toolsets Include |
+|------|-----------|------|-----------|-----------------|
+| **Player** | Every 30min (:00) | Implements one task | `pytest`, `vitest` (+ e2e POM update if UI change) | terminal, file, web |
+| **Coach** | Every 30min (:05) | Reviews commits, probes gaps, generates tasks | `pytest`, `vitest`, **`npm run test:e2e`** | terminal, file, web, browser, session_search, **delegation** |
+| **SIE** | Every 48h | Scans coverage blind spots, authors skills | Scans for **e2e existence + freshness** | terminal, file, **delegation** |
+
+**E2E test flow across loops:**
+
+```
+Player implements feature
+  │  pre-flight: check if page has e2e tests
+  │  if yes: update POM + spec
+  ▼
+Commit + push
+  │
+Coach reviews
+  │  1. pytest + vitest
+  │  2. npm run test:e2e ← Layer 3
+  │  3. if fail: classify (known bug vs regression)
+  │  4. if recurring pattern: seed .learnings entry
+  │  5. verdict with e2e results
+  ▼
+SIE Phase 0 (every 48h)
+  │  scans all projects for:
+  │  • e2e tests exist?
+  │  • e2e tests pass?
+  │  • POM selectors fresh?
+  │  seeds .learnings if gaps found
+  ▼
+SIE Phases 1-4
+  │  promotes recurrences → skill authoring
+  ▼
+coach-test-generator skill improves
+```
 
 ## Delegation in the Coach
 

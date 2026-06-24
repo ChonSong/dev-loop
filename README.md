@@ -9,7 +9,7 @@ Inspired by g3's dialectical autocoding (Block AI Research, Dec 2025) and built 
 
 ## Core Concept
 
-Three autonomous loops with increasing cycle times:
+Three autonomous loops with increasing cycle times, plus an auto-generated E2E test layer:
 
 ```
 ┌──────────────────────────────────────────────────┐
@@ -112,11 +112,12 @@ The Player cron runs every 30min and picks up any repo with both AGENTS.md + che
 dev-loop/
 ├── README.md                     # This file
 ├── docs/
-│   ├── architecture.md           # Full loop design (incl. SIE + RSI)
+│   ├── architecture.md           # Full loop design (incl. SIE + RSI + E2E layer)
 │   ├── agent-roles.md            # Coach and Player responsibilities
 │   ├── project-onboarding.md     # Step-by-step project setup
 │   ├── scoring-model.md          # Backlog prioritisation formula
-│   └── cron-setup.md             # Cron job configuration reference
+│   ├── cron-setup.md             # Cron job configuration reference
+│   └── e2e-infrastructure.md     # E2E test infra: POM design, file layout, agent resp.
 ├── templates/
 │   ├── AGENTS.md                 # Blank AGENTS.md
 │   ├── checkpoint.json           # Blank checkpoint
