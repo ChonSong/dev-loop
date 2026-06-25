@@ -1,18 +1,19 @@
 {
-  "last_run": "2026-06-26T19:30:00+10:00",
+  "last_run": "2026-06-26T08:35:00Z",
   "consecutive_on_project": 0,
-  "active_project": "gto-wizard-clone",
+  "active_project": null,
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
       "current_task": "tbd",
-      "health": "515_pass_11_e2e_pass_build_clean_site_unreachable",
-      "last_sha": "7e6e529",
-      "blocker": "Live site unreachable (domain timeout) — deployment/infra issue, not code",
-      "last_review": "2026-06-25T21:36:00+10:00",
+      "health": "515_pass_build_clean_site_200_ok_phaser_renders",
+      "last_sha": "78ed749",
+      "blocker": null,
+      "last_review": "2026-06-26T08:35:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 0
+      "consecutive_on_project": 0,
+      "note": "Site confirmed healthy at hex.codeovertcp.com (not polytopia-clone.com). Tribe selection, map config, all settings render. 0 JS errors. Phase 1 complete."
     },
     "gto-wizard-clone": {
       "status": "active",
@@ -20,12 +21,13 @@
       "current_task": "tbd",
       "all_coach_tasks_done": true,
       "health": "build_passes_368_py_tests_53_frontend_tests_pass_live_200_0_js_errors",
-      "last_sha": "59124ac",
+      "last_sha": "3be6f39",
       "blocker": null,
-      "last_review": "2026-06-25T21:36:00+10:00",
+      "last_review": "2026-06-26T08:35:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 0
+      "consecutive_on_project": 0,
+      "note": "Phase 2 complete. All 9 spec_gaps resolved. 9 sub-tabs, player tiles, action prompt, spaced repetition, E2E runner all working."
     }
   },
-  "note": "Tick 2026-06-26T19:30. Master checkpoint stale. Investigated gto-wizard-clone directly — all Coach tasks complete, site healthy (200), no actionable tasks. current_task=tbd. Polytopia-clone still blocked (site unreachable — infra issue). Both projects awaiting Coach replenishment. No Player action possible."
+  "note": "Master checkpoint updated by Coach cycle 2026-06-26 08:35 AEST. Both projects: APPROVE. All tasks complete, no blockers for either. Both sites healthy. Polytopia-clone site URL is hex.codeovertcp.com (not polytopia-clone.com). Both awaiting Phase 3/Phase 2 backlog generation."
 }
