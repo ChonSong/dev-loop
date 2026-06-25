@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-25T21:36:00+10:00",
-  "consecutive_on_project": 1,
+  "last_run": "2026-06-25T22:12:00+10:00",
+  "consecutive_on_project": 2,
   "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
@@ -17,14 +17,14 @@
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "fix-position-selector-player-tiles",
+      "current_task": "fix-top-bar-action-prompts",
       "health": "build_passes_368_py_tests_53_frontend_tests_pass_live_200_0_js_errors",
-      "last_sha": "dc78a8c",
+      "last_sha": "2a8d18f",
       "blocker": null,
       "last_review": "2026-06-25T21:36:00+10:00",
       "review_quality": "approved",
-      "consecutive_on_project": 1
+      "consecutive_on_project": 2
     }
   },
-  "note": "Tick 2026-06-25T21:36: Both projects reviewed. Polytopia: fix-enchant-button-visibility (4abf4ba) approved — 502 vitest, 10/10 E2E pass, 0 JS errors. New tasks: temple/monument scoring + display. GTO: add-missing-right-sidebar-sub-tabs (dc78a8c) approved — all 9 sub-tabs verified with real content. 3 stale spec_gaps cleaned. New tasks: position tiles, E2E infra, action prompts."
+  "note": "Tick 2026-06-25T22:12: GTO: fix-position-selector-player-tiles (2a8d18f) committed \u2014 stack bb labels on position cards now match reference [UTG 100][HJ 100]. 53 frontend + 368 Python tests pass. Next: fix-top-bar-action-prompts."
 }
