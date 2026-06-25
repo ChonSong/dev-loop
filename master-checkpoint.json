@@ -1,27 +1,28 @@
 {
-  "last_run": "2026-06-25T22:25:00Z",
-  "consecutive_on_project": 2,
+  "last_run": "2026-06-25T11:03:00+10:00",
+  "consecutive_on_project": 5,
   "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "tbd",
-      "health": "481_pass_0_error_0_fail",
-      "last_sha": "1a0089e",
-      "blocker": null,
-      "last_review": "2026-06-25T22:25:00Z",
-      "review_quality": "pending"
+      "current_task": "add-e2e-sound-toggle-test",
+      "health": "492_pass_build_clean_200_live",
+      "last_sha": "47c203f",
+      "blocker": "3_recovery_tasks_unstarted",
+      "last_review": "2026-06-25T11:03:00+10:00",
+      "review_quality": "pending",
+      "consecutive_on_project": 5
     },
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "fix-action-summary-strip-position-aggregate",
-      "health": "live_200_api_200_solutions_200_eq_200",
-      "last_sha": "9188888",
-      "blocker": null,
-      "last_review": "2026-06-25T22:20:00Z",
-      "review_quality": "regression-check"
+      "current_task": "backlog-exhausted",
+      "health": "build_passes_368_tests_pass_live_200_0_js_errors",
+      "last_sha": "d40ad33",
+      "blocker": "stale_deploy_aria_label_not_deployed_e2e_runner_broken",
+      "last_review": "2026-06-25T10:24:00+10:00",
+      "review_quality": "needs_deploy"
     }
   }
 }
