@@ -1,18 +1,18 @@
 {
-  "last_run": "2026-06-25T19:35:00+10:00",
-  "consecutive_on_project": 2,
-  "active_project": "gto-wizard-clone",
+  "last_run": "2026-06-25T20:35:00+10:00",
+  "consecutive_on_project": 1,
+  "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
       "current_task": "tbd",
       "health": "all_11_e2e_pass_502_unit_pass",
-      "last_sha": "ab2032c",
+      "last_sha": "4abf4ba",
       "blocker": null,
       "last_review": "2026-06-25T16:05:00+10:00",
-      "review_quality": "approved",
-      "consecutive_on_project": 4
+      "review_quality": "pending",
+      "consecutive_on_project": 1
     },
     "gto-wizard-clone": {
       "status": "active",
@@ -23,8 +23,8 @@
       "blocker": null,
       "last_review": "2026-06-25T19:35:00+10:00",
       "review_quality": "approved",
-      "consecutive_on_project": 2
+      "consecutive_on_project": 0
     }
   },
-  "note": "Tick 2026-06-25T19:35: Coach review cycle. fix-variants-listing-missing-links (24f5d8d) APPROVED ✅. Verified: all 10 variants show equity links, all linked pages 200, 0 JS errors, 53/53 frontend + 368/368 Python tests pass. Cleaned up stale AGENTS.md recovery tasks. Generated 3 new tasks from remaining spec_gaps (Filters stub, Blockers missing, spaced repetition). Polytopia: no new commits."
+  "note": "Tick 2026-06-25T20:35: Polytopia fix-enchant-button-visibility (4abf4ba). Fixed enchantBtn local const bug. Build clean, 502 tests pass. GTO: no new tasks (all completed). Polytopia: all AGENTS.md tasks done, enchant fix committed."
 }
