@@ -1,28 +1,29 @@
 {
-  "last_run": "2026-06-25T12:35:00+10:00",
-  "consecutive_on_project": 6,
+  "last_run": "2026-06-25T16:05:00+10:00",
+  "consecutive_on_project": 2,
   "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "add-territorial-scoring",
-      "health": "492_pass_build_clean_200_live",
-      "last_sha": "3784b78",
+      "current_task": "fix-tech-panel-star-balance",
+      "health": "502_pass_build_clean_200_live",
+      "last_sha": "0c0cf86",
       "blocker": null,
-      "last_review": "2026-06-25T12:35:00+10:00",
+      "last_review": "2026-06-25T14:45:00+10:00",
       "review_quality": "approved",
-      "consecutive_on_project": 6
+      "consecutive_on_project": 2
     },
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "backlog-exhausted",
-      "health": "build_passes_368_tests_pass_live_200_0_js_errors",
-      "last_sha": "399d24a",
-      "blocker": "stale_deploy_e2e_runner_broken",
-      "last_review": "2026-06-25T12:35:00+10:00",
-      "review_quality": "approved_advance_turn_fixed"
+      "current_task": "tbd",
+      "health": "build_passes_368_py_tests_53_frontend_tests_pass_live_200_0_js_errors",
+      "last_sha": "fc77b25",
+      "blocker": null,
+      "last_review": "2026-06-25T14:45:00+10:00",
+      "review_quality": "approved"
     }
-  }
+  },
+  "note": "Tick 2026-06-25T16:05: fix-city-menu-info-display done. City menu now shows name, level, population, food progress. 502 tests pass. Advanced to fix-tech-panel-star-balance."
 }

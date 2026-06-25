@@ -35,6 +35,21 @@ Every task MUST include:
 - **Coach checks**: Verification points. What the Coach will check next cycle.
 ```
 
+## Test Methodology: Expectations First
+
+When a task involves tests, frame it so the Player defines WHAT correct behavior looks like BEFORE writing implementation code. The TDD cycle (RED → GREEN → REFACTOR) must be enforced at the task description level.
+
+✅ Good: *"Define pause/resume expectations from the reference (GDD §X, original app behavior), write failing tests for each expectation, then implement to make them pass"*
+
+❌ Bad: *"Add E2E test for pause/resume"* — this tells the Player to backfill a test for already-written code. The test will validate the implementation, not the requirement.
+
+❌ Bad: *"Write a Playwright test that clicks Escape and verifies overlay"* — this prescribes test mechanics instead of defining expected behavior. The Player implements both test and code in the same context, producing self-referential validation.
+
+**For E2E test tasks specifically:**
+- Define expected behavior from an independent reference FIRST (GDD, original site, spec)
+- Write the test so it can fail independently of any implementation code
+- If the test was written alongside the feature it tests, it's a methodology failure — flag and rewrite
+
 ## Success Criteria Examples
 
 | Good | Bad |
