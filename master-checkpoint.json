@@ -1,19 +1,19 @@
 {
-  "last_run": "2026-06-26T16:15:00Z",
-  "consecutive_on_project": 1,
+  "last_run": "2026-06-26T17:15:00Z",
+  "consecutive_on_project": 2,
   "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "fix-unit-combat-animations",
-      "health": "515_pass_0_regressions_build_clean_audio_added",
-      "last_sha": "a1b035b",
+      "current_task": "fix-tech-tree-visualization",
+      "health": "515_pass_0_regressions_projectile_animations_added",
+      "last_sha": "86410dc",
       "blocker": null,
       "last_review": "2026-06-26T16:15:00Z",
       "review_quality": "pending",
-      "consecutive_on_project": 1,
-      "note": "Tick 2026-06-26 16:15 UTC: add-sound-effects-and-music — Web Audio API synthesized sounds (UI click, tribe select, attack hit, unit death, city capture fanfare, ambient arpeggio). Mute synced. 515 tests pass. Switched from gto-wizard (round-robin). Next: fix-unit-combat-animations."
+      "consecutive_on_project": 2,
+      "note": "Tick 2026-06-26 17:15 UTC: fix-unit-combat-animations — ranged projectile animation (colored circle with trail). All 4 animation sub-items complete. 515 tests pass. Disk full resolved (8.8G freed). Next: fix-tech-tree-visualization."
     },
     "gto-wizard-clone": {
       "status": "active",
@@ -28,5 +28,5 @@
       "note": "No new Player commits. All 11 health checks pass, study page loads with data, 0 console errors, RefQA passes. Health check cron 401 billing still open (4 cycles stagnant)."
     }
   },
-  "note": "Tick 2026-06-26 16:15 UTC. Polytopia: add-sound-effects-and-music (Web Audio API synthesized sounds, 515 tests pass). Switched from gto-wizard (round-robin). GTO Wizard current_task corrected to add-periodic-health-check-cron."
+  "note": "Tick 2026-06-26 17:15 UTC. Polytopia: fix-unit-combat-animations (ranged projectile animation, all 4 sub-items complete). Disk full incident resolved (8.8G freed from huggingface cache). Next: fix-tech-tree-visualization."
 }
