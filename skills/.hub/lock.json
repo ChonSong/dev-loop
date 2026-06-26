@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "installed": {
+    "kanban-video-orchestrator": {
+      "source": "official",
+      "identifier": "official/creative/kanban-video-orchestrator",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:cfabaa6bca528e09",
+      "install_path": "creative/kanban-video-orchestrator",
+      "files": [
+        "SKILL.md",
+        "assets/brief.md.tmpl",
+        "assets/setup.sh.tmpl",
+        "assets/soul.md.tmpl",
+        "references/examples.md",
+        "references/intake.md",
+        "references/kanban-setup.md",
+        "references/monitoring.md",
+        "references/role-archetypes.md",
+        "references/tool-matrix.md",
+        "scripts/bootstrap_pipeline.py",
+        "scripts/monitor.py"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-06-11T00:10:12.285968+00:00",
+      "updated_at": "2026-06-11T00:10:12.285968+00:00"
+    },
+    "dspy": {
+      "source": "official",
+      "identifier": "official/mlops/research/dspy",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:bbbe1148d27953a8",
+      "install_path": "mlops/research/dspy",
+      "files": [
+        "SKILL.md",
+        "references/examples.md",
+        "references/modules.md",
+        "references/optimizers.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-06-12T00:22:22.762605+00:00",
+      "updated_at": "2026-06-12T00:22:22.762605+00:00"
+    }
+  }
+}

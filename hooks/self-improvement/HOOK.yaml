@@ -1,0 +1,6 @@
+---
+name: self-improvement
+description: "Session-start reminder to review learnings. Fires on session:start (reads .learnings, writes reminder) and session:end (writes capture prompt)."
+events:
+  - session:start
+  - session:end

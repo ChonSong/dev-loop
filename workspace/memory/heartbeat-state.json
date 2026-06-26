@@ -1,0 +1,9 @@
+{
+  "current_phase": "Collection",
+  "phase_started_at": "2026-04-26T21:00:00Z",
+  "last_run": "2026-04-26T21:00:00Z",
+  "collection_queue": [],
+  "code_index": [],
+  "repos_digested": 0,
+  "notes": "State restored from migration archive on 2026-04-29"
+}

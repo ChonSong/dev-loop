@@ -1,0 +1,15 @@
+---
+name: uucz/moyu
+description: use for anti-over-engineering across platforms
+category: 
+tags: []
+source: voltagent
+is_imported: true
+---
+
+# uucz/moyu
+
+use for anti-over-engineering across platforms
+
+**Category:** 
+**Source:** voltagent

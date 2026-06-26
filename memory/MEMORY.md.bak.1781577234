@@ -1,0 +1,61 @@
+# Memory — Sean's Hermes System
+
+---
+
+## Infrastructure
+
+- **Host**: Linux, user `sc`. Running in Singularity container (nikolaik/python-nodejs:python3.11-nodejs20) inside VirtualBox VM (sc-VirtualBox).
+- **Host access**: No SSH escape hatch available in this environment.
+- **Hermes services**: systemd --user (hermes-gateway, hermes-dashboard on :9119). Gateway runs on port 8642.
+- **Docker containers**: hermes-webui (:8787), gto-wizard-clone (:3000), agent-os, others.
+- **Cloudflare tunnel**: `codeovertcp` at `~/.cloudflared/config.yml` (17 ingress rules). CF API token needs Zone:DNS Edit + Account:Tunnel:Write + Access:Edit.
+- **Domains**: `*.codeovertcp.com`, GitHub under `ChonSong` org.
+- **Python**: 3.11.15 (system), pip→3.8 (mismatch — use uv or venv). uv installed.
+- **Discord**: Token refreshed June 14. Gateway connected. Channel ID 1486919044757061652 in .env.
+- **Node.js**: 20.20.0 installed at ~/node-v20.20.0-linux-x64/ for frontend builds. System Node is 18.
+- **Go**: 1.26 installed at ~/go/ for backend builds.
+
+## Active Projects
+
+- **GTO Wizard** (`gto-wizard-clone`): 64/64 E2E tests passing. 5 seeded courses with API data. Systemd services active (web/api/tunnel). Local :3000 checks pass (~0.03s). Git deploy loop every ~5min.
+- **HWC** (`hermes-web-computer`): Go backend + Svelte 5 frontend. Systemd service hwc-server.service, port :3005, WorkingDirectory=backend/, binary at backend/agent-os. Frontend dist at frontend/dist/. Rebuilt June 14.
+- **energy-aware-task-router**: Phase 4a done, 32/32 tests. Self-driving cron loop.
+- **seans-reporepo**: Git-based repo catalog at /home/sc/repos/seans-reporepo. Weekly refresh Mon 09:00.
+
+## Polytopia Clone
+
+- Project at `/home/sc/repos/polytopia-clone`
+- Phaser 3 + TypeScript + Vite game
+- Hex grid with axial coords, pointy-top
+- 4 tribes, cities, units (6 types), combat system, turn-based AI
+- 118 tests all passing, build clean
+- Served with `serve` on port 3001
+- **Live at https://hex.codeovertcp.com** — DNS CNAME added via cloudflared API
+- Deploy watchdog every 5min (`~/.hermes/scripts/deploy-polytopia.sh`)
+
+## Preferences
+
+- Action-oriented — execute, don't plan. Prefers short commands ("proceed", "do all", "yes").
+- Evidence-backed decisions (research codebases, show hard data).
+- Avoids filler — give content, not framing.
+- Prioritizes consolidation/cleanup over accumulation.
+- Backend-heavy projects preferred.
+- UI generation: meta.ai → paste HTML to Hermes for component refactoring.
+
+## Conventions
+
+- All paths on host are writable from container via SSH.
+- approvals.cron_mode = auto_approve for cron.
+- Hermes profile: default. Profiles at ~/.hermes/profiles/<name>/.
+- Cron jobs at ~/.hermes/cron/jobs.json. Memory curation daily 16:00 overwrites MEMORY.md.
+
+## Lessons
+
+1. approvals.cron_mode must be auto_approve for cron terminal commands — Tirith blocks when deny.
+2. Discord /skill commands clash at 32 chars — skills with same first 32 chars get hidden.
+3. Node 18 lacks Tailwind Oxide native bindings — use ~/node-v20.20.0-linux-x64/ for frontend builds.
+4. Cloudflare Access returns 302 for unauthenticated requests — expected, not a failure.
+5. GTO Wizard responds at localhost:3000 from Docker container (network_mode: host).
+6. nanobot fully removed June 14 — WhatsApp bridge preserved at archived-nanobot/.
+7. Cron cleanup June 14: 18→14 jobs, ~96→~20 runs/day. GTO deploy log rotation active (daily 06:00).
+8. `vite preview` blocks unknown hosts — use `serve` for production static serving behind CF tunnel.

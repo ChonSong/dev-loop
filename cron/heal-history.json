@@ -1,0 +1,77 @@
+{
+  "0175050d9c29": {
+    "consecutive_errors": 0,
+    "last_status": "ok",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "56685e569e5f": {
+    "consecutive_errors": 0,
+    "last_status": "ok",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "ad90af79146c": {
+    "consecutive_errors": 0,
+    "last_status": "error",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "e4d95660ab35": {
+    "consecutive_errors": 0,
+    "last_status": "ok",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "64280d3687bf": {
+    "consecutive_errors": 0,
+    "last_status": "ok",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "ecb3846b907b": {
+    "consecutive_errors": 0,
+    "last_status": "error",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "5b47d796f26f": {
+    "consecutive_errors": 0,
+    "last_status": "ok",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "35dfd98f75e8": {
+    "consecutive_errors": 0,
+    "last_status": "error",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "e8f57eddfa43": {
+    "consecutive_errors": 0,
+    "last_status": "error",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "ab8ec643c16c": {
+    "consecutive_errors": 0,
+    "last_status": "ok",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "166753e315ea": {
+    "consecutive_errors": 0,
+    "last_status": "ok",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "b4f35d68ede1": {
+    "consecutive_errors": 0,
+    "last_status": "ok",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "29347c54bf6a": {
+    "consecutive_errors": 0,
+    "last_status": "error",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "5e1bba516d87": {
+    "consecutive_errors": 0,
+    "last_status": "ok",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  },
+  "5d06462b5271": {
+    "consecutive_errors": 0,
+    "last_status": "ok",
+    "last_seen": "2026-06-19T16:00:41.228725"
+  }
+}

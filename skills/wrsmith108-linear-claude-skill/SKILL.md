@@ -1,0 +1,16 @@
+---
+name: wrsmith108/linear-claude-skill
+description: Manage Linear issues, projects, and teams
+category: 
+tags: []
+source: voltagent
+is_imported: true
+original_name: wrsmith108/linear-claude-skill
+---
+
+# wrsmith108/linear-claude-skill
+
+Manage Linear issues, projects, and teams
+
+**Category:** 
+**Source:** voltagent

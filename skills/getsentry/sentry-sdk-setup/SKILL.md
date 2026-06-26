@@ -1,0 +1,15 @@
+---
+name: getsentry/sentry-sdk-setup
+description: Set up Sentry SDK for any language or framework
+category: 
+tags: []
+source: voltagent
+is_imported: true
+---
+
+# getsentry/sentry-sdk-setup
+
+Set up Sentry SDK for any language or framework
+
+**Category:** 
+**Source:** voltagent

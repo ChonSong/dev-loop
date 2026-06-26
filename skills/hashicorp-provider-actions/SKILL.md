@@ -1,0 +1,16 @@
+---
+name: hashicorp/provider-actions
+description: Implement Terraform Provider Actions using the Plugin Framework
+category: 
+tags: []
+source: voltagent
+is_imported: true
+original_name: hashicorp/provider-actions
+---
+
+# hashicorp/provider-actions
+
+Implement Terraform Provider Actions using the Plugin Framework
+
+**Category:** 
+**Source:** voltagent

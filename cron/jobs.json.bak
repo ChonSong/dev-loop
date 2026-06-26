@@ -1,0 +1,752 @@
+{
+  "jobs": [
+    {
+      "id": "0175050d9c29",
+      "name": "Memory Curation",
+      "prompt": "Memory curation for Sean. Review recent memory files, distill significant events/decisions into MEMORY.md. Identify anything worth promoting from daily logs to long-term memory. If nothing needs attention, reply HEARTBEAT_OK.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 5 * * *",
+        "display": "0 5 * * *"
+      },
+      "schedule_display": "0 5 * * *",
+      "repeat": {
+        "times": 100,
+        "completed": 2
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-26T21:12:49.402037+10:00",
+      "next_run_at": "2026-05-03T05:00:00+00:00",
+      "last_run_at": "2026-04-29T15:01:14.097244+10:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "56685e569e5f",
+      "name": "Morning Briefing",
+      "prompt": "Morning briefing for Sean (Sydney, weekday). Check: Sydney weather, calendar events for today, any urgent emails or messages. Deliver a concise briefing. If nothing urgent, reply HEARTBEAT_OK.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 7 * * 1-5",
+        "display": "30 7 * * 1-5"
+      },
+      "schedule_display": "30 7 * * 1-5",
+      "repeat": {
+        "times": 100,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-26T21:12:56.978546+10:00",
+      "next_run_at": "2026-05-04T07:30:00+00:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "6d747879c7c5",
+      "name": "Cross-Agent Bridge Poll",
+      "prompt": "Cross-agent status check. Review recent agent activity across sessions, check for any stalled tasks, delegations that need follow-up, or issues requiring attention. Report briefly to Sean. If all clear, reply HEARTBEAT_OK.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */6 * * *",
+        "display": "0 */6 * * *"
+      },
+      "schedule_display": "0 */6 * * *",
+      "repeat": {
+        "times": 100,
+        "completed": 7
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-26T21:13:05.078736+10:00",
+      "next_run_at": "2026-05-03T18:00:00+10:00",
+      "last_run_at": "2026-05-03T12:00:23.960422+10:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "d3aac3ef0953",
+      "name": "System Monitor & Cleaner",
+      "prompt": "System health check + cleanup for Sean. Check disk space, running processes, any failed services. Clean up temp files, old logs. Report status concisely. If all clear, reply HEARTBEAT_OK.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 17 * * *",
+        "display": "0 17 * * *"
+      },
+      "schedule_display": "0 17 * * *",
+      "repeat": {
+        "times": 100,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-26T21:13:13.535509+10:00",
+      "next_run_at": "2026-05-03T17:00:00+10:00",
+      "last_run_at": "2026-04-29T17:00:33.185568+10:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "4e516a10190d",
+      "name": "HKUDS/ClawTeam Daily Summary",
+      "prompt": "HKUDS/ClawTeam daily summary. Fetch open PRs, recently merged PRs (last 7 days), open issues, and recent CI runs for HKUDS/ClawTeam repo. Post a formatted report to Discord channel #clawteam (channel ID: 1486920272547151922). Format with emojis: :red_circle: for open PRs, :green_circle: for merged, :clipboard: for issues, :gear: for CI. Include repo stats (stars, forks). Use the Discord bot token from environment.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "display": "0 9 * * *"
+      },
+      "schedule_display": "0 9 * * *",
+      "repeat": {
+        "times": 100,
+        "completed": 2
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-26T21:13:22.366034+10:00",
+      "next_run_at": "2026-05-03T09:00:00+00:00",
+      "last_run_at": "2026-04-30T00:58:47.303725+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "f53d0f3da390",
+      "name": "Delegation Monitor",
+      "prompt": "Delegation health check. Review any spawned subagent tasks, check for stalled or failed delegations, suggest config improvements. Report to Sean concisely.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 4 * * *",
+        "display": "20 4 * * *"
+      },
+      "schedule_display": "20 4 * * *",
+      "repeat": {
+        "times": 100,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-26T21:13:43.125359+10:00",
+      "next_run_at": "2026-05-03T04:20:00+00:00",
+      "last_run_at": "2026-04-30T04:36:14.551196+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "65d287b7c3c9",
+      "name": "Autonomy Digest",
+      "prompt": "Autonomy digest. Review recent agent sessions and activity logs, summarize key accomplishments, any failures or errors encountered, and suggestions for workflow improvements. Report to Sean.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 8,18 * * *",
+        "display": "20 8,18 * * *"
+      },
+      "schedule_display": "20 8,18 * * *",
+      "repeat": {
+        "times": 100,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-26T21:14:00.283140+10:00",
+      "next_run_at": "2026-05-03T18:20:00+10:00",
+      "last_run_at": "2026-04-29T18:41:29.534398+10:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "33ee3807d679",
+      "name": "hermes-sync rolling rebuild",
+      "prompt": "Run the hermes-sync rolling update script. This script pulls the latest hermes-sync git repo, builds a new Docker image, pushes it to GHCR, and does a rolling restart of the hermes containers.\n\nIMPORTANT: This script requires Docker CLI and GHCR authentication. It must be run from the host machine (not inside a container) with access to the docker daemon.\n\nThe script is at: ~/hermes-sync/scripts/sync-and-push.sh\n\nSteps:\n1. Run: cd ~/hermes-sync && bash scripts/sync-and-push.sh\n2. If the script exits non-zero, check what failed\n3. On success, the output will confirm the image was pushed and containers restarted\n\nIf docker is not accessible (running inside a container), output \"SKIPPED: docker not available from this context\" and exit 0.",
+      "skills": [
+        "hermes-docker-workflow"
+      ],
+      "skill": "hermes-docker-workflow",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */6 * * *",
+        "display": "0 */6 * * *"
+      },
+      "schedule_display": "0 */6 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 2
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-30T04:45:41.872578+00:00",
+      "next_run_at": "2026-05-03T18:00:00+10:00",
+      "last_run_at": "2026-05-03T12:01:08.621667+10:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "6576b5f87515",
+      "name": "Roadmap Autonomy Engine \u2014 Overnight (1am-7am Sydney)",
+      "prompt": "Run the Roadmap Autonomy Engine for Sean \u2014 the next-generation overnight engine.\n\nExecute:\n```\ncd /opt/data/hermes-sync && python3 scripts/roadmap_engine.py --phase all\n```\n\nPhase 1 (Research): Clone/pull tracked repos, scan TODOs/FIXMEs, fetch GitHub issues, revise roadmap.json, snapshot to roadmap-history/\nPhase 2 (Execute): Execute pending tasks (test/code/research/browser/review types) until 14:00 UTC (midnight Sydney)\nPhase 3 (Report): Generate narrative report to workspace/plans/nightly-reports/report-YYYY-MM-DD.md, deliver critical issues to Telegram\n\nRoadmap lives at: workspace/plans/roadmap.json\nKey projects: ChonSong/repo-transmute, ChonSong/everything-dashboard, ChonSong/hermes-sync, NousResearch/hermes-agent",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/20 14-20 * * *",
+        "display": "*/20 14-20 * * *"
+      },
+      "schedule_display": "*/20 14-20 * * *",
+      "repeat": {
+        "times": 999,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-04-30T23:24:11.529267+00:00",
+      "next_run_at": "2026-05-03T14:00:00+10:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "37ac85c9e62b",
+      "name": "nanobot Upstream Sync \u2014 Daily",
+      "prompt": "nanobot upstream sync check for ChonSong/nanobot.\n\nCheck if HKUDS/nanobot (upstream) has new commits that ChonSong/nanobot doesn't have. If there are new commits:\n1. Fetch upstream in the local ChonSong/nanobot clone at /opt/data/repos/nanobot\n2. Create a PR on GitHub (ChonSong/nanobot) against main with the new upstream commits\n3. Title the PR: \"sync: upstream nanobot updates (YYYY-MM-DD)\"\n4. In the PR body, list the commit messages (first 10 max) and say \"Auto-generated by Hermes overnight cron\"\n\nUse Python (not bash) for all git/GitHub operations since the container has Python but may lack curl. Use PyGithub (install it if needed: pip install PyGithub). For git, use /usr/bin/git with absolute paths.\n\nIf no new commits, just log \"nanobot upstream: no new commits\" and exit.\n\nWorking directory for git ops: /opt/data/repos/nanobot\nGitHub token: use the environment variable GITHUB_TOKEN or read from /opt/data/.github-token if present.\n\nDeliver result: a brief report of what happened (new commits found: Y/N, PR created: Y/N, PR URL if any).",
+      "skills": [
+        "github-repo-management"
+      ],
+      "skill": "github-repo-management",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 19 * * *",
+        "display": "0 19 * * *"
+      },
+      "schedule_display": "0 19 * * *",
+      "repeat": {
+        "times": 999,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-01T06:31:55.606695+00:00",
+      "next_run_at": "2026-05-03T19:00:00+10:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "3b5008cb4fe6",
+      "name": "nanobot AIE Log Digest \u2014 Morning",
+      "prompt": "nanobot AIE log analysis for Sean's morning digest.\n\nRead the AIE event log at /opt/data/aie-logs/agent-events.jsonl and produce a brief digest summarizing overnight agent activity.\n\nSteps:\n1. Read /opt/data/aie-logs/agent-events.jsonl \u2014 parse all JSONL lines from the last 12 hours (look at timestamps in events, filter to last 12h)\n2. Count events by type: delegation, task_complete, tool_call, assumption, drift, circuit_open\n3. For tool_call events, aggregate which tools were used and how often\n4. For drift events, calculate the correction rate (corrected / total drift events)\n5. Look for any circuit_open events or errors\n6. Identify any sessions that had >5 tool calls (indicating complex tasks)\n\nProduce a concise markdown digest, for example:\n```\n## nanobot Overnight AIE Digest \u2014 YYYY-MM-DD\n\n**Total events:** N | **Sessions:** N | **Drift correction rate:** X%\n\n### Event Breakdown\n- delegations: N\n- task_complete: N  \n- tool_calls: N\n- assumptions/drift: N\n\n### Top Tools Used\n1. FileTools (Read/Write/Edit): N\n2. ShellTool: N\n3. WebTools: N\n4. SpawnTool: N\n\n### Complex Sessions (>5 tools)\n- session_id: N tools used, last message: \"...\"\n\n### Circuit Breakers\n- Any OPEN events? YES/NO\n\n### Recommendations\n- [ actionable suggestions based on patterns ]\n```\n\nSave the digest to /opt/data/aie-logs/digests/YYYY-MM-DD.md (create the directory if it doesn't exist).\n\nExit with a clear status: \"Digest complete \u2014 N events processed\"",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * *",
+        "display": "0 21 * * *"
+      },
+      "schedule_display": "0 21 * * *",
+      "repeat": {
+        "times": 999,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-01T06:32:09.948375+00:00",
+      "next_run_at": "2026-05-03T21:00:00+10:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "2cd4f9e73be5",
+      "name": "agent-os morning deploy",
+      "prompt": "Deploy the latest agent-os image on the server and verify it's healthy.\n\nContext:\n- Server: 192.168.1.117 (LAN)\n- Docker compose path: /opt/data/hermes-sync/projects/agent-os/docker-compose.yml\n- Image: ghcr.io/chonsong/agent-os:latest (built by GitHub Actions on main branch push)\n- SSH user: root\n- Docker socket is available on the host at /var/run/docker.sock\n\nSteps:\n1. SSH to the server (use subprocess with key from /tmp/github_actions_deploy if it exists, otherwise skip SSH and run docker commands directly)\n2. Pull latest: docker pull ghcr.io/chonsong/agent-os:latest\n3. Restart: cd /opt/data/hermes-sync/projects/agent-os && docker compose up -d\n4. Wait 15 seconds for container to start\n5. Health check: curl -sf http://localhost:9120/health\n6. Verify docker ps shows agent-os running\n7. Check nanobot serve is responding: curl -sf http://localhost:8900/health\n8. Check AIE log has events: cat /opt/data/aie-logs/agent-events.jsonl | tail -3\n9. Report: image SHA, container status, health check result, any errors\n\nUse Python subprocess for all commands. Report all output.",
+      "skills": [
+        "hermes-agent"
+      ],
+      "skill": "hermes-agent",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * *",
+        "display": "0 21 * * *"
+      },
+      "schedule_display": "0 21 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-02T13:28:18.304041+00:00",
+      "next_run_at": "2026-05-03T21:00:00+10:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "8c4b8e5a2d49",
+      "name": "CI failure notifier",
+      "prompt": "Check CI status for ChonSong/agent-os and report any failures from the most recent run.\n\nGitHub token: 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\n\nSteps:\n1. GET https://api.github.com/repos/ChonSong/agent-os/actions/runs?per_page=3\n2. Check if the most recent run has conclusion \"failure\"\n3. If there are failures, report which workflow failed and what the last successful commit SHA was\n4. If all recent runs are successful, report \"All CI green\"\n\nDo NOT try to fix anything \u2014 just report. Save any failure info to /opt/data/hermes-sync/projects/agent-os/logs/ci-status.log\n",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9,15,21 * * *",
+        "display": "0 9,15,21 * * *"
+      },
+      "schedule_display": "0 9,15,21 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-02T13:36:55.827254+00:00",
+      "next_run_at": "2026-05-03T15:00:00+10:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "4706cc1362bb",
+      "name": "agent-os: Kickoff \u2014 pre-flight",
+      "prompt": "## agent-os: Kickoff Pre-Flight Check\n\nVerify repo state before the build phases begin.\n\n### Context\n\nAll git/gh operations must be done via SSH to the host:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os && git pull origin main 2>&1\"\n```\n\nGitHub operations use the host's gh CLI (already authenticated via keyring \u2014 no token needed).\n\nThe agent-os repo is at `/home/sean/.hermes/agent-os/` on the host.\n\n### Steps\n\n1. Check CI status:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"gh run list --repo ChonSong/agent-os --limit 3 2>&1\"\n```\n\n2. Check what's in deploy.yml:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cat /home/sean/.hermes/agent-os/.github/workflows/deploy.yml 2>&1\"\n```\n\n3. Check if Dockerfile exists:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"ls /home/sean/.hermes/agent-os/Dockerfile 2>&1 || echo 'No Dockerfile'\"\n```\n\n4. Check Go stubs:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cat /home/sean/.hermes/agent-os/infra/CasaOS/agent/go.mod\"\nssh -o StrictHostKeyChecking=no sean@localhost \"cat /home/sean/.hermes/agent-os/infra/CasaOS/webhook-emitter/go.mod\"\n```\n\n5. Check dashboard backend entry point:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"ls /home/sean/.hermes/agent-os/apps/dashboard/backend/src/ 2>&1\"\n```\n\n6. Check current git state:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os && git log --oneline -3 && git status --short\"\n```\n\n### Deliver\n\nReport:\n1. CI status (pass/fail for recent runs)\n2. Confirm deploy.yml is the TODO stub\n3. Any Dockerfile exists?\n4. Go modules state\n5. Dashboard backend state\n6. Any red flags for Phase 1\n",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "25 * * * *",
+        "display": "25 * * * *"
+      },
+      "schedule_display": "25 * * * *",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-03T02:14:41.795352+00:00",
+      "next_run_at": "2026-05-03T02:25:00+00:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "78c7c5433ddc",
+      "name": "agent-os: Phase 1 \u2014 Deploy pipeline",
+      "prompt": "## agent-os Phase 1 \u2014 Deploy Pipeline Fix\n\n**Goal**: Fix the broken CI \"Build and Push Agent OS\" workflow.\n\n**IMPORTANT**: All git operations via SSH to host. No GitHub tokens in prompts. gh CLI on host is already authenticated.\n\n### Pattern for all gh/git commands:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os && YOUR_COMMAND_HERE\"\n```\n\n### Steps\n\n**Step 1 \u2014 Create files on host**\n\nSSH to host and create these files:\n\na) `/tmp/agent-os/docker-bake.hcl`:\n```\nvariable \"IMAGE_TAG\" {\n  default = \"latest\"\n}\n\nvariable \"GITHUB_SHA\" {\n  default = \"local\"\n}\n\ngroup \"default\" {\n  targets = [\"agent-os\"]\n}\n\ntarget \"agent-os\" {\n  context    = \"./\"\n  dockerfile = \"Dockerfile\"\n  platforms  = [\"linux/amd64\", \"linux/arm64\"]\n  tags = [\n    \"ghcr.io/chonsong/agent-os:${IMAGE_TAG}\",\n    \"ghcr.io/chonsong/agent-os:${GITHUB_SHA}\"\n  ]\n  cache-from = [\"ghcr.io/chonsong/agent-os:buildcache\"]\n  cache-to   = [\"type=registry,ref=ghcr.io/chonsong/agent-os:buildcache,mode=max\"]\n  pull       = true\n  args = {\n    BUILDKIT_INLINE_CACHE = \"1\"\n  }\n}\n```\n\nb) `Dockerfile` in the agent-os repo root. The Dockerfile should build all three components:\n```dockerfile\n# syntax=docker/dockerfile:1\n\n# \u2500\u2500 Stage 1: Frontend \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nFROM node:20-alpine AS frontend-build\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci\nCOPY src ./src\nRUN npm run build\n\n# \u2500\u2500 Stage 2: Backend \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nFROM node:20-alpine AS backend-build\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci\nCOPY src ./src\nRUN npm run build\n\n# \u2500\u2500 Stage 3: Nanobot \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nFROM python:3.12-slim AS nanobot-build\nRUN pip install --no-cache-dir nanobot-ai[api]\nWORKDIR /workspace\n\n# \u2500\u2500 Stage 4: Runtime \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nFROM python:3.12-slim\nENV PYTHONUNBUFFERED=1\nWORKDIR /app\n\n# Install nanobot\nRUN pip install --no-cache-dir nanobot-ai[api] httpx\n\n# Copy nanobot workspace scaffold\nWORKDIR /workspace\nRUN mkdir -p /workspace && echo '{\"agents\": []}' > /workspace/agents.json\n\n# Copy dashboard backend\nWORKDIR /app\nCOPY --from=backend-build /app/dist ./dist\nCOPY --from=backend-build /app/package*.json ./\nRUN npm ci --omit=dev\n\n# Copy frontend build\nCOPY --from=frontend-build /app/dist ./public\n\n# Expose ports\nEXPOSE 3001 8900\n\n# Entry point\nCMD [\"sh\", \"-c\", \"pip install nanobot-ai[api] -q && nanobot serve --host 0.0.0.0 --port 8900 & node /app/dist/index.js\"]\n```\n\nc) `docker-compose.prod.yml`:\n```yaml\nversion: \"3.9\"\n\nservices:\n  agent-os:\n    image: ghcr.io/chonsong/agent-os:latest\n    restart: unless-stopped\n    ports:\n      - \"3001:3001\"   # dashboard backend\n      - \"8900:8900\"   # nanobot\n    environment:\n      MINIMAX_API_KEY: ${MINIMAX_API_KEY}\n      NANOBOT_WORKSPACE: /workspace\n    volumes:\n      - /var/run/docker.sock:/var/run/docker.sock:ro\n```\n\n**Step 2 \u2014 Fix deploy.yml**\n\nSSH to host and write this to `/home/sean/.hermes/agent-os/.github/workflows/deploy.yml`:\n```yaml\nname: Deploy\n\non:\n  release:\n    types: [published]\n  workflow_dispatch:\n    inputs:\n      image_tag:\n        required: false\n        default: 'latest'\n\njobs:\n  build-and-push:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: read\n      packages: write\n    steps:\n      - uses: actions/checkout@v4\n\n      - name: Set up QEMU\n        uses: docker/setup-qemu-action@v3\n\n      - name: Set up Docker Buildx\n        uses: docker/setup-buildx-action@v3\n\n      - name: Login to GitHub Container Registry\n        uses: docker/login-action@v3\n        with:\n          registry: ghcr.io\n          username: ${{ github.actor }}\n          password: ${{ secrets.GITHUB_TOKEN }}\n\n      - name: Bake from file\n        uses: docker/bake-action@v4\n        with:\n          file: docker-bake.hcl\n          set: |\n            IMAGE_TAG=${{ github.event.inputs.image_tag || 'latest' }}\n            GITHUB_SHA=${{ github.sha }}\n          push: true\n          pull: true\n```\n\n**Step 3 \u2014 Commit and push**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os && git add docker-bake.hcl Dockerfile docker-compose.prod.yml .github/workflows/deploy.yml && git commit -m 'feat: implement deploy pipeline (docker-bake.hcl, Dockerfile, docker-compose.prod)' && git push origin main\"\n```\n\n**Step 4 \u2014 Verify CI**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"gh run list --repo ChonSong/agent-os --limit 3\"\n```\n\nWait ~60s and check again if a new run appeared. If it fails, look at logs and fix in a follow-up commit.\n\n### Deliver\n\nReport:\n1. Files created (list them)\n2. Git commit sha\n3. CI status after push (pass/fail + run id)\n4. Any errors requiring manual intervention\n",
+      "skills": [
+        "hermes-docker-workflow",
+        "github-pr-workflow"
+      ],
+      "skill": "github-pr-workflow",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * *",
+        "display": "0 12 * * *"
+      },
+      "schedule_display": "0 12 * * *",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-03T02:14:59.406843+00:00",
+      "next_run_at": "2026-05-03T12:00:00+00:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "d4994383fe5e",
+      "name": "agent-os: Phase 2 \u2014 E2E verification",
+      "prompt": "## agent-os Phase 2 \u2014 E2E Integration Verification\n\n**Goal**: Verify dashboard \u2192 nanobot \u2192 MiniMax end-to-end, fix routing gaps.\n\n**IMPORTANT**: All git/gh operations via SSH to host. Pattern:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os && YOUR_COMMAND\"\n```\nThe host's gh CLI is authenticated \u2014 no tokens in prompts.\n\n### Context from Phase 1\nReview Phase 1's output above to see what was created and any issues.\n\n### Steps\n\n**Step 1 \u2014 Check current routing on host**\n\nThe backend is running at localhost:3001, nanobot at localhost:8001. SSH to host and check:\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"curl -s localhost:3001/ 2>&1 | head -5\"\nssh -o StrictHostKeyChecking=no sean@localhost \"curl -s localhost:8001/health 2>&1\"\nssh -o StrictHostKeyChecking=no sean@localhost \"curl -s localhost:3001/api/ 2>&1 | head -10\"\n```\n\n**Step 2 \u2014 Check Express backend routes**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"find /home/sean/.hermes/everything-dashboard -name '*.ts' | xargs grep -l 'router\\|route\\|app\\\\.get\\\\|app\\\\.post' 2>/dev/null | head -5\"\nssh -o StrictHostKeyChecking=no sean@localhost \"cat /home/sean/.hermes/everything-dashboard/backend/src/index.ts 2>/dev/null | head -80\"\n```\n\n**Step 3 \u2014 Check for proxy route to nanobot**\n\nLook for http-proxy-middleware or similar. If `/api/agent` route is missing, add it:\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"grep -r 'nanobot\\\\|8001\\\\|proxy' /home/sean/.hermes/everything-dashboard/backend/src/ 2>/dev/null\"\n```\n\n**Step 4 \u2014 Fix routing**\n\nIf the proxy route is missing, add it to the Express backend. SSH in and edit:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cat > /tmp/add_proxy.ts << 'EOF'\nimport { createProxyMiddleware } from 'http-proxy-middleware';\n// Add before other routes:\napp.use('/api/agent', createProxyMiddleware({\n  target: 'http://localhost:8001',\n  changeOrigin: true,\n  pathRewrite: { '^/api/agent': '' },\n}));\nEOF\ncat /tmp/add_proxy.ts\"\n```\n\nThen merge it into the actual backend index.ts. The exact edit depends on what the file looks like \u2014 add the import and the route.\n\nIf http-proxy-middleware isn't installed:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/everything-dashboard/backend && npm install http-proxy-middleware 2>&1 | tail -5\"\n```\n\n**Step 5 \u2014 E2E test**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"curl -s -X POST http://localhost:3001/api/agent/chat -H 'Content-Type: application/json' -d '{\\\"message\\\": \\\"Reply with just the word PONG\\\"}' 2>&1\"\nssh -o StrictHostKeyChecking=no sean@localhost \"curl -s localhost:8001/health 2>&1\"\n```\n\n**Step 6 \u2014 Check agent-core sidecar**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"ls /home/sean/.hermes/agent-os/apps/dashboard/agent-core/ 2>&1\"\n```\n\nIf it's empty, create a `main.py` that runs nanobot as a subprocess.\n\n**Step 7 \u2014 Commit fixes**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os && git add -A && git commit -m 'fix(dashboard): add nanobot proxy route + E2E fixes' && git push origin main\"\n```\n\n**Step 8 \u2014 Verify CI**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"gh run list --repo ChonSong/agent-os --limit 3\"\n```\n\n### Deliver\n\nReport:\n1. Was the proxy route missing? What was added?\n2. E2E test result \u2014 did the full chain work?\n3. agent-core sidecar state\n4. CI status after push\n5. Any remaining integration gaps\n",
+      "skills": [
+        "nanobot-integration-plan"
+      ],
+      "skill": "nanobot-integration-plan",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": [
+        "78c7c5433ddc"
+      ],
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 14 * * *",
+        "display": "0 14 * * *"
+      },
+      "schedule_display": "0 14 * * *",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-03T02:15:17.762067+00:00",
+      "next_run_at": "2026-05-03T14:00:00+00:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "c6a5672793f0",
+      "name": "agent-os: Phase 3 \u2014 PostgreSQL",
+      "prompt": "## agent-os Phase 3 \u2014 PostgreSQL Schema Migrations\n\n**Goal**: Create SQL migrations from SPEC.md and run them against the local PostgreSQL instance.\n\n**Local PostgreSQL connection**:\n- Host: `127.0.0.1:5432`\n- Database: `agentos`\n- User: `agentos`\n- Password: `${POSTGRES_PASSWORD}` (set via environment variable \u2014 do NOT hardcode)\n- Connection string: `postgresql://agentos:agentos_secure_pg_pass_2026@127.0.0.1:5432/agentos?sslmode=disable`\n\n**IMPORTANT**: The hermes container uses `--network=host` so it shares the host's network namespace. PostgreSQL is on `127.0.0.1:5432` on the host and is reachable from within the hermes container. Ensure postgresql-client is installed (`apt-get install -y postgresql-client`) before running psql commands.\n\n**Steps**:\n1. `ssh -o StrictHostKeyChecking=no sean@localhost 'docker exec hermes sh -c \"apt-get update -qq > /dev/null 2>&1 && apt-get install -y -qq postgresql-client > /dev/null 2>&1\"'` \u2014 ensure client is installed\n2. Read SPEC.md from the agent-os repo at `/opt/data/agent-os/SPEC.md` (on host, cloned to `/opt/data/agent-os/`)\n3. Read existing schema files at `/opt/data/agent-os/migrations/` if any exist\n4. Generate SQL migration files (e.g. `0001_initial_schema.sql`, `0002_...sql`) from SPEC.md \u2014 one file per logical migration, numbered sequentially\n5. Create a `migrations/run.sh` script that applies all migrations in order using `psql` with `ON_ERROR_STOP=1`\n6. Save the migrations to `/opt/data/agent-os/migrations/` on the host (via `ssh sean@localhost`)\n7. Run the migrations: `ssh sean@localhost 'docker exec hermes sh -c \"cd /opt/data/agent-os && psql postgresql://agentos:agentos_secure_pg_pass_2026@127.0.0.1:5432/agentos?sslmode=disable -f migrations/run.sh\"'\"` \n8. Verify: `ssh sean@localhost 'docker exec hermes sh -c \"psql postgresql://agentos:agentos_secure_pg_pass_2026@127.0.0.1:5432/agentos?sslmode=disable -c \\\"\\\\dt\\\"'\"` \u2014 should list tables\n9. Commit the migrations folder to git: `ssh sean@localhost 'cd /opt/data/agent-os && git add migrations/ && git commit -m \\\"Phase 3: SQL migrations\\\" && git push'\"`\n\n**Verification**: After migrations run, query the DB to confirm tables exist:\n```sql\npsql postgresql://agentos:agentos_secure_pg_pass_2026@127.0.0.1:5432/agentos?sslmode=disable -c \"\\dt\"\n```\n\nReport: tables created, row counts, any errors.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": [
+        "d4994383fe5e"
+      ],
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 16 * * *",
+        "display": "0 16 * * *"
+      },
+      "schedule_display": "0 16 * * *",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-03T02:15:32.101439+00:00",
+      "next_run_at": "2026-05-03T16:00:00+00:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "3e2594db61e1",
+      "name": "agent-os: Phase 4 \u2014 CasaOS Go",
+      "prompt": "## agent-os Phase 4 \u2014 CasaOS Go Implementation\n\n**Goal**: Implement real Go code for the CasaOS agent CLI and webhook emitter stubs.\n\n**IMPORTANT**: All git/gh via SSH to host. Pattern:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os && YOUR_COMMAND\"\n```\n\nGo is available on the host: `go version` should work.\n\n### Steps\n\n**Step 1 \u2014 Implement the agent CLI**\n\nSSH to host and create `/home/sean/.hermes/agent-os/infra/CasaOS/agent/main.go`:\n\n```go\npackage main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"os/exec\"\n\t\"time\"\n\n\t\"github.com/spf13/cobra\"\n)\n\nvar (\n\thostFlag   string\n\ttimeoutSec int\n)\n\nfunc main() {\n\troot := &cobra.Command{Use: \"casaos-agent\"}\n\troot.PersistentFlags().StringVar(&hostFlag, \"host\", \"http://localhost:8080\", \"CasaOS API host\")\n\troot.PersistentFlags().IntVar(&timeoutSec, \"timeout\", 10, \"Request timeout (seconds)\")\n\n\troot.AddCommand(&cobra.Command{\n\t\tUse:   \"list\",\n\t\tShort: \"List all containers\",\n\t\tRunE:  runList,\n\t})\n\troot.AddCommand(&cobra.Command{\n\t\tUse:   \"stop NAME\",\n\t\tShort: \"Stop a container\",\n\t\tArgs:  cobra.ExactArgs(1),\n\t\tRunE:  runStop,\n\t})\n\troot.AddCommand(&cobra.Command{\n\t\tUse:   \"start NAME\",\n\t\tShort: \"Start a container\",\n\t\tArgs:  cobra.ExactArgs(1),\n\t\tRunE:  runStart,\n\t})\n\troot.AddCommand(&cobra.Command{\n\t\tUse:   \"logs NAME\",\n\t\tShort: \"Fetch container logs (last 50 lines)\",\n\t\tArgs:  cobra.ExactArgs(1),\n\t\tRunE:  runLogs,\n\t})\n\n\tif err := root.Execute(); err != nil {\n\t\tlog.Fatal(err)\n\t}\n}\n\ntype Container struct {\n\tName  string `json:\"name\"`\n\tState string `json:\"state\"`\n\tImage string `json:\"image\"`\n}\n\nfunc runList(cmd *cobra.Command, args []string) error {\n\tout, err := exec.Command(\"docker\", \"ps\", \"-a\", \"--format\", \"{{.Names}}\\t{{.Status}}\\t{{.Image}}\").CombinedOutput()\n\tif err != nil {\n\t\treturn fmt.Errorf(\"docker ps failed: %w\", err)\n\t}\n\tfmt.Print(string(out))\n\treturn nil\n}\n\nfunc runStop(cmd *cobra.Command, args []string) error {\n\tout, err := exec.Command(\"docker\", \"stop\", args[0]).CombinedOutput()\n\tif err != nil {\n\t\treturn fmt.Errorf(\"docker stop failed: %w\", err)\n\t}\n\tfmt.Printf(\"Stopped %s\\n\", string(out))\n\treturn nil\n}\n\nfunc runStart(cmd *cobra.Command, args []string) error {\n\tout, err := exec.Command(\"docker\", \"start\", args[0]).CombinedOutput()\n\tif err != nil {\n\t\treturn fmt.Errorf(\"docker start failed: %w\", err)\n\t}\n\tfmt.Printf(\"Started %s\\n\", string(out))\n\treturn nil\n}\n\nfunc runLogs(cmd *cobra.Command, args []string) error {\n\tout, err := exec.Command(\"docker\", \"logs\", \"--tail\", \"50\", args[0]).CombinedOutput()\n\tif err != nil {\n\t\treturn fmt.Errorf(\"docker logs failed: %w\", err)\n\t}\n\tfmt.Print(string(out))\n\treturn nil\n}\n\n// doRequest is a helper for future CasaOS API integration\nfunc doRequest(method, path string, body interface{}) ([]byte, error) {\n\tvar bodyReader io.Reader\n\tif body != nil {\n\t\tb, _ := json.Marshal(body)\n\t\tbodyReader = bytes.NewReader(b)\n\t}\n\turl := hostFlag + path\n\tclient := &http.Client{Timeout: time.Duration(timeoutSec) * time.Second}\n\treq, err := http.NewRequest(method, url, bodyReader)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\treq.Header.Set(\"Content-Type\", \"application/json\")\n\tresp, err := client.Do(req)\n\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"request failed: %w\", err)\n\t}\n\tdefer resp.Body.Close()\n\tb, err := io.ReadAll(resp.Body)\n\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"read failed: %w\", err)\n\t}\n\tif resp.StatusCode >= 400 {\n\t\treturn nil, fmt.Errorf(\"HTTP %d: %s\", resp.StatusCode, string(b))\n\t}\n\treturn b, nil\n}\n```\n\n**Step 2 \u2014 Implement the webhook emitter**\n\nCreate `/home/sean/.hermes/agent-os/infra/CasaOS/webhook-emitter/main.go`:\n\n```go\npackage main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"os/exec\"\n\t\"strings\"\n\t\"time\"\n\n\t\"github.com/spf13/cobra\"\n)\n\nvar (\n\twebhookURL       string\n\twebhookAuth      string\n\tpollIntervalSec  int\n\tcontainerFilter  string\n)\n\nfunc main() {\n\troot := &cobra.Command{Use: \"webhook-emitter\"}\n\troot.PersistentFlags().StringVar(&webhookURL, \"webhook-url\", \"\", \"URL to POST events to (required)\")\n\troot.PersistentFlags().StringVar(&webhookAuth, \"webhook-auth\", \"\", \"Authorization header value\")\n\troot.PersistentFlags().IntVar(&pollIntervalSec, \"poll-interval\", 10, \"Poll interval in seconds\")\n\troot.PersistentFlags().StringVar(&containerFilter, \"filter\", \"\", \"Container name prefix filter\")\n\n\troot.AddCommand(&cobra.Command{\n\t\tUse:   \"run\",\n\t\tShort: \"Start polling and emitting webhooks\",\n\t\tRunE:  runEmitter,\n\t})\n\n\tif err := root.Execute(); err != nil {\n\t\tlog.Fatal(err)\n\t}\n}\n\ntype ContainerEvent struct {\n\tType      string `json:\"type\"`\n\tName      string `json:\"name\"`\n\tImage     string `json:\"image\"`\n\tTimestamp string `json:\"timestamp\"`\n\tState     string `json:\"state\"`\n}\n\ntype Container struct {\n\tName  string\n\tState string\n\tImage string\n}\n\nfunc runEmitter(cmd *cobra.Command, args []string) error {\n\tif webhookURL == \"\" {\n\t\treturn fmt.Errorf(\"--webhook-url is required\")\n\t}\n\tticker := time.NewTicker(time.Duration(pollIntervalSec) * time.Second)\n\tdefer ticker.Stop()\n\n\tknown := map[string]string{} // name -> state\n\n\tfor {\n\t\t<-ticker.C\n\t\tcontainers, err := getContainers()\n\t\tif err != nil {\n\t\t\tlog.Printf(\"poll error: %v\", err)\n\t\t\tcontinue\n\t\t}\n\n\t\tfor _, c := range containers {\n\t\t\tif containerFilter != \"\" && !strings.HasPrefix(c.Name, containerFilter) {\n\t\t\t\tcontinue\n\t\t\t}\n\t\t\tprev, seen := known[c.Name]\n\t\t\tif !seen || prev != c.State {\n\t\t\t\tevent := ContainerEvent{\n\t\t\t\t\tType:      \"container_state_change\",\n\t\t\t\t\tName:      c.Name,\n\t\t\t\t\tImage:     c.Image,\n\t\t\t\t\tState:     c.State,\n\t\t\t\t\tTimestamp: time.Now().UTC().Format(time.RFC3339),\n\t\t\t\t}\n\t\t\t\tif err := sendWebhook(event); err != nil {\n\t\t\t\t\tlog.Printf(\"webhook error for %s: %v\", c.Name, err)\n\t\t\t\t} else {\n\t\t\t\t\tprevState := \"<new>\"\n\t\t\t\t\tif seen {\n\t\t\t\t\t\tprevState = prev\n\t\t\t\t\t}\n\t\t\t\t\tlog.Printf(\"event: %s %s -> %s\", c.Name, prevState, c.State)\n\t\t\t\t}\n\t\t\t\tknown[c.Name] = c.State\n\t\t\t}\n\t\t}\n\t}\n}\n\nfunc getContainers() ([]Container, error) {\n\tout, err := exec.Command(\"docker\", \"ps\", \"-a\", \"--format\", \"{{.Names}}\\t{{.Status}}\\t{{.Image}}\").CombinedOutput()\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tvar result []Container\n\tfor _, line := range strings.Split(strings.TrimSpace(string(out)), \"\\n\") {\n\t\tif line == \"\" {\n\t\t\tcontinue\n\t\t}\n\t\tparts := strings.SplitN(line, \"\\t\", 3)\n\t\tif len(parts) == 3 {\n\t\t\tresult = append(result, Container{Name: parts[0], State: parts[1], Image: parts[2]})\n\t\t}\n\t}\n\treturn result, nil\n}\n\nfunc sendWebhook(event ContainerEvent) error {\n\tb, _ := json.Marshal(event)\n\treq, _ := http.NewRequest(\"POST\", webhookURL, bytes.NewReader(b))\n\treq.Header.Set(\"Content-Type\", \"application/json\")\n\tif webhookAuth != \"\" {\n\t\treq.Header.Set(\"Authorization\", webhookAuth)\n\t}\n\tresp, err := http.DefaultClient.Do(req)\n\tif err != nil {\n\t\treturn err\n\t}\n\tdefer resp.Body.Close()\n\tif resp.StatusCode >= 400 {\n\t\tbody, _ := io.ReadAll(resp.Body)\n\t\treturn fmt.Errorf(\"HTTP %d: %s\", resp.StatusCode, string(body))\n\t}\n\treturn nil\n}\n```\n\n**Step 3 \u2014 Update Go module files**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os/infra/CasaOS/agent && go mod init github.com/ChonSong/agent-os/infra/CasaOS/agent && go get github.com/spf13/cobra@v1 && go mod tidy 2>&1\"\n\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os/infra/CasaOS/webhook-emitter && go mod init github.com/ChonSong/agent-os/infra/CasaOS/webhook-emitter && go get github.com/spf13/cobra@v1 && go mod tidy 2>&1\"\n```\n\n**Step 4 \u2014 Verify builds**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os/infra/CasaOS/agent && go build -o /tmp/casaos-agent-test . 2>&1 && echo 'agent: BUILD OK'\"\n\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os/infra/CasaOS/webhook-emitter && go build -o /tmp/webhook-emitter-test . 2>&1 && echo 'webhook-emitter: BUILD OK'\"\n```\n\n**Step 5 \u2014 Test the agent CLI locally**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"/tmp/casaos-agent-test list 2>&1\"\n```\n\n**Step 6 \u2014 Commit and push**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os && git add infra/CasaOS/ && git commit -m 'feat(casaos): implement Go agent CLI and webhook emitter' && git push origin main\"\n```\n\n**Step 7 \u2014 Check CI**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"gh run list --repo ChonSong/agent-os --limit 3\"\n```\n\n### Deliver\n\nReport:\n1. Both Go packages built successfully? Any errors?\n2. `casaos-agent list` output from the test\n3. Commit sha\n4. CI status (Go job)\n",
+      "skills": [
+        "go"
+      ],
+      "skill": "go",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": [
+        "c6a5672793f0"
+      ],
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 18 * * *",
+        "display": "0 18 * * *"
+      },
+      "schedule_display": "0 18 * * *",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-03T02:15:56.629743+00:00",
+      "next_run_at": "2026-05-03T18:00:00+00:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "b458ca116bdb",
+      "name": "agent-os: Phase 5 \u2014 Cloudflare TF",
+      "prompt": "## agent-os Phase 5 \u2014 Cloudflare Terraform Infrastructure\n\n**Goal**: Create Terraform infrastructure for Cloudflare tunnel + Access policy.\n\n**IMPORTANT**: All git/gh via SSH to host. Pattern:\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os && YOUR_COMMAND\"\n```\n\n### Steps\n\n**Step 1 \u2014 Create Terraform directory and files**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"mkdir -p /home/sean/.hermes/agent-os/infra/terraform\"\n```\n\nCreate `/home/sean/.hermes/agent-os/infra/terraform/main.tf`:\n```hcl\nterraform {\n  required_version = \">= 1.6\"\n  required_providers {\n    cloudflare = {\n      source  = \"cloudflare/cloudflare\"\n      version = \"~> 4\"\n    }\n  }\n}\n\nprovider \"cloudflare\" {\n  api_token = var.cloudflare_api_token\n}\n\nvariable \"cloudflare_api_token\" {\n  description = \"Cloudflare API token (set via TF_VAR_cloudflare_api_token env var)\"\n  type        = string\n  sensitive   = true\n}\n\nvariable \"cloudflare_account_id\" {\n  description = \"Cloudflare account ID\"\n  type        = string\n}\n\nvariable \"zone_id\" {\n  description = \"Cloudflare zone ID for codeovertcp.com\"\n  type        = string\n}\n\nvariable \"domain\" {\n  description = \"Domain for the tunneled application\"\n  type        = string\n  default     = \"appexample.codeovertcp.com\"\n}\n\nvariable \"github_org\" {\n  description = \"GitHub organization for Access policy\"\n  type        = string\n  default     = \"ChonSong\"\n}\n\nvariable \"tunnel_secret\" {\n  description = \"Tunnel secret (set via TF_VAR_tunnel_secret env var)\"\n  type        = string\n  sensitive   = true\n}\n\n# \u2500\u2500 Tunnel \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nresource \"cloudflare_tunnel\" \"agent_os\" {\n  account_id = var.cloudflare_account_id\n  name       = \"agent-os-tunnel\"\n  secret     = var.tunnel_secret\n}\n\nresource \"cloudflare_tunnel_route\" \"agent_os\" {\n  zone_id   = var.zone_id\n  tunnel_id = cloudflare_tunnel.agent_os.id\n  domain    = var.domain\n}\n\n# \u2500\u2500 Access Policy \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nresource \"cloudflare_access_application\" \"agent_os\" {\n  account_id = var.cloudflare_account_id\n  name       = \"agent-os\"\n  domain     = var.domain\n}\n\nresource \"cloudflare_access_policy\" \"agent_os\" {\n  application_id = cloudflare_access_application.agent_os.id\n  name           = \"GitHub org members \u2014 ChonSong\"\n  include {\n    github {\n      organizations = [var.github_org]\n    }\n  }\n}\n\n# \u2500\u2500 Outputs \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\noutput \"tunnel_id\" {\n  value       = cloudflare_tunnel.agent_os.id\n  description = \"Tunnel UUID (use with cloudflared connect)\"\n}\n\noutput \"tunnel_name\" {\n  value       = cloudflare_tunnel.agent_os.name\n  description = \"Tunnel name\"\n}\n\noutput \"access_domain\" {\n  value = cloudflare_access_application.agent_os.domain\n}\n```\n\nCreate `/home/sean/.hermes/agent-os/infra/terraform/variables.tf`:\n```hcl\n# variables.tf \u2014 all variables declared in main.tf via var.* references\n# No additional content needed; variables are defined inline in main.tf\n```\n\nCreate `/home/sean/.hermes/agent-os/infra/terraform/.gitignore`:\n```\n.terraform/\n.terraform.lock.hcl\n*.tfstate\n*.tfstate.*\ncrash.log\noverride.tf\n*.tfvars\nsecrets.tfvars\n```\n\nCreate `/home/sean/.hermes/agent-os/infra/terraform/README.md`:\n```markdown\n# Cloudflare Infrastructure\n\n## What this creates\n\n- Cloudflare Tunnel: `agent-os-tunnel`\n- DNS A record for `appexample.codeovertcp.com`\n- Cloudflare Access Application + Policy (GitHub OAuth \u2014 ChonSong org members only)\n\n## Setup (one-time)\n\n1. Create a Cloudflare API token with these scopes:\n   - `Account: Tunnel: Edit`\n   - `Zone: DNS: Edit`\n   - `Access: Organisations: Read`, `Access: Applications: Edit`\n\n2. Generate a tunnel secret:\n   ```bash\n   # Option A: use cloudflared\n   cloudflared tunnel secret generate agent-os-tunnel\n   \n   # Option B: generate random bytes\n   openssl rand -base64 32\n   ```\n\n3. Get your Cloudflare:\n   - Account ID: from `cloudflare.com/console/<zone>/overview`\n   - Zone ID: from the same page\n\n4. Set env vars and apply:\n   ```bash\n   export TF_VAR_cloudflare_api_token=your_token\n   export TF_VAR_cloudflare_account_id=your_account_id\n   export TF_VAR_zone_id=your_zone_id\n   export TF_VAR_tunnel_secret=your_secret\n\n   terraform init\n   terraform plan\n   terraform apply\n   ```\n\n5. Configure `cloudflared` on the server:\n   ```bash\n   cloudflared service install <tunnel_id>\n   ```\n   The tunnel credentials file is at `~/.cloudflared/<tunnel_id>.json` after first run.\n\n## Tear down\n\n```bash\nterraform destroy\n```\n```\n\n**Step 2 \u2014 Commit and push**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"cd /home/sean/.hermes/agent-os && git add infra/terraform/ && git commit -m 'feat(terraform): add Cloudflare tunnel + Access policy' && git push origin main\"\n```\n\n**Step 3 \u2014 Check CI**\n\n```bash\nssh -o StrictHostKeyChecking=no sean@localhost \"gh run list --repo ChonSong/agent-os --limit 3\"\n```\n\n### Deliver\n\nReport:\n1. Files created (list them)\n2. Git commit sha\n3. CI status\n4. Checklist of what needs to be done manually (Cloudflare token, account ID, zone ID, tunnel secret)\n5. Note: terraform apply must be run locally \u2014 not in CI (no Cloudflare credentials in GitHub)\n",
+      "skills": [
+        "infrastructure-as-code"
+      ],
+      "skill": "infrastructure-as-code",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": [
+        "3e2594db61e1"
+      ],
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "display": "0 20 * * *"
+      },
+      "schedule_display": "0 20 * * *",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-03T02:16:15.834111+00:00",
+      "next_run_at": "2026-05-03T20:00:00+00:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    },
+    {
+      "id": "7aa4b9e1ec87",
+      "name": "agent-os: Phase 6 \u2014 CI quality gates",
+      "prompt": "## agent-os Phase 6 \u2014 CI Quality Gates\n\n**Goal**: Fix the CI pipeline so it actually enforces quality. No more `|| true` hiding failures. Add missing test infrastructure.\n\n**This job requires BOTH `github-pr-workflow` AND `requesting-code-review` skills loaded.** Load them with skill_view before starting.\n\n### Context\n\nThe CI file `.github/workflows/ci.yml` currently has these problems:\n\n1. Every Python/Node/Go step ends in `|| true` \u2014 CI always shows green even when tools fail\n2. Ruff linting only runs on `packages/nanobot` (path-filtered), misses `packages/observability` and `packages/agent-adapter`\n3. No TypeScript test infrastructure \u2014 frontend (`apps/dashboard/frontend`) and backend (`apps/dashboard/backend`) have zero tests\n4. Go packages (`infra/CasaOS/agent`, `infra/CasaOS/webhook-emitter`) have `go build` but no `go test`\n5. The frontend dashboard backend (`apps/dashboard/backend`) makes API calls to Hermes-style endpoints (`/api/status`, `/api/sessions`) that don't exist \u2014 these need to be stubbed or wired\n\n### Steps\n\n**Step 1 \u2014 Load skills**\n```python\nskill_view(name=\"github-pr-workflow\")\nskill_view(name=\"requesting-code-review\")\n```\n\n**Step 2 \u2014 Fetch the current CI file**\nRead `apps/dashboard/backend/src/index.ts` and `.github/workflows/ci.yml` from the repo (via git clone or API).\n\n**Step 3 \u2014 Create a branch**\nUse `github-pr-workflow` skill pattern: `git checkout -b fix/ci-quality-gates`\n\n**Step 4 \u2014 Fix CI in `.github/workflows/ci.yml`**\n\nRemove ALL `|| true` from the Python, Node, and Go jobs. Each job must fail the build if its tool fails:\n\nPython job changes:\n```yaml\n# BEFORE\nruff check packages/ || true\nmypy packages/ || true\npytest packages/ --cov=packages/ --cov-report=xml || true\n\n# AFTER\nruff check packages/\nmypy packages/ --ignore-missing-imports\npytest packages/ --cov=packages/ --cov-report=xml\n```\n\nNode job changes \u2014 also add test runner if missing:\n```yaml\n# BEFORE\nnpx turbo test --filter='./apps/dashboard/...' || true\n\n# AFTER \u2014 ensure turbo.json has a test task, add vitest if needed\nnpx turbo test --filter='./apps/dashboard/...'\n```\n\nGo job changes:\n```yaml\n# BEFORE\n(cd \"$dir\" && go test ./... || true)\n\n# AFTER\n(cd \"$dir\" && go test ./...)\n```\n\n**Step 5 \u2014 Add test infrastructure for TypeScript**\n\nAdd Vitest to the dashboard frontend if no test runner exists:\n- Check `apps/dashboard/frontend/package.json` for a test script\n- If missing: add `vitest` devDependency and `vitest.config.ts`, create one smoke test in `src/__tests__/`\n- Same for backend: check `apps/dashboard/backend/package.json`\n\n**Step 6 \u2014 Add `go test ./...` to Go packages**\n\nIf `infra/CasaOS/agent/go.mod` exists but has no test command, create a minimal test file:\n```go\n// infra/CasaOS/agent/main_test.go\npackage main\n\nimport \"testing\"\n\nfunc TestStub(t *testing.T) {\n    // TODO: real tests\n    t.Skip(\"real tests pending\")\n}\n```\n\n**Step 7 \u2014 Verify ruff covers all Python packages**\n\nEnsure `ruff check packages/` in CI runs against all three packages, not just nanobot. The path-filtered trigger handles this automatically if the changed files include the packages \u2014 but the ruff command should stay as `ruff check packages/` (not scoped to one subdirectory).\n\n**Step 8 \u2014 Commit and open PR**\n\n```bash\ngit add -A\ngit commit -m \"fix: enforce actual quality gates in CI \u2014 remove || true guards\"\ngit push -u origin fix/ci-quality-gates\ngh pr create --title \"fix: enforce CI quality gates\" --body \"Removes || true from all CI steps. Adds test infrastructure for TypeScript and Go packages.\"\n```\n\n**Step 9 \u2014 Verify the PR passes CI**\n\nWait for CI to run on the PR branch. If it fails, fetch the failure logs and fix the specific step that failed. Do NOT add `|| true` to silence failures \u2014 fix the underlying issue.\n\n**Step 10 \u2014 Merge once CI is green**\n\nUse `gh pr merge --admin --squash` once all checks pass.\n\n### Verification checklist\n\nAfter merge:\n- [ ] CI no longer has `|| true` on any step\n- [ ] Python lint + type-check + tests all run or are explicitly skipped with `# skip` comment\n- [ ] TypeScript has at least one test file per package\n- [ ] Go packages have at least `go test ./...` running (even if tests are skipped stubs)\n- [ ] PR merge produces a passing CI run\n\n### If CI fails after your fixes\n\nUse `systematic-debugging` skill to root-cause the failure before fixing. Common causes:\n- Missing dev dependency (vitest not installed) \u2192 add to `package.json`\n- TypeScript compilation error \u2192 fix type errors, don't suppress with `|| true`\n- Python import error in test \u2192 add missing dep or mock\n\nReport what failed and what you did to fix it.",
+      "skills": [
+        "github-pr-workflow"
+      ],
+      "skill": "github-pr-workflow",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "context_from": [
+        "b458ca116bdb"
+      ],
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 22 * * *",
+        "display": "0 22 * * *"
+      },
+      "schedule_display": "0 22 * * *",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-03T02:16:36.916489+00:00",
+      "next_run_at": "2026-05-03T22:00:00+00:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null
+    }
+  ],
+  "updated_at": "2026-05-03T02:37:52.120719+00:00"
+}

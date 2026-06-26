@@ -1,0 +1,15 @@
+---
+name: flutter/flutter-architecting-apps
+description: Structure a Flutter app using layered architecture
+category: 
+tags: []
+source: voltagent
+is_imported: true
+---
+
+# flutter/flutter-architecting-apps
+
+Structure a Flutter app using layered architecture
+
+**Category:** 
+**Source:** voltagent

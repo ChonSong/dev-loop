@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+@page { size: A4; margin: 0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1e293b; background: #fff; display: flex; justify-content: center;
+}
+.page {
+  width: 210mm; min-height: 297mm; padding: 18mm 16mm 12mm 16mm;
+  display: flex; flex-direction: column; position: relative;
+}
+.main { flex: 1; }
+.footer {
+  margin-top: auto; text-align: center; padding-top: 10px;
+  font-size: 8pt; color: #94a3b8;
+}
+h1 { font-size: 18pt; font-weight: 700; color: #0f172a; margin-bottom: 2px; }
+.contact { font-size: 9pt; color: #475569; margin-bottom: 12px; }
+.contact a { color: #2d7d6f; text-decoration: none; }
+h2 { font-size: 11pt; font-weight: 700; color: #1e293b; margin-top: 14px; margin-bottom: 4px; }
+hr { border: none; border-top: 1px solid #cbd5e1; margin-bottom: 8px; }
+.section-text { font-size: 9.5pt; line-height: 1.7; color: #334155; margin-bottom: 6px; }
+.job-title { font-size: 10pt; font-weight: 600; color: #0f172a; margin-bottom: 1px; }
+.job-sub { font-size: 8.5pt; color: #2d7d6f; font-weight: 600; margin-bottom: 3px; }
+.bullet {
+  font-size: 9pt; line-height: 1.65; color: #334155;
+  margin-bottom: 2px; padding-left: 12px; text-indent: -12px;
+}
+.bullet::before { content: "• "; font-weight: 700; }
+.entry { margin-bottom: 10px; }
+.skills-line { font-size: 9pt; line-height: 1.75; color: #334155; margin-bottom: 6px; }
+.skills-cat { font-weight: 700; color: #0f172a; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="main">
+    <h1>NAME</h1>
+    <div class="contact">
+      email · phone · Location ·
+      <a href="https://github.com/USER">github.com/USER</a>
+    </div>
+
+    <h2>Summary</h2>
+    <hr>
+    <p class="section-text">
+      2-3 line summary tailored to the role.
+    </p>
+
+    <h2>Skills</h2>
+    <hr>
+    <p class="skills-line">
+      <span class="skills-cat">Category:</span> skill, skill &nbsp;·&nbsp;
+      <span class="skills-cat">Category:</span> skill, skill &nbsp;·&nbsp;
+      <span class="skills-cat">Category:</span> skill
+    </p>
+
+    <h2>Experience</h2>
+    <hr>
+
+    <div class="entry">
+      <p class="job-title">Project/Platform Name</p>
+      <p class="job-sub">Date · Role context</p>
+      <p class="bullet">Action bullet with specific tech and measurable outcomes</p>
+      <p class="bullet">Action bullet with specific tech and measurable outcomes</p>
+    </div>
+
+    <div class="entry">
+      <p class="job-title">Client/Contract Project · Key Tech</p>
+      <p class="job-sub">Date · Context</p>
+      <p class="bullet">Action bullet</p>
+    </div>
+
+    <h2>Education</h2>
+    <hr>
+    <p class="section-text">
+      <strong>Degree</strong> — University (Year)
+    </p>
+  </div>
+  <div class="footer">Additional projects at github.com/USER</div>
+</div>
+</body>
+</html>
