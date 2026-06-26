@@ -1,0 +1,9 @@
+{
+  "project": "project-name",
+  "repo": "/home/sc/repos/project-name",
+  "current_task": "first-task-id",
+  "completed": [],
+  "health": "unknown",
+  "last_sha": "",
+  "blocker": null
+}
