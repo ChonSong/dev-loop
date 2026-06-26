@@ -1,0 +1,15 @@
+---
+name: mongodb/mongodb-connection
+description: Optimize MongoDB client connection pools
+category: 
+tags: []
+source: voltagent
+is_imported: true
+---
+
+# mongodb/mongodb-connection
+
+Optimize MongoDB client connection pools
+
+**Category:** 
+**Source:** voltagent

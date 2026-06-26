@@ -1,0 +1,57 @@
+# Memory — Sean's Hermes System
+
+**Last auto-curated:** 2026-06-14 16:00 AEST
+
+---
+
+## Infrastructure
+
+- **Host**: Linux, user `sc`. Hermes runs in Docker (container `hermes`, `network_mode: host`).
+- **Host access**: `ssh -i /home/hermes/.ssh/id_ed25519 sean@localhost` (SSH agent forwarded, no password).
+- **Hermes services**: systemd --user (hermes-gateway, hermes-dashboard on :9119). Gateway runs on port 8642.
+- **Docker containers**: hermes-webui (:8787), gto-wizard-clone (:3000), agent-os, others.
+- **Cloudflare tunnel**: `codeovertcp` at `~/.cloudflared/config.yml` (17 ingress rules). CF API token needs Zone:DNS Edit + Account:Tunnel:Write + Access:Edit.
+- **Domains**: `*.codeovertcp.com`, GitHub under `ChonSong` org.
+- **Python**: 3.11.15 (system), pip→3.8 (mismatch — use uv or venv). uv installed.
+- **Discord**: Gateway attempts reconnect every 300s but token is invalid (401 Improper token). ~60+ reconnect attempts logged.
+- **Web UI build**: Requires Node.js 20.19+. Current Node 18. Tailwind native bindings broken after `npm i` — must rm node_modules + package-lock before retry.
+
+## Active Projects
+
+- **GTO Wizard** (`gto-wizard-clone`): 64/64 E2E tests passing. 5 seeded courses with API data. Systemd services active (web/api/tunnel). Local :3000 checks pass (~0.03s), API returns `{"status":"healthy"}`, Cloudflare returns 302 (expected). Git deploy loop checks every ~5min ("Already up to date").
+- **hermes-web-computer** (Go backend + Svelte 5): Systemd-managed on host (`hwc-server.service`, Restart=always, port :3005). Build checked at 16:00/20:00 daily.
+- **seans-reporepo**: Git-based repo catalog at `/home/sc/repos/seans-reporepo`. Refreshed weekly (Mon 09:00). Last run: June 8, OK.
+- **energy-router-dev**: Cron job with checkpoint+skill for autonomous dev.
+
+## Preferences
+
+- Action-oriented — execute, don't plan. Prefers short commands ("proceed", "do all", "yes").
+- Evidence-backed decisions (research codebases, show hard data).
+- Avoids filler — give content, not framing.
+- Prioritizes consolidation/cleanup over accumulation.
+- Backend-heavy projects preferred (frontend is acknowledged weakness).
+- UI generation: generate via meta.ai → paste HTML to Hermes for refactoring into React/Next.js/Tailwind.
+
+## Conventions
+
+- All paths on host are writable from container via SSH.
+- `approvals.cron_mode = auto_approve` — terminal commands auto-approve in cron context.
+- Hermes profile: `default`. Profiles live at `~/.hermes/profiles/<name>/`.
+- Cron jobs defined in `~/.hermes/cron/jobs.json`. Active jobs: Memory Curation (daily 16:00), Morning Briefing (21:30 daily), GTO Watchdog (every 15min), HWC canary (14/18/22), HWC build (16/20), auto-continue-work (hourly), QA Audit (19:00 daily), Cron Health Check (12:00 daily), Commitment Auditor (Mon/Thu 10:00), and others.
+- Memory curation runs daily at 16:00 AEST — overwrites MEMORY.md with distilled facts.
+
+## Pending / Watch
+
+- **Discord token**: Invalid token preventing Discord connectivity — has been failing all day June 14. Reconnect loops every 300s. Needs token refresh.
+- **Broken pipe errors**: Memory Curation and HWC canary jobs hit `[Errno 32] Broken pipe` / stale stream kill after 180s. May need smaller context windows or timeout adjustment.
+- **Node.js 18 → 20.19+**: Hermes Web UI build fails on first attempt due to Node version + Tailwind native binding issue. Succeeds on retry but wastes time.
+- **GTO deploy log**: `gto-wizard-deploy.log` growing unbounded (~9000 lines) — git poll every 5min.
+- **master-development-loop**: Cron job references skill 'master-development' that doesn't exist. Runs daily at 16:00.
+
+## Lessons
+
+1. `approvals.cron_mode` must be `auto_approve` for cron jobs to execute terminal commands — Tirith blocked everything when set to `deny`.
+2. Discord /skill commands clash at 32 chars — skills with identical first-32-char prefixes get hidden. Rename frontmatter `name:` to disambiguate.
+3. Node.js 18 lacks Tailwind Oxide native bindings — must `rm -rf node_modules package-lock.json && npm i` for clean build.
+4. Cloudflare Access returns 302 for unauthenticated requests — this is expected, not a failure.
+5. GTO Wizard responds locally at localhost:3000 from the Docker container (network_mode: host).

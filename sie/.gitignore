@@ -1,0 +1,29 @@
+.DS_Store
+Thumbs.db
+*.enc
+*.age
+*.tmp
+*.log
+*.pyc
+__pycache__/
+node_modules/
+.venv/
+
+# Raw state files (too large for GitHub)
+state.db
+state.db-shm
+state.db-wal
+
+# Session raw data (in state.db)
+sessions/*.jsonl
+sessions/session_run_*.json
+sessions/session_cron_*.json
+sessions/session_*.json
+
+# Ephemeral
+*.lock
+cron/.tick.lock
+cache/
+backups/
+docker/hermes-sync-docker/
+*.gz

@@ -1,0 +1,41 @@
+{
+  "session": "2026-05-26 cron wake-up",
+  "project": "hermes-web-computer",
+  "version": "v1.3",
+  "state_dir": "/home/hermeswebui/.hermes/hermes-web-computer-state/",
+  "project_dir": "/opt/data/hermes-web-computer",
+  "outcome": "all phases complete — SILENT response sent",
+  "findings": {
+    "tracker_state": {
+      "all_phases_complete": true,
+      "current_phase": 12,
+      "status": "complete",
+      "tags": ["v1.3"]
+    },
+    "git_state": {
+      "branch": "main",
+      "v1.3_tag_sha": "43532a0",
+      "origin_main_divergence": "23 commits ahead",
+      "working_tree": "clean on origin/main (uncommitted changes to e2e files)"
+    },
+    "server_state": {
+      "hwc_server_pid": 119885,
+      "port": 3005,
+      "binary": "/opt/data/hwc-server",
+      "status": "running"
+    },
+    "test_state": {
+      "pipeline_spec": "modified (rewrite in progress)",
+      "playwright_config": "modified (viewport typo: head:false instead of height:900)",
+      "known_failures": "4 tests failing, root causes: (1) expects 1 tile initial state but v1.4 has 3, (2) ambiguous Files button selector"
+    },
+    "v1_4_context": {
+      "initial_tiles": 3,
+      "dock_tile": "present",
+      "waybar_tile": "present",
+      "right_panel": "present",
+      "middle_panel_aria_label": "Editor area — drop files to open",
+      "left_panel": "icon-only tabs (📁 🚀 💬)"
+    }
+  }
+}
