@@ -1,0 +1,36 @@
+{
+  "projects": {
+    "gto-wizard-clone": {
+      "last_reviewed_sha": "67b5214",
+      "last_reviewed_at": "2026-06-26T12:35:00Z",
+      "verdict": "approved",
+      "health": "ALL_GREEN",
+      "tests_pass": "53/53 vitest, 368/368 python, playwright --list works",
+      "deployment_url": "https://wiz.codeovertcp.com",
+      "deployment_status": "200_OK_0_JS_ERRORS_SB_FIX_CONFIRMED",
+      "phase": 2,
+      "current_task": "add-clean-build-npm-script",
+      "all_coach_tasks_done": false,
+      "spec_gaps_open": 2,
+      "spec_gaps_total": 3,
+      "note": "Phase 2 infra. Solver Docker service approved (67b5214). Study page healthy: UTG/HJ/CO/BTN/SB/BB all show real data, SB fix confirmed working. spec_gaps: clean-build npm script (7 cycles), health check cron 401 billing (7 cycles)."
+    },
+    "polytopia-clone": {
+      "last_reviewed_sha": "5c7bf4f",
+      "last_reviewed_at": "2026-06-26T12:35:00Z",
+      "verdict": "approved",
+      "health": "ALL_GREEN",
+      "tests_pass": "515/515 vitest",
+      "deployment_url": "https://hex.codeovertcp.com",
+      "deployment_status": "200_OK_PHASER_SELECT_SCENE_GAME_SCENE",
+      "phase": 2,
+      "current_task": "fix-unit-combat-animations",
+      "all_coach_tasks_done": false,
+      "spec_gaps_open": 2,
+      "spec_gaps_total": 2,
+      "note": "Phase 2 (AI, Animations, UX). Combat animations approved (5c7bf4f): animateAttack function exists, hooked into AI/human handlers, game loads correctly, turns advance. Visual combat verification deferred. spec_gaps: AI territory expansion (4 cycles), AI difficulty differentiation (4 cycles)."
+    }
+  },
+  "last_run": "2026-06-26T12:35:00Z",
+  "note": "Master checkpoint updated by Coach cycle 2026-06-26 12:35 AEST. GTO: APPROVED solver Docker service. Study page healthy (SB fix confirmed). Polytopia: APPROVED combat animations (function integration verified, visual combat test deferred). Both sites healthy. 2 stale spec_gaps on each project."
+}
