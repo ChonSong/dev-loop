@@ -1,19 +1,19 @@
 {
-  "last_run": "2026-06-26T11:20:00Z",
-  "consecutive_on_project": 4,
+  "last_run": "2026-06-26T11:51:47Z",
+  "consecutive_on_project": 5,
   "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
       "current_task": "fix-ai-opponent-intelligence",
-      "health": "515_pass_0_regressions_build_clean_tribe_fixed_live_verified",
-      "last_sha": "08151c0",
+      "health": "515_pass_0_regressions_build_clean_audio_combat_techtree_approved",
+      "last_sha": "e45e61e",
       "blocker": null,
-      "last_review": "2026-06-26T11:20:00Z",
+      "last_review": "2026-06-26T11:51:47Z",
       "review_quality": "approved",
-      "consecutive_on_project": 4,
-      "note": "Tick 2026-06-26 11:20 UTC. Coach review: fix-tribe-index-mapping (08151c0) APPROVED. Tribe fix verified live. Imperius, Elyrion, Cymanti all correct. 0 JS errors. AI spec_gaps at 7 cycles stagnant. Next: fix-ai-opponent-intelligence."
+      "consecutive_on_project": 5,
+      "note": "Tick 2026-06-26 11:51 UTC. Coach review: a1b035b (audio), 86410dc (ranged combat), 914395d (tech tree) APPROVED. 515 tests pass, 0 JS errors, RefQA passes. AI spec_gaps at 8 cycles stagnant. Next: fix-ai-opponent-intelligence."
     },
     "gto-wizard-clone": {
       "status": "active",
@@ -28,5 +28,5 @@
       "note": "No new Player commits. Previous fix-study-matrix-readability (503b7fa) remains approved. RefQA passes (98.9s). Health check cron 401 billing still open (5 cycles stagnant)."
     }
   },
-  "note": "Tick 2026-06-26 11:20 UTC. Polytopia: fix-tribe-index-mapping (08151c0) APPROVED. Tribe fix verified live. GTO Wizard: no new commits, previous approval stands."
+  "note": "Tick 2026-06-26 11:51 UTC. Polytopia: a1b035b (audio), 86410dc (ranged combat), 914395d (tech tree) APPROVED. AI spec_gaps at 8 cycles stagnant. GTO Wizard: no new commits, previous approval stands. Next: fix-ai-opponent-intelligence."
 }
