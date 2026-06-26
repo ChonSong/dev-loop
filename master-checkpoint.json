@@ -1,32 +1,46 @@
 {
-  "last_run": "2026-06-26T11:51:47Z",
-  "consecutive_on_project": 5,
-  "active_project": "polytopia-clone",
+  "last_run": "2026-06-27T03:30:00Z",
+  "consecutive_on_project": 0,
+  "active_project": "refqa",
   "projects": {
     "polytopia-clone": {
-      "status": "active",
-      "priority": 1,
-      "current_task": "fix-ai-opponent-intelligence",
-      "health": "515_pass_0_regressions_build_clean_audio_combat_techtree_approved",
-      "last_sha": "e45e61e",
-      "blocker": null,
-      "last_review": "2026-06-26T11:51:47Z",
-      "review_quality": "approved",
-      "consecutive_on_project": 5,
-      "note": "Tick 2026-06-26 11:51 UTC. Coach review: a1b035b (audio), 86410dc (ranged combat), 914395d (tech tree) APPROVED. 515 tests pass, 0 JS errors, RefQA passes. AI spec_gaps at 8 cycles stagnant. Next: fix-ai-opponent-intelligence."
+      "status": "external",
+      "priority": 3,
+      "current_task": null,
+      "health": null,
+      "last_sha": null,
+      "blocker": "Project directory does not exist in this repo. Likely a deployed app (hex.codeovertcp.com), not a developable codebase within this repo.",
+      "last_review": null,
+      "review_quality": null,
+      "consecutive_on_project": 0,
+      "note": "Player tick 2026-06-27T03:30 UTC: Project reference stale in master checkpoint. polytopia-clone has no directory in this repo — it's a deployed app, not developable code. Should be removed or marked external."
     },
     "gto-wizard-clone": {
-      "status": "active",
-      "priority": 2,
-      "current_task": "fix-dashboard-hero-polish",
-      "health": "build_passes_51_vitest_clean_build_live_200_0_js_errors_health_check_11_of_11_pass",
-      "last_sha": "503b7fa",
-      "blocker": null,
-      "last_review": "2026-06-26T11:20:00Z",
-      "review_quality": "approved",
+      "status": "external",
+      "priority": 3,
+      "current_task": null,
+      "health": null,
+      "last_sha": null,
+      "blocker": "Project directory does not exist in this repo. Likely a deployed app (wiz.codeovertcp.com), not a developable codebase within this repo.",
+      "last_review": null,
+      "review_quality": null,
       "consecutive_on_project": 0,
-      "note": "No new Player commits. Previous fix-study-matrix-readability (503b7fa) remains approved. RefQA passes (98.9s). Health check cron 401 billing still open (5 cycles stagnant)."
+      "note": "Player tick 2026-06-27T03:30 UTC: Project reference stale in master checkpoint. gto-wizard-clone has no directory in this repo — it's a deployed app, not developable code. Should be removed or marked external."
+    },
+    "refqa": {
+      "status": "active",
+      "priority": 1,
+      "current_task": "all-tasks-complete",
+      "health": "all_modules_import_0_regressions_parser_validated",
+      "last_sha": null,
+      "blocker": null,
+      "last_review": null,
+      "review_quality": null,
+      "consecutive_on_project": 0,
+      "note": "Player tick 2026-06-27T03:30 UTC: All 3 AGENTS.md tasks verified as implemented (parser.py, runner.py w/ comparator). Backlog exhausted. No unit tests exist (0 found). Requires Coach to either (a) generate new tasks for refqa (e.g., add unit tests, improve action coverage, add more YAML test fixtures) or (b) add new projects to the repo."
     }
   },
-  "note": "Tick 2026-06-26 11:51 UTC. Polytopia: a1b035b (audio), 86410dc (ranged combat), 914395d (tech tree) APPROVED. AI spec_gaps at 8 cycles stagnant. GTO Wizard: no new commits, previous approval stands. Next: fix-ai-opponent-intelligence."
+  "note": "Tick 2026-06-27T03:30 UTC. STALE CHECKPOINT RECOVERY. Master checkpoint was 27h old, referencing non-existent projects. Investigation: polytopia-clone and gto-wizard-clone directories do NOT exist in this repo. Only refqa exists as a developable project. All 3 refqa AGENTS.md tasks are fully implemented and verified. No unit tests exist yet. Flagged for Coach backlog replenishment.",
+  "consecutive_on_project": 0,
+  "active_project": "refqa"
 }
