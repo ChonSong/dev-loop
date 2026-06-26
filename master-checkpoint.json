@@ -1,19 +1,19 @@
 {
-  "last_run": "2026-06-26T10:35:00Z",
-  "consecutive_on_project": 2,
-  "active_project": "gto-wizard-clone",
+  "last_run": "2026-06-26T11:05:00Z",
+  "consecutive_on_project": 0,
+  "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "fix-ai-opponent-intelligence",
+      "current_task": "fix-unit-combat-animations",
       "health": "515_pass_build_clean_site_200_phaser_renders_0_js_errors",
-      "last_sha": "9169ebd",
+      "last_sha": "7b510c9",
       "blocker": null,
       "last_review": "2026-06-26T10:35:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 0,
-      "note": "No new Player commits. Site 200, 0 JS errors, tribe selection renders. Phase 2 backlog awaiting Player."
+      "consecutive_on_project": 1,
+      "note": "Player committed feat(ai): improved AI strategic depth (7b510c9). Balanced army composition, strategic upgrades, threat-aware retreat. 515 tests pass. Moved to fix-unit-combat-animations."
     },
     "gto-wizard-clone": {
       "status": "active",
@@ -24,9 +24,9 @@
       "blocker": null,
       "last_review": "2026-06-26T10:35:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 2,
-      "note": "No new Player commits. Approved fix-sb-aggregate-stack-depth (8893efd) holds. 3 infra spec_gaps 5 cycles stagnant (escalated). Health check cron corrected: exists but 401 billing error."
+      "consecutive_on_project": 0,
+      "note": "No new Player commits since switch to Polytopia. Approved fix-sb-aggregate-stack-depth (8893efd) holds. 3 infra spec_gaps 5 cycles stagnant (escalated)."
     }
   },
-  "note": "Master checkpoint updated by Coach cycle 2026-06-26 10:35 AEST. No new Player commits on either project. Both sites healthy (200, 0 JS errors). GTO: APPROVED (no change since 8893efd), 3 infra spec_gaps 5 cycles stagnant. Polytopia: Phase 2 backlog awaiting Player. Health check cron evidence corrected — exists but 401 billing error."
+  "note": "Master checkpoint updated by Player tick 2026-06-26 11:05 AEST. Polytopia: feat(ai) committed (7b510c9), AI strategic depth improved. Switched from gto-wizard-clone (consecutive_on_project=2). GTO: no change. Polytopia: next task fix-unit-combat-animations."
 }
