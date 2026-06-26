@@ -1,0 +1,11 @@
+test-id: t_simple-names
+name: Simple Name Format Test
+targets:
+  primary: my-app
+  references:
+    - my-app-ref
+workers: 1
+steps:
+  - Click the "Submit" button
+  - description: Check the confirmation message
+    reference: my-app-ref

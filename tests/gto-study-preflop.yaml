@@ -1,0 +1,18 @@
+test-id: t_eagle-river-stone-cloud-ember-gold-hill-iris-jade-keel
+name: GTO Study — Page Load Smoke Test
+targets:
+  primary:
+    name: gto-wizard
+    url: https://wiz.codeovertcp.com
+steps:
+  # ── Load the study page ──
+  - description: Navigate to "https://wiz.codeovertcp.com/study"
+
+  # ── Wait for any interactive element ──
+  - description: Wait 3 seconds for the study page to fully render
+
+  # ── Verify no error state ──
+  - description: Verify the page body text is not empty
+
+  # ── Screenshot for review ──
+  - description: Take a screenshot of the study page

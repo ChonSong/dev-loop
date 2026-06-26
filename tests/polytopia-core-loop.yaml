@@ -1,0 +1,18 @@
+test-id: t_nova-frost-summer-coral-peak-shadow-vale-storm-haven
+name: Polytopia Core Loop — Game Load & Canvas Render
+targets:
+  primary:
+    name: polytopia
+    url: https://hex.codeovertcp.com
+steps:
+  # ── Step 1: Load the game page ──
+  - description: Navigate to "https://hex.codeovertcp.com"
+
+  # ── Step 2: Verify game canvas renders ──
+  - description: Wait for canvas element to appear on the page
+
+  # ── Step 3: Wait for game initialization ──
+  - description: Wait 5 seconds for the Phaser game engine to initialize
+
+  # ── Step 4: Visual snapshot for review ──
+  - description: Take a screenshot of the game setup screen
