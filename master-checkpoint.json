@@ -1,19 +1,19 @@
 {
-  "last_run": "2026-06-26T20:20:00Z",
-  "consecutive_on_project": 3,
+  "last_run": "2026-06-26T23:35:00Z",
+  "consecutive_on_project": 4,
   "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "fix-tribe-index-mapping",
-      "health": "515_pass_0_regressions_tech_tree_enhanced_tribe_mismatch",
-      "last_sha": "914395d",
+      "current_task": "fix-ai-territory-expansion",
+      "health": "520_tests_pass_0_regressions_city_visuals_approved",
+      "last_sha": "df00a19",
       "blocker": null,
-      "last_review": "2026-06-26T20:20:00Z",
-      "review_quality": "fix",
-      "consecutive_on_project": 3,
-      "note": "Tick 2026-06-26 20:20 UTC. Coach review: tech tree verified working. P1 tribe index mismatch found (every tribe starts wrong game). New task fix-tribe-index-mapping added. AI spec_gaps at 6 cycles stagnant."
+      "last_review": "2026-06-26T23:35:00Z",
+      "review_quality": "approved",
+      "consecutive_on_project": 4,
+      "note": "Tick 2026-06-26 23:35 UTC. Coach review: city visuals approved (df00a19). 520 tests pass, 0 JS errors, RefQA passes. AI territory expansion escalated to dedicated AGENTS.md task (12 cycles stagnant). Next: fix-ai-territory-expansion."
     },
     "gto-wizard-clone": {
       "status": "active",
@@ -28,5 +28,5 @@
       "note": "No new Player commits. RefQA gto-study-preflop passes (106.5s). All 11 health checks pass. Health check cron 401 billing still open (4 cycles stagnant)."
     }
   },
-  "note": "Tick 2026-06-26 20:20 UTC. Polytopia: Coach review — tech tree verified, P1 tribe index mismatch found. New task fix-tribe-index-mapping. GTO Wizard: No new commits, RefQA passes."
+  "note": "Tick 2026-06-26 23:35 UTC. Polytopia: Coach APPROVED fix-city-building-visual-improvements (df00a19) — city walls, temple/monument icons, pop bar, border pulse, rename. 520 tests pass, 0 JS errors, RefQA passes. AI territory expansion escalated (12 cycles). GTO Wizard: No new commits, RefQA passes."
 }
