@@ -1,0 +1,61 @@
+{
+  "verdict": "FIX",
+  "project": "polytopia-clone",
+  "timestamp": "2026-06-26T20:20:00Z",
+  "cycle_id": "cron-20260626-2005",
+  "reference_match": "not_checked",
+  "checkpoint": {
+    "current_task": "fix-city-building-visual-improvements",
+    "commit_sha": "914395d",
+    "last_coach_review": "2026-06-26T05:12:00Z"
+  },
+  "methodology": {
+    "total_failures": 0,
+    "test_bugs": 0,
+    "methodology_failures": 0,
+    "systemic": false,
+    "can_approve": true
+  },
+  "findings": [
+    {
+      "severity": "P1",
+      "type": "bug",
+      "area": "tribe-selection",
+      "description": "Tribe index mismatch: SelectScene sorts tribes alphabetically by name and passes the sorted index as humanTribeIndex. GameScene uses the unsorted TRIBE_CONFIGS array to resolve the index. Every tribe selection starts the wrong game. Confirmed: clicking Elyrion starts Bardur (Elyrion needs sorted idx 2 → maps to unsorted idx 2 = Bardur). Full mapping: Bardur→Xin-xi, Cymanti→Imperius, Elyrion→Bardur, Imperius→Oumaji, Oumaji→Polaris, Polaris→Cymanti, Xin-xi→Elyrion.",
+      "evidence": "Live verification at hex.codeovertcp.com. GameScene shows humanTribe={id:'bardur', name:'Bardur', techs:['HUNTING']} after clicking Elyrion card. Source: SelectScene.ts line 109 sorts TRIBE_CONFIGS, GameScene.ts line 115 uses unsorted TRIBE_CONFIGS.",
+      "test_attribution": "browser manual"
+    },
+    {
+      "severity": "P2",
+      "type": "regression",
+      "area": "ai",
+      "description": "AI territory expansion and AI difficulty differentiation spec_gaps stagnant for 5+ cycles (cycles_stagnant=5). Previously escalated but no fix committed. Hard AI is not observably more effective than Easy AI.",
+      "evidence": "Checkpoint .checkpoint.json spec_gaps entries, both at cycles_stagnant=5, status='escalated'",
+      "test_attribution": "browser manual"
+    }
+  ],
+  "tasks_generated": [
+    {
+      "id": "fix-tribe-index-mapping",
+      "description": "Fix tribe index mismatch between SelectScene and GameScene. SelectScene sorts TRIBE_CONFIGS alphabetically by name (line 109) and passes the sorted index as humanTribeIndex. GameScene uses the unsorted TRIBE_CONFIGS array (line 115) to resolve the index. Fix: pass the tribe id or name instead of the sorted index, OR sort TRIBE_CONFIGS in GameScene the same way, OR pass the index into the original (unsorted) array.",
+      "priority": "P1",
+      "success_criteria": "Clicking each tribe card starts the correct tribe. Elyrion starts with Ecology tech and Elyrion special units. Bardur starts with Hunting tech. Xin-xi starts with Riding tech. All 7 tribe cards map to the correct game.",
+      "coach_checks": "Open hex.codeovertcp.com, click each of the 7 tribes, verify the started game shows the correct tribe name and starting tech via HUD."
+    },
+    {
+      "id": "fix-ai-territory-expansion",
+      "description": "Implement strategic territory expansion for AI — prioritize high-value resource tiles (fruits, animals, minerals) and strategic chokepoints instead of basic wander-to-unseen behavior. Part of fix-ai-opponent-intelligence item 3.",
+      "priority": "P2",
+      "success_criteria": "AI units visibly move toward resource-rich tiles and claim valuable territory. AI cities grow faster when resources are nearby.",
+      "coach_checks": "Start a game vs AI, observe AI movement patterns over 30+ turns. Verify AI claims fruit/animal tiles near its cities."
+    },
+    {
+      "id": "fix-ai-difficulty-differentiation",
+      "description": "Implement observable strategic differences between Easy/Medium/Hard AI beyond basic options config. Hard AI should win more, have higher scores, and make smarter tactical decisions. Add difficulty-specific decision weights.",
+      "priority": "P2",
+      "success_criteria": "Hard AI observably captures more cities and achieves higher scores than Easy AI across multiple games. Clear behavioral difference visible.",
+      "coach_checks": "Play 3 games vs Easy and 3 vs Hard. Compare AI city count, score, and tactical decisions at turn 30."
+    }
+  ],
+  "errors": []
+}

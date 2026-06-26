@@ -6,14 +6,14 @@
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "fix-tech-tree-visualization",
-      "health": "515_pass_0_regressions_build_clean_audio_added",
-      "last_sha": "5c7bf4f",
+      "current_task": "fix-ai-opponent-intelligence",
+      "health": "515_tests_pass_0_regressions_build_clean_tribe_mapping_fixed",
+      "last_sha": "08151c0",
       "blocker": null,
-      "last_review": "2026-06-26T12:11:00Z",
+      "last_review": "2026-06-26T20:20:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 0,
-      "note": "Not active this tick. Gto-wizard has consecutive work items."
+      "consecutive_on_project": 1,
+      "note": "Tick 2026-06-26T21:13 UTC. fix-tribe-index-mapping complete (08151c0). Tribe selection now maps correctly. 515 tests pass, build clean. Next: fix-ai-opponent-intelligence."
     },
     "gto-wizard-clone": {
       "status": "active",
@@ -24,9 +24,11 @@
       "blocker": null,
       "last_review": "2026-06-26T14:06:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 3,
-      "note": "Tick 2026-06-26T19:05 UTC. fix-study-matrix-readability complete (503b7fa). Font sizes increased, freq chips now flow-layout with bg pill. Coach pending review. Next: fix-dashboard-hero-polish."
+      "consecutive_on_project": 0,
+      "note": "Not active this tick. Polytopia had P1 tribe mapping fix."
     }
   },
-  "note": "Tick 2026-06-26T19:05 UTC. fix-study-matrix-readability complete (503b7fa). Study matrix cells now 12px font, freq chips 11px full-opacity with background pills. 53/53 vitest, build clean. Next: fix-dashboard-hero-polish."
+  "note": "Tick 2026-06-26T21:13 UTC. Polytopia: fix-tribe-index-mapping complete (08151c0). Tribe selection now maps correctly via id lookup. 515 tests pass, build clean. Next: fix-ai-opponent-intelligence.",
+  "consecutive_on_project": 1,
+  "active_project": "polytopia-clone"
 }
