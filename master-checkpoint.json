@@ -1,40 +1,32 @@
 {
+  "last_run": "2026-06-26T11:20:00Z",
+  "consecutive_on_project": 4,
+  "active_project": "polytopia-clone",
   "projects": {
-    "gto-wizard-clone": {
-      "last_reviewed_sha": "503b7fa",
-      "last_reviewed_at": "2026-06-26T19:05:00Z",
-      "verdict": "pending",
-      "health": "build_passes_53_vitest_clean_build_study_matrix_readability",
-      "tests_pass": "53/53 vitest, 368/368 python, playwright --list works",
-      "deployment_url": "https://wiz.codeovertcp.com",
-      "deployment_status": "200_OK_0_JS_ERRORS_SB_FIX_CONFIRMED",
-      "phase": 2,
-      "current_task": "fix-dashboard-hero-polish",
-      "all_coach_tasks_done": false,
-      "spec_gaps_open": 2,
-      "spec_gaps_total": 3,
-      "note": "Tick 2026-06-26T19:05 UTC. fix-study-matrix-readability complete (503b7fa). Font sizes increased, freq chips improved. Coach pending."
-    },
     "polytopia-clone": {
-      "last_reviewed_sha": "5c7bf4f",
-      "last_reviewed_at": "2026-06-26T12:35:00Z",
-      "verdict": "approved",
-      "health": "515_tests_pass_0_regressions_build_clean_tech_tree_enhanced",
-      "tests_pass": "515/515 vitest",
-      "deployment_url": "https://hex.codeovertcp.com",
-      "deployment_status": "200_OK_PHASER_SELECT_SCENE_GAME_SCENE",
-      "phase": 2,
-      "current_task": "fix-city-building-visual-improvements",
-      "all_coach_tasks_done": false,
-      "spec_gaps_open": 2,
-      "spec_gaps_total": 2,
-      "note": "Tick 2026-06-26 20:10 UTC: fix-tech-tree-visualization \u2014 dependency edges, progress bars, category filter tabs. 515 tests pass, build clean. Next: fix-city-building-visual-improvements.",
-      "last_sha": "914395d",
-      "consecutive_on_project": 3
+      "status": "active",
+      "priority": 1,
+      "current_task": "fix-ai-opponent-intelligence",
+      "health": "515_pass_0_regressions_build_clean_tribe_fixed_live_verified",
+      "last_sha": "08151c0",
+      "blocker": null,
+      "last_review": "2026-06-26T11:20:00Z",
+      "review_quality": "approved",
+      "consecutive_on_project": 4,
+      "note": "Tick 2026-06-26 11:20 UTC. Coach review: fix-tribe-index-mapping (08151c0) APPROVED. Tribe fix verified live. Imperius, Elyrion, Cymanti all correct. 0 JS errors. AI spec_gaps at 7 cycles stagnant. Next: fix-ai-opponent-intelligence."
+    },
+    "gto-wizard-clone": {
+      "status": "active",
+      "priority": 2,
+      "current_task": "fix-dashboard-hero-polish",
+      "health": "build_passes_51_vitest_clean_build_live_200_0_js_errors_health_check_11_of_11_pass",
+      "last_sha": "503b7fa",
+      "blocker": null,
+      "last_review": "2026-06-26T11:20:00Z",
+      "review_quality": "approved",
+      "consecutive_on_project": 0,
+      "note": "No new Player commits. Previous fix-study-matrix-readability (503b7fa) remains approved. RefQA passes (98.9s). Health check cron 401 billing still open (5 cycles stagnant)."
     }
   },
-  "last_run": "2026-06-26T10:10:00Z",
-  "note": "Tick 2026-06-26 20:10 UTC. Polytopia: fix-tech-tree-visualization complete (914395d). Enhanced with dependency edges, progress bars, category filters. 515 tests pass, build clean. Next: fix-city-building-visual-improvements.",
-  "consecutive_on_project": 3,
-  "active_project": "polytopia-clone"
+  "note": "Tick 2026-06-26 11:20 UTC. Polytopia: fix-tribe-index-mapping (08151c0) APPROVED. Tribe fix verified live. GTO Wizard: no new commits, previous approval stands."
 }
