@@ -11,11 +11,11 @@ import json, re, sys, os, urllib.request
 from pathlib import Path
 
 # ── Config ────────────────────────────────────────────────────────────────────
-CACHE_DIR    = Path("/home/hermeswebui/.hermes/skill-selector-cache")
+CACHE_DIR    = Path("/home/sc/.hermes/skill-selector-cache")
 METADATA_FP  = CACHE_DIR / "skill_metadata.json"
 CONTEXT_FP   = CACHE_DIR / "context_scores.json"
 SUMMARIES_FP = CACHE_DIR / "skill_summaries.json"
-SKILLS_DIR   = Path("/home/hermeswebui/.hermes/skills")
+SKILLS_DIR   = Path("/home/sc/.hermes/skills")
 MAX_LOAD     = 5
 MB_ASK       = 100
 API_KEY      = os.environ.get("OPENROUTER_API_KEY", "")
@@ -181,7 +181,7 @@ def decide(skill: dict, score_val: float) -> tuple[str, str]:
 # ── Main ───────────────────────────────────────────────────────────────────────
 def _load_env():
     """Load .env so API keys are available in cron contexts."""
-    env_path = Path("/home/hermeswebui/.hermes/.env")
+    env_path = Path("/home/sc/.hermes/.env")
     if env_path.exists():
         with open(env_path) as f:
             for line in f:

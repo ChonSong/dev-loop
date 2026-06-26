@@ -94,17 +94,81 @@ A test failure is a **methodology failure** when ANY of these are true:
 5. The test relies on behavior that only works in headless mode (keyboard events, audio API, canvas focus)
 6. The same failure pattern appears across 3+ tests — call it a **systemic methodology failure**
 
-**Reporting:**
-- Use 🔴 METHODOLOGY FAILURE (not "test bug") in findings
-- Count separately: "4 E2E failures: 1 test bug, 3 methodology failures"
-- If >50% are methodology failures → cannot APPROVE, must issue FIX
-- If systemic → add a spec_gap entry: {"item": "Methodology: self-referential test suite for [area]", "type": "methodology_gap", "priority": 1}
+**Reporting (generates the `methodology` object in the verdict JSON):**
+- Count test bugs vs. methodology failures separately
+- If >50% are methodology failures → `methodology.can_approve` MUST be false, verdict must be FIX
+- If systemic (3+ tests share the same failure pattern) → `methodology.systemic: true`
+- If systemic → add a spec_gap entry: `{"item": "Methodology: self-referential test suite for [area]", "type": "methodology_gap", "priority": 1}`
 
-### Step 3 — Verdict
+### Step 3 — Structured Verdict (JSON — MANDATORY)
 
-What matched the reference, what didn't, what's new. From evidence on the page, not the checkpoint.
+**Your final response MUST be a valid JSON object** following the schema at `references/verdict-schema.json`. This is the single source of truth the Player reads. Free-text verdicts are not machine-consumable and cause parsing failures downstream.
 
-Capture screenshots during browser QA and reference them with absolute paths (e.g., `screenshot: /home/sc/.hermes/reVIEWS/2026-06-25-gto-study.png`). For canvas games, include console error log dumps.
+#### Schema Summary
+
+```json
+{
+  "verdict": "APPROVE | FIX | REVERT",
+  "project": "<project-name>",
+  "timestamp": "<ISO-8601>",
+  "reference_match": "exact | minor_gaps | significant_gaps | broken | not_checked",
+  "checkpoint": {"current_task": "...", "commit_sha": "...", "last_coach_review": "..."},
+  "methodology": {
+    "total_failures": <int>,
+    "test_bugs": <int>,
+    "methodology_failures": <int>,
+    "systemic": <bool>,
+    "can_approve": <bool>
+  },
+  "findings": [
+    {
+      "severity": "P1 | P2 | P3",
+      "type": "bug | regression | visual_gap | methodology_gap | perf | security | other",
+      "area": "<component>",
+      "description": "<what you observed>",
+      "evidence": "<screenshot path or console error>",
+      "test_attribution": "<refqa run id, Playwright spec name, or 'browser manual'>"
+    }
+  ],
+  "tasks_generated": [
+    {
+      "id": "<task-identifier>",
+      "description": "<what needs to happen>",
+      "priority": "P1 | P2 | P3",
+      "success_criteria": "<user-visible behavior expected>"
+    }
+  ],
+  "errors": ["<any errors during this review>"]
+}
+```
+
+#### Rules
+
+- `verdict: "APPROVE"` — only when `methodology.can_approve` is true AND zero P1 findings
+- `verdict: "FIX"` — issues found, tasks generated in `tasks_generated`
+- `verdict: "REVERT"` — latest commit is broken (page down, critical regression). Tasks generated to fix.
+- `reference_match` describes the clone vs original, not code quality
+- `findings` may be empty if APPROVE. Otherwise at least one finding.
+- `tasks_generated` maps 1:1 to the AGENTS.md tasks you write in Step 4. If APPROVE, empty array.
+- Screenshots go in `evidence` as absolute paths (e.g. `/home/sc/.hermes/reviews/2026-06-26-gto-study.png`)
+- Include canvas console-error dumps in `evidence` for Polytopia reviews
+
+#### Self-Validation Protocol (MANDATORY before delivering)
+
+After writing your verdict JSON, validate it with the built-in checker:
+
+```bash
+python3 /home/sc/repos/autonomous-dev-system/skills/coach-agent/scripts/validate-verdict.py /tmp/coach-verdict.json
+```
+
+If the validator fails:
+1. Read the error messages — they tell you exactly what's missing/wrong
+2. Fix the JSON
+3. Re-validate
+
+**Maximum 2 retry attempts.** If the validator still fails after 2 retries, output a minimal valid verdict with `"errors": ["Validator failed after 2 retries: <error>"]` and the best available data.
+
+**Do NOT deliver a free-text verdict.** If you cannot produce valid JSON, output a minimal APPROVE verdict with a detailed error note — but it must still be valid JSON.
 
 ### Step 4 — Generate tasks for AGENTS.md (MANDATORY when you found issues)
 

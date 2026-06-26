@@ -3,7 +3,7 @@
 # SSHs to host and runs hwc-host-visual-qa.sh natively (Chrome available there)
 
 SSH_HOST="sean@172.19.0.1"
-HOST_SCRIPT="/home/sean/.hermes/scripts/hwc-host-visual-qa.sh"
+HOST_SCRIPT="/home/sc/.hermes/scripts/hwc-host-visual-qa.sh"
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S UTC')
 
 echo "[$TIMESTAMP] HWC Visual QA (via SSH to host)"

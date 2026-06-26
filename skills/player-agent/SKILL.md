@@ -58,7 +58,7 @@ Before relying on the master checkpoint's `current_task` or project priority:
 - **Pre-commit self-review** — security scan (`git diff --cached | grep -iE '(api_key|secret|token|sk-)'`), YAGNI check, regression check.
 - **Conventional commits**: `feat(scope):`, `fix(scope):`, `test(scope):`, `chore(scope):`, `refactor(scope):`.
 - **Don't touch AGENTS.md** except in Task Exhaustion Recovery (current_task="tbd" and backlog stale).
-- **Don't set coach: "approved"** — leave as "pending" for the Coach.
+- **Coach verdict is now JSON** — after each review, the Coach outputs a structured JSON verdict following `coach-agent/references/verdict-schema.json`. The `checkpoint.coach_status` field stores the last parsed verdict (`APPROVE`, `FIX`, or `REVERT`). Do NOT manually set coach status — the Coach's JSON verdict is the single source of truth. If the verdict is `REVERT`, your next tick's first action is to revert the last commit and investigate.
 - **Push immediately** after every commit — stale pushes skip the build in the deploy script.
 
 ## Pre-Flight Plan (MANDATORY before coding)
@@ -83,6 +83,7 @@ Write a mini-plan with all six fields: **Touches** (files), **Specification** (w
 ```
 
 ## Workflow Per Tick
+0. **Check Coach verdict** — read the project's `.checkpoint.json`. If `coach_status: "REVERT"`, revert last commit and investigate BEFORE doing anything else. If `coach_status: "FIX"`, pick the highest-priority task from AGENTS.md that the Coach generated (Coach owns the backlog). If `coach_status: "APPROVE"` and backlog is empty, trigger Task Exhaustion Recovery.
 1. Read master checkpoint → find active project (round-robin if consecutive_on_project ≥ 2)
 2. Read project `.checkpoint.json` + `current_task` from AGENTS.md
 3. Write mini-plan (touches, specification, e2e_baseline, happy, negative, boundary) — then self-audit: verify all six fields populated before proceeding
