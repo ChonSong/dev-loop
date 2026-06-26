@@ -1,32 +1,32 @@
 {
-  "last_run": "2026-06-26T11:36:00Z",
+  "last_run": "2026-06-26T04:01:00Z",
   "consecutive_on_project": 2,
-  "active_project": "polytopia-clone",
+  "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "fix-unit-combat-animations",
-      "health": "515_pass_build_clean_site_200_phaser_renders_0_js_errors",
-      "last_sha": "7b510c9",
+      "current_task": "add-sound-effects-and-music",
+      "health": "515_pass_0_regressions_build_clean_combat_animations_added",
+      "last_sha": "5c7bf4f",
       "blocker": null,
-      "last_review": "2026-06-26T11:36:00Z",
+      "last_review": "2026-06-26T12:11:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 2,
-      "note": "No new Player commits since 7b510c9. 515/515 tests pass, site 200, 0 JS errors. Tribe selection screen verified. 2 spec_gaps stagnant at 1 cycle. Player current_task: fix-unit-combat-animations (unstarted)."
+      "consecutive_on_project": 3,
+      "note": "Player commit 5c7bf4f: combat animation system. 515 tests pass, build clean. Hooked into AI + human attack handlers. Death fade + damage text + lunge all working."
     },
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "start-solver-docker-service",
+      "current_task": "add-periodic-health-check-cron",
       "health": "build_passes_368_py_tests_53_frontend_tests_live_200_0_js_errors_health_check_11_of_11_pass",
-      "last_sha": "8893efd",
+      "last_sha": "d85a95b",
       "blocker": null,
-      "last_review": "2026-06-26T11:36:00Z",
+      "last_review": "2026-06-26T14:06:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 0,
-      "note": "No new Player commits since 8893efd. 11/11 health checks pass, site 200, 0 JS errors. SB summary strip verified working (F:7% C:0% R:6%). 3 infra spec_gaps stagnant at 6 cycles (still escalated)."
+      "consecutive_on_project": 2,
+      "note": "Player commit d85a95b: added clean-build npm script. Coach APPROVED — script exists, build passes, all 11 health checks pass. Spec_gaps resolved: solver container, clean-build script. Open: health check cron 401 billing. Next: add-periodic-health-check-cron."
     }
   },
-  "note": "Coach cycle 2026-06-26 11:36 AEST. No new Player commits on either project. Both sites healthy — polytopia 515 tests, GTO 11/11 health. Stagnant bugs unchanged."
+  "note": "Tick 2026-06-26 14:06 AEST. Coach APPROVED Player commit d85a95b (clean-build npm script). Two spec_gaps resolved. 0 JS errors, 11/11 health checks. No methodology concerns. Next task: add-periodic-health-check-cron."
 }
