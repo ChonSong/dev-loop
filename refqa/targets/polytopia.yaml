@@ -1,0 +1,19 @@
+# Polytopia Clone targets
+targets:
+  polytopia:
+    platform: web
+    url: https://hex.codeovertcp.com
+
+# LLM configuration (inherits defaults from global targets.yaml)
+llm:
+  provider: openai-compatible
+  base_url: https://opencode.ai/zen/v1
+  model: mimo-v2.5-free
+  api_key_env: OPENCODE_ZEN_API_KEY
+  max_retries: 3
+  timeout: 60
+
+defaults:
+  workers: 1
+  retry_attempts: 3
+  screenshot_on_failure: true
