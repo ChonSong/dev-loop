@@ -40,7 +40,7 @@ Visual tasks (layout, spacing, colors) are worthless if the player can't even re
 
 Before relying on the master checkpoint's `current_task` or project priority:
 
-1. **Read `last_run`** from the master checkpoint at `/home/sc/repos/dev-loop/master-checkpoint.json`
+1. **Read `last_run`** from the master checkpoint at `dev-loop/master-checkpoint.json`
 2. **If `last_run` is more than 3 hours old** or missing:
    - The checkpoint is stale — do NOT trust its priority/current_task assignments
    - Investigate: read each project's `.checkpoint.json` directly, check `git log --oneline -10` for recent activity

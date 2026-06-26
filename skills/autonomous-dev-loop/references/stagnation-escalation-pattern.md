@@ -36,7 +36,7 @@ import os
 import re
 import sys
 
-MASTER_CHECKPOINT = "/home/sc/repos/dev-loop/master-checkpoint.json"
+MASTER_CHECKPOINT = "dev-loop/master-checkpoint.json"
 REPOS_BASE = "/home/sc/repos"
 
 

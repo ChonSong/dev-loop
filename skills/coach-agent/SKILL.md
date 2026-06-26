@@ -46,8 +46,8 @@ delegate_task(tasks=[{
   "goal": "Run RefQA regression tests for gto-wizard-clone",
   "context": """
     CLI: refqa (installed globally via pip)
-    Test: /home/sc/repos/refqa/tests/gto-study-preflop.yaml
-    Command: refqa run /home/sc/repos/refqa/tests/gto-study-preflop.yaml
+    Test: refqa/tests/gto-study-preflop.yaml
+    Command: refqa run refqa/tests/gto-study-preflop.yaml
     Print every line of output — especially failures.
     Expected: all steps PASS (~60-90s total).
   """,
@@ -59,8 +59,8 @@ For multiple active projects, delegate all tests in parallel:
 
 ```python
 delegate_task(tasks=[
-  {"goal": "Run RefQA for GTO Wizard", "context": "Test: /home/sc/repos/refqa/tests/gto-study-preflop.yaml\nCommand: refqa run /home/sc/repos/refqa/tests/gto-study-preflop.yaml", "toolsets": ["terminal", "file"]},
-  {"goal": "Run RefQA for Polytopia", "context": "Test: /home/sc/repos/refqa/tests/polytopia-core-loop.yaml\nCommand: refqa run /home/sc/repos/refqa/tests/polytopia-core-loop.yaml", "toolsets": ["terminal", "file"]},
+  {"goal": "Run RefQA for GTO Wizard", "context": "Test: refqa/tests/gto-study-preflop.yaml\nCommand: refqa run refqa/tests/gto-study-preflop.yaml", "toolsets": ["terminal", "file"]},
+  {"goal": "Run RefQA for Polytopia", "context": "Test: refqa/tests/polytopia-core-loop.yaml\nCommand: refqa run refqa/tests/polytopia-core-loop.yaml", "toolsets": ["terminal", "file"]},
 ])
 ```
 
@@ -131,7 +131,7 @@ After every review that identifies **any actionable finding** (bug, gap, regress
 
 ### Step 5 — Update checkpoint
 
-Update the project `.checkpoint.json` (and master checkpoint at `/home/sc/repos/dev-loop/master-checkpoint.json`):
+Update the project `.checkpoint.json` (and master checkpoint at `dev-loop/master-checkpoint.json`):
 - Apply any new spec_gaps from your findings
 - Mark unchanged gaps with incremented `cycles_stagnant`
 - Set `current_task` to the first unstarted AGENTS.md task
@@ -190,7 +190,7 @@ steps:
 **When to create a new project vs refactor the old one:**
 If the existing codebase has grown complex from mixing QA approaches (Playwright specs + Coach hooks + agent-qa debris + app code), **start a new clean project**. The gto-wizard-clone repo became unmanageable because it mixed concerns; refqa as a new repo with clean context budget worked better than untangling the old one. Signal: if >2 distinct QA approaches live in the same repo, it's time for a dedicated QA repo.
 
-**Current implementation:** `/home/sc/repos/refqa/` — Python-based runner with Pydantic models, Playwright execution, OpenCode Zen LLM client. CLI: `refqa validate <test.yaml>`, `refqa run <test.yaml>`.
+**Current implementation:** `refqa/` — Python-based runner with Pydantic models, Playwright execution, OpenCode Zen LLM client. CLI: `refqa validate <test.yaml>`, `refqa run <test.yaml>`.
 
 This is a supplement to Tiers 1 and 2 — not a replacement. Self-healing steps catch selector drift, but only you can verify correctness against the original.
 

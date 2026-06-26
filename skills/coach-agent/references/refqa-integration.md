@@ -80,8 +80,8 @@ delegate_task(tasks=[{
     "goal": "Run RefQA regression tests for gto-wizard-clone",
     "context": """
         CLI: refqa (installed globally via pip)
-        Test: /home/sc/repos/refqa/tests/gto-study-preflop.yaml
-        Command: refqa run /home/sc/repos/refqa/tests/gto-study-preflop.yaml
+        Test: refqa/tests/gto-study-preflop.yaml
+        Command: refqa run refqa/tests/gto-study-preflop.yaml
         Print every line of output — especially failures.
         Expected: all steps PASS (~60-90s total).
     """,
@@ -97,8 +97,8 @@ delegate_task(tasks=[
         "goal": "Run RefQA for GTO Wizard",
         "context": """
             CLI: refqa
-            Test: /home/sc/repos/refqa/tests/gto-study-preflop.yaml
-            Command: refqa run /home/sc/repos/refqa/tests/gto-study-preflop.yaml
+            Test: refqa/tests/gto-study-preflop.yaml
+            Command: refqa run refqa/tests/gto-study-preflop.yaml
         """,
         "toolsets": ["terminal", "file"]
     },
@@ -106,8 +106,8 @@ delegate_task(tasks=[
         "goal": "Run RefQA for Polytopia",
         "context": """
             CLI: refqa
-            Test: /home/sc/repos/refqa/tests/polytopia-core-loop.yaml
-            Command: refqa run /home/sc/repos/refqa/tests/polytopia-core-loop.yaml
+            Test: refqa/tests/polytopia-core-loop.yaml
+            Command: refqa run refqa/tests/polytopia-core-loop.yaml
         """,
         "toolsets": ["terminal", "file"]
     },

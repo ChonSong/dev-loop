@@ -35,7 +35,7 @@ Bugs found and fixed during the June 22 restoration from git commit `9e5982d`.
 ```bash
 cd /home/sc/repos/archive/hermes-sync
 for f in self_improvement.py learnings_scanner.py skill_author.py; do
-  git show 9e5982d:scripts/$f > /home/sc/repos/hermes-sync/scripts/$f
+  git show 9e5982d:scripts/$f > scripts/$f
 done
 ```
 

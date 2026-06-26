@@ -93,7 +93,7 @@ The SIE was purely reactive — it only processed .learnings/ entries that a hum
 
 ### What It Checks
 
-Reads /home/sc/.hermes/master-checkpoint.json to discover all projects, then for each project:
+Reads master-checkpoint.json to discover all projects, then for each project:
 
 When the cron job's `enabled_toolsets` includes `"delegation"` (as configured since 2026-06-23), spawn one subagent per project to audit coverage in parallel. Each subagent reads the project's audit outputs independently — no shared state. Collate gaps from all subagents, deduplicate, then seed .learnings/ entries for each unique gap found. When delegation is unavailable, scan projects serially within the 48h budget (serial is fine — this is a generous cycle).
 

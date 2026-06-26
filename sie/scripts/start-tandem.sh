@@ -29,7 +29,7 @@ for i in $(seq 1 15); do
 done
 
 # Start the electron viewer
-NODE_PATH=./node_modules nohup node /home/sc/.hermes/scripts/electron-viewer.js \
+NODE_PATH=./node_modules nohup node scripts/electron-viewer.js \
   > /tmp/electron-viewer.log 2>&1 &
 
 echo "Electron viewer starting at http://localhost:3099"

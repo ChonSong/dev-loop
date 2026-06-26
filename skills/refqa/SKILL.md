@@ -117,8 +117,8 @@ delegate_task(tasks=[{
     "goal": "Run RefQA for GTO Wizard",
     "context": """
         CLI: refqa
-        Test: /home/sc/repos/refqa/tests/gto-study-preflop.yaml
-        Command: refqa run /home/sc/repos/refqa/tests/gto-study-preflop.yaml
+        Test: refqa/tests/gto-study-preflop.yaml
+        Command: refqa run refqa/tests/gto-study-preflop.yaml
         Print every line of output — especially failures.
     """,
     "toolsets": ["terminal", "file"]
