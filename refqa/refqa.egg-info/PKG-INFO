@@ -1,9 +1,0 @@
-Metadata-Version: 2.4
-Name: refqa
-Version: 0.1.0
-Summary: Reference-Augmented Agentic QA — self-healing YAML tests with reference-based verification
-Requires-Python: >=3.11
-Requires-Dist: pyyaml>=6.0
-Requires-Dist: httpx>=0.27
-Requires-Dist: pydantic>=2.0
-Requires-Dist: playwright>=1.40
