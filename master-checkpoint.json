@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-06-27T12:45:00Z",
+  "last_run": "2026-06-27T13:05:00Z",
   "consecutive_on_project": 0,
   "active_project": "gto-wizard-clone",
   "projects": {
@@ -18,15 +18,15 @@
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "fix-solver-status-indicator-flicker",
-      "health": "study_live_0_console_errors_game_tree_navigation_working_p2_status_flicker",
-      "last_sha": "687a3f6",
+      "current_task": "fix-gitignore-agent-qa-artifacts",
+      "health": "build_passes_53_frontend_tests_pass_status_indicator_decoupled",
+      "last_sha": "4371b5e",
       "blocker": null,
-      "last_review": "2026-06-27T12:45:00Z",
-      "review_quality": "APPROVE",
-      "consecutive_on_project": 0,
-      "note": "Tick 2026-06-27T12:45:00Z. Coach APPROVED 8 new commits (game tree navigation, Cash/MTT selector, dead UI removal). 0 JS errors. P2: solver status flickers to Offline after tree navigation. P3: UTG low pair freqs, gitignore, hover accessibility. AGENTS.md updated. Pushed."
+      "last_review": "2026-06-27T13:05:00Z",
+      "review_quality": "pending",
+      "consecutive_on_project": 1,
+      "note": "Tick 2026-06-27T13:05:00Z. Fixed solver status indicator flicker — added independent useSolverHealth hook polling /api/v1/solver/health. Status no longer derived from fetchRange loading/error. 53 tests pass, build clean. Pushed. Next: fix-gitignore-agent-qa-artifacts."
     }
   },
-  "note": "Tick 2026-06-27T12:45:00Z. GTO Wizard: APPROVED feat-game-tree-navigation (687a3f6). 0 JS errors, RefQA passes. New P2: solver status flicker. Polytopia: no new commits, AI stagnant 13 cycles, push blocked (auth token expired)."
+  "note": "Tick 2026-06-27T13:05:00Z. GTO Wizard: fixed solver status indicator flicker (4371b5e). Independent health polling via useSolverHealth hook. 53 tests pass, build clean. Next: fix-gitignore-agent-qa-artifacts. Polytopia: no new commits, AI stagnant 13 cycles, push blocked (auth token expired)."
 }
