@@ -27,3 +27,8 @@ cache/
 backups/
 docker/hermes-sync-docker/
 *.gz
+
+# Secret env files (CRITICAL: do not commit)
+.env
+.env.*
+secrets/
