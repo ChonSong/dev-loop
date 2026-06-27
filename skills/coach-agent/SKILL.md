@@ -89,6 +89,18 @@ python3 /home/sc/repos/autonomous-dev-system/skills/coach-agent/scripts/dev-know
 
 **Auto-rebuild:** The knowledge store is rebuilt every 6 hours by a dedicated cron. You do not need to rebuild it manually.
 
+### Step 1.6 — Classify Task Complexity (Route to Right Model)
+
+Before proceeding to verification, classify the task complexity to determine which model tier to use. See `references/task-complexity-routing.md` for the full rubric.
+
+Scoring:
+- **0-2 (Simple)**: CSS/visual, documentation, single-file fixes → route to `deepseek-v4-flash` (B-tier, 79% SWE-bench)
+- **3-5 (Medium)**: Frontend logic, multi-file fixes, feature implementation → route to `deepseek-v4-pro` (A-tier, 80.6%)
+- **6-8 (Complex)**: API/backend logic, game logic (Polytopia), architecture changes → route to `minimax-m3` or `minimax-m2.5` (S-tier, 80.5-81.2%)
+- **9+ (Critical)**: Multi-file restructures, core shared state changes → route to `minimax-m2.5` (S-tier, 81.2%, Lingxi v2.0 backbone)
+
+**This keeps cheap models on simple tasks (~70% of workload) and reserves S-tier for the 30% that need it.** All models are on the OR free tier — no cost difference between tiers. The routing is about intelligence allocation, not cost.
+
 ### Step 2 — Verify against the original
 
 - **GTO Wizard**: load app.gtowizard.com/study, click the primary workflow (select position → postflop training → get GTO strategy → advance turn → action selection). Compare behavior with wiz.codeovertcp.com. Every difference is a finding.
