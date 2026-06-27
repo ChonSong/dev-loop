@@ -1,9 +1,32 @@
 # Provider Fallback Matrix
 # Ordered: first available model wins. Coach iterates through tiers on failure.
-# Status: active | throttled | insufficient | unreachable | unauthorized
-# Budget rule: tiers 0-1 FREE (use freely), tiers 2-4 budget (frequent), tier 5-6 occasional paid (max 2/day)
+# Status: active | throttled | no_balance | ended
+# Models tested 2026-06-27 across all 49 opencode-zen models + OpenRouter
 
 tiers:
+  # ── FREE TIERS (zen) — zero cost, throttled as pool ──
+  - id: zen-nemotron-free
+    provider: opencode-zen
+    model: nemotron-3-ultra-free
+    base_url: https://opencode.ai/zen/v1
+    auth_env: OPENCODE_ZEN_API_KEY
+    cost: free
+    intelligence: medium
+    status: active
+    last_tested: '2026-06-27T21:35:00+10:00'
+    notes: 'Cohere Nvidia Nemotron 3 Ultra — WORKING, free tier'
+
+  - id: zen-north-mini-code-free
+    provider: opencode-zen
+    model: north-mini-code-free
+    base_url: https://opencode.ai/zen/v1
+    auth_env: OPENCODE_ZEN_API_KEY
+    cost: free
+    intelligence: low
+    status: active
+    last_tested: '2026-06-27T21:35:00+10:00'
+    notes: 'Cohere North Mini Code — WORKING, free tier'
+
   - id: zen-big-pickle-free
     provider: opencode-zen
     model: big-pickle
@@ -17,48 +40,26 @@ tiers:
 
   - id: zen-v4-flash-free
     provider: opencode-zen
-    model: deepseek-v4-flash
+    model: deepseek-v4-flash-free
     base_url: https://opencode.ai/zen/v1
     auth_env: OPENCODE_ZEN_API_KEY
     cost: free
     intelligence: low
-    status: insufficient
+    status: throttled
     last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Free tier, but account needs minimal balance to unlock (opencode.ai/workspace)'
+    throttle_reason: 'Free tier daily limit — same pool as big-pickle'
 
-  - id: go-v4-pro-budget
-    provider: opencode-go
-    model: deepseek-v4-pro
+  - id: zen-mimo-v25-free
+    provider: opencode-zen
+    model: mimo-v2.5-free
     base_url: https://opencode.ai/zen/v1
-    auth_env: OPENCODE_GO_API_KEY
-    cost: budget
-    intelligence: high
-    status: insufficient
-    last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Affordable for daily Coach reviews. Add credits via opencode.ai/workspace'
-
-  - id: go-minimax3-free
-    provider: opencode-go
-    model: minimax-m3-free
-    base_url: https://opencode.ai/zen/v1
-    auth_env: OPENCODE_GO_API_KEY
+    auth_env: OPENCODE_ZEN_API_KEY
     cost: free
-    intelligence: high
-    status: insufficient
+    intelligence: unknown
+    status: throttled
     last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Free tier minimax-3 on OpenCode — good budget option'
 
-  - id: or-minimax3-free
-    provider: openrouter
-    model: minimax/minimax-m3
-    base_url: https://openrouter.ai/api/v1
-    auth_env: OPENROUTER_API_KEY
-    cost: free
-    intelligence: high
-    status: insufficient
-    last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Alternative minimax-3 via OpenRouter'
-
+  # ── FREE TIERS (OR) — need minimum credit balance to route ──
   - id: or-v4-flash-free
     provider: openrouter
     model: deepseek/deepseek-v4-flash
@@ -66,10 +67,34 @@ tiers:
     auth_env: OPENROUTER_API_KEY
     cost: free
     intelligence: low
-    status: insufficient
+    status: no_balance
     last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Free on OR, but OR needs minimum credit balance to route'
+    notes: 'Free model on OR — needs ~$2 minimum credit balance'
 
+  # ── PAID TIERS (zen) — need balance on opencode.ai ──
+  - id: zen-v4-pro-budget
+    provider: opencode-go
+    model: deepseek-v4-pro
+    base_url: https://opencode.ai/zen/v1
+    auth_env: OPENCODE_GO_API_KEY
+    cost: budget
+    intelligence: high
+    status: no_balance
+    last_tested: '2026-06-27T21:35:00+10:00'
+    notes: 'Best intelligence-per-dollar on zen. Add ~$10 via opencode.ai/workspace'
+
+  - id: zen-minimax-27-budget
+    provider: opencode-go
+    model: minimax-m2.7
+    base_url: https://opencode.ai/zen/v1
+    auth_env: OPENCODE_GO_API_KEY
+    cost: budget
+    intelligence: high
+    status: no_balance
+    last_tested: '2026-06-27T21:35:00+10:00'
+    notes: 'Good alternative to v4-pro'
+
+  # ── OCCASIONAL PAID (OR) — max 2/day total ──
   - id: or-claude-sonnet-occasional
     provider: openrouter
     model: anthropic/claude-sonnet-4
@@ -78,9 +103,9 @@ tiers:
     cost: paid-occasional
     intelligence: very_high
     budget_per_day: 2
-    status: insufficient
+    status: no_balance
     last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Max 2 calls/day. For tough methodology/architecture questions'
+    notes: 'Max 2 calls/day total across paid OR tiers'
 
   - id: or-gpt-54-pro-occasional
     provider: openrouter
@@ -90,6 +115,6 @@ tiers:
     cost: paid-occasional
     intelligence: very_high
     budget_per_day: 2
-    status: insufficient
+    status: no_balance
     last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Max 2 calls/day. For architecture/design feedback'
+    notes: 'Max 2 calls/day total across paid OR tiers'
