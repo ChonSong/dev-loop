@@ -195,7 +195,7 @@ After every review that identifies **any actionable finding** (bug, gap, regress
 
 ### Step 5 — Update checkpoint
 
-Update the project `.checkpoint.json` (and master checkpoint at `dev-loop/master-checkpoint.json`):
+Update the project `.checkpoint.json` (and master checkpoint at `./master-checkpoint.json`):
 - **Write `coach_review.verdict`** with your structured JSON verdict's `verdict` field (`"APPROVE"`, `"FIX"`, or `"REVERT"`)
 - **Write `coach_review.last_reviewed_sha`** with the Player's latest commit SHA
 - **Write `coach_review.last_reviewed_at`** with current ISO timestamp
