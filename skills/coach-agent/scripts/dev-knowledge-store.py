@@ -19,6 +19,7 @@ from typing import Optional
 REPO_ROOT = Path.home() / "repos"
 MONOREPO = REPO_ROOT / "autonomous-dev-system"
 KNOWLEDGE_DIR = MONOREPO / "sie" / "knowledge-store"
+TRAJECTORY_DIR = MONOREPO / "sie" / "trajectories"
 
 # Projects to index
 PROJECTS = [
@@ -140,9 +141,78 @@ def build_knowledge_store():
 
     if ids:
         collection.add(ids=ids, documents=documents, metadatas=metadatas)
-        print(f"\nBuilt knowledge store: {len(ids)} entries in {KNOWLEDGE_DIR}")
-    else:
-        print("\nNo entries added (all diffs failed?)")
+        print(f"\nBuilt knowledge store: {len(ids)} entries from checkpoint history")
+
+    # Phase 2: Index trajectory files (richer format with guidance)
+    traj_count = index_trajectories(collection)
+    if traj_count:
+        print(f"Indexed {traj_count} trajectories from {TRAJECTORY_DIR}")
+    print(f"Total: {collection.count()} entries in {KNOWLEDGE_DIR}")
+    if not ids and not traj_count:
+        print("No entries added")
+
+
+def index_trajectories(collection) -> int:
+    """Index trajectory JSON files into the knowledge store."""
+    if not TRAJECTORY_DIR.exists():
+        return 0
+
+    count = 0
+    for traj_path in sorted(TRAJECTORY_DIR.glob("*.json")):
+        try:
+            data = json.loads(traj_path.read_text())
+        except json.JSONDecodeError:
+            continue
+
+        project = data.get("project", "unknown")
+        task_id = data.get("task_id", "")
+        verdict = data.get("verdict", "")
+        decoder = data.get("phases", {}).get("decoder", {})
+        guidance = data.get("guidance", {})
+
+        # Build rich document from trajectory phases
+        doc_parts = [f"[{project}] Task: {task_id} (verdict: {verdict})"]
+        if decoder.get("problem_statement"):
+            doc_parts.append(f"Problem: {decoder['problem_statement']}")
+
+        # Add guidance if available
+        tips = []
+        for key in ["diagnostic_tip", "strategy", "pitfall", "regression_risk"]:
+            val = guidance.get(key, "")
+            if val:
+                tips.append(f"{key.replace('_', ' ')}: {val}")
+        if tips:
+            doc_parts.append(" | ".join(tips))
+
+        doc = "\n".join(doc_parts)
+
+        traj_id = f"traj-{project}-{task_id}"[:64]
+        meta = {
+            "task_id": task_id,
+            "project": project,
+            "date": data.get("timestamp", ""),
+            "verdict": verdict,
+            "sha": data.get("phases", {}).get("solver", {}).get("sha", ""),
+            "summary": decoder.get("problem_statement", ""),
+            "files": ", ".join(decoder.get("relevant_files", [])[:5]),
+            "guidance": guidance.get("strategy", "") + " | " +
+                        guidance.get("diagnostic_tip", "") + " | " +
+                        guidance.get("pitfall", "") + " | " +
+                        guidance.get("regression_risk", ""),
+            "diff_snippet": data.get("phases", {}).get("solver", {}).get("full_output", "")[:2000],
+            "repo": project,
+            "source": "trajectory",
+        }
+
+        # Check if already indexed
+        existing = collection.get([traj_id])
+        if existing["ids"]:
+            continue  # Skip duplicates
+
+        collection.add(ids=[traj_id], documents=[doc], metadatas=[meta])
+        count += 1
+
+    return count
 
 
 def query_knowledge_store(query: str, n_results: int = 3):

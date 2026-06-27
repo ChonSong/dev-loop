@@ -32,6 +32,15 @@ Repo: {REPO_PATH}
 Use them to understand patterns, common pitfalls, and how similar issues were
 resolved before. If empty, no prior knowledge available.)
 
+### Trajectory Guidance (from full Decoder→Mapper→Solver traces)
+
+{TRAJECTORY_GUIDANCE}
+
+(The above is procedural guidance distilled from past repair trajectories — 
+diagnostic tips, strategies that worked, pitfalls to avoid, regression risks.
+This is richer than the diff-based knowledge above. Use it to understand
+not just WHAT was fixed, but HOW it was diagnosed and WHY that approach worked.)
+
 ### Your analysis
 
 Follow these phases:
@@ -97,10 +106,22 @@ The Player runs this analysis in their terminal as a structured prompt to their 
 (the same model they use for implementation). The output `<decoder_analysis>` block 
 is fed into the mini-plan step as context.
 
-The DevKnowledge section is populated by querying:
+### DevKnowledge (diff-based historical fixes)
+
+Populate `{DEV_KNOWLEDGE}` by querying:
 ```
 python3 ~/repos/autonomous-dev-system/skills/coach-agent/scripts/dev-knowledge-store.py --query "{TASK_DESCRIPTION}"
 ```
-
 If the query returns no good matches (similarity < 0.5), the Decoder proceeds without
 historical context — the `<past_patterns>` section will say "No relevant past fixes found".
+
+### Trajectory Guidance (procedural knowledge from past repairs)
+
+Populate `{TRAJECTORY_GUIDANCE}` by running:
+```
+python3 ~/repos/autonomous-dev-system/skills/coach-agent/scripts/trajectory-save.py retrieve --task "{TASK_DESCRIPTION}" --project "{PROJECT_NAME}"
+```
+This queries the trajectory store for guidance from past APPROVED repairs — diagnostic tips,
+strategies that worked, pitfalls to avoid. If no trajectories exist, the section is empty.
+Trajectory guidance is richer than diff-based knowledge because it captures HOW a fix was
+diagnosed and implemented, not just WHAT changed.

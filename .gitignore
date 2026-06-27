@@ -12,6 +12,7 @@ checkpoints/
 *.checkpoint.json
 master-checkpoint.json
 sie/knowledge-store/
+sie/trajectories/
 
 # IDE
 .vscode/

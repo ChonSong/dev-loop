@@ -117,6 +117,11 @@ Write a mini-plan with all six fields: **Touches** (files), **Specification** (w
 8. `git add -A && git commit -m "type(scope): description"` + `git push origin main`
 9. Verify push succeeded: `git push origin main 2>&1 | tail -3`. Deploy verification is handled by the `deploy-verify` cron (every 30min, no_agent) — do NOT inline deploy URL curl checks here.
 10. Update both checkpoints. Write end-of-tick capture: what changed, what was learned, what's pending.
+10.5. **Save Trajectory (Phase 4 — closes the loop)** — After Coach approves, persist the full Decoder→Mapper→Solver trace:
+    a. Write the `<decoder_analysis>`, `<code_change_plan>`, and `<solver_summary>` to temp files
+    b. Run: `python3 /home/sc/repos/autonomous-dev-system/skills/coach-agent/scripts/trajectory-save.py save --task "<task-id>" --project "<project>" --decoder /tmp/decoder.txt --mapper /tmp/mapper.txt --solver /tmp/solver.txt --verdict "<COACH_VERDICT>"`
+    c. This stores the full repair trace in `sie/trajectories/` for future DevKnowledge retrieval
+    Only save trajectories that the Coach APPROVED. FIX and REVERT trajectories are inspected separately by the Coach for systemic failure patterns.
 
 ## Task Exhaustion Recovery (Last Resort — Coach Should Handle This)
 
