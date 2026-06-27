@@ -16,17 +16,39 @@ Your job: review the Player's work and find what code review alone misses. The b
 
 ## Provider Fallback Matrix (Step 0 — BEFORE review)
 
-If your primary model (opencode-zen/big-pickle) rate-limits or fails, use the provider fallback matrix to find an available alternative. Run:
+If your primary model (opencode-zen/big-pickle) rate-limits or fails, use the provider fallback matrix:
 
 ```bash
 python3 /home/sc/repos/autonomous-dev-system/skills/coach-agent/scripts/fallback-provider-router.py --route
 ```
 
-**If the router returns a model name** (e.g., `claude-sonnet-4`): use that model via the `hermes config` command or by setting the `OPENAI_API_BASE` environment variable to route to the correct provider. Continue with the review.
+### Tier Order (first available wins)
 
-**If the router returns `NONE:`**: all tiers are down. Output `[SILENT]` to suppress delivery and let the watchdog cron handle escalation. Do not attempt the review — you will just waste the rate-limited call.
+| # | Provider | Model | Cost | Intelligence | Daily Cap |
+|---|----------|-------|------|-------------|-----------|
+| 0 | opencode-zen | big-pickle | free | medium | none |
+| 1 | opencode-zen | deepseek-v4-flash | free | low | none |
+| 2 | opencode-go | deepseek-v4-pro | budget | high | none |
+| 3 | opencode-go | minimax-m3-free | **free** | high | none |
+| 4 | openrouter | minimax/minimax-m3 | free | high | none |
+| 5 | openrouter | deepseek/deepseek-v4-flash | free | low | none |
+| 6 | openrouter | claude-sonnet-4 | paid | very high | **max 2/day** |
+| 7 | openrouter | gpt-5.4-pro | paid | very high | **max 2/day** |
 
-**Recovery path:** A watchdog cron (`coach-provider-watchdog`) probes all tiers every 15 minutes. When a provider comes back online, it auto-updates the matrix and the next Coach tick picks it up seamlessly.
+### Budget Rules
+
+- **Tiers 0-3 (FREE)**: Use freely. Zero-cost daily drivers. Tier 3 (minimax-m3-free) is surprisingly intelligent for a free model.
+- **Tiers 4-5 (free/OR)**: OpenRouter free models. OR needs a small credit balance to route even free models.
+- **Tiers 6-7 (paid-occasional)**: **HARD CAP of 2 calls/day total across both.** Use only for:
+  - Resolving methodology disagreements between you and the Player
+  - Architecture decisions where a smarter model changes the outcome
+  - Complex bug investigations that v4-pro couldn't figure out
+- **If a tier returns `no_balance`**: skip it and fall through to the next one.
+- **If ALL tiers return `NONE:`**: output `[SILENT]` and let the watchdog handle recovery.
+
+### Recovery
+
+A watchdog cron (`coach-provider-watchdog`) probes all tiers every 15 minutes and auto-updates the matrix. When credits are added to any tier, the next Coach tick picks it up with no code changes.
 
 ## Active projects
 

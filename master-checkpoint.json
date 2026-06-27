@@ -9,7 +9,7 @@
       "current_task": "fix-ai-territory-expansion",
       "health": "520_tests_pass_site_up_refqa_passes_stagnant_ai_13_cycles",
       "last_sha": "df00a19",
-      "blocker": "GitHub auth token expired — push failed",
+      "blocker": null,
       "last_review": "2026-06-27T12:45:00Z",
       "review_quality": "approved",
       "consecutive_on_project": 0,

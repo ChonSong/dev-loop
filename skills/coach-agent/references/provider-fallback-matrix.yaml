@@ -1,59 +1,95 @@
 # Provider Fallback Matrix
 # Ordered: first available model wins. Coach iterates through tiers on failure.
-# Status: "active" = available, "throttled" = rate-limited, "insufficient" = no credits, "unauthorized" = bad key
+# Status: active | throttled | insufficient | unreachable | unauthorized
+# Budget rule: tiers 0-1 FREE (use freely), tiers 2-4 budget (frequent), tier 5-6 occasional paid (max 2/day)
 
 tiers:
-- id: primary-opencode-zen-free
-  provider: opencode-zen
-  model: big-pickle
-  base_url: https://opencode.ai/zen/v1
-  auth_env: OPENCODE_ZEN_API_KEY
-  cost: free
-  status: throttled
-  last_tested: '2026-06-27T12:23:58.705222+00:00'
-  throttle_reason: Rate limit exceeded. Please try again later.
-- id: fallback-opencode-zen-claude
-  provider: opencode-zen
-  model: claude-sonnet-4
-  base_url: https://opencode.ai/zen/v1
-  auth_env: OPENCODE_ZEN_API_KEY
-  cost: paid
-  status: insufficient
-  last_tested: '2026-06-27T12:23:58.705222+00:00'
-  throttle_reason: 'Insufficient balance. Manage your billing here: https://opencode.ai/workspace/wrk_01KSP3YVERNXTG58J0HGQ9TGC8/billing'
-- id: fallback-opencode-zen-gpt
-  provider: opencode-zen
-  model: gpt-5.4-mini
-  base_url: https://opencode.ai/zen/v1
-  auth_env: OPENCODE_ZEN_API_KEY
-  cost: paid
-  status: insufficient
-  last_tested: '2026-06-27T12:23:58.705222+00:00'
-  throttle_reason: 'Insufficient balance. Manage your billing here: https://opencode.ai/workspace/wrk_01KSP3YVERNXTG58J0HGQ9TGC8/billing'
-- id: fallback-openrouter-owl
-  provider: openrouter
-  model: openrouter/owl-alpha
-  base_url: https://openrouter.ai/api/v1
-  auth_env: OPENROUTER_API_KEY
-  cost: free
-  status: unauthorized
-  last_tested: '2026-06-27T12:23:58.705222+00:00'
-  throttle_reason: User not found.
-- id: fallback-openrouter-llama-free
-  provider: openrouter
-  model: meta-llama/llama-3.3-70b-instruct:free
-  base_url: https://openrouter.ai/api/v1
-  auth_env: OPENROUTER_API_KEY
-  cost: free
-  status: unauthorized
-  last_tested: '2026-06-27T12:23:58.705222+00:00'
-  throttle_reason: User not found.
-- id: fallback-openrouter-claude
-  provider: openrouter
-  model: anthropic/claude-sonnet-4
-  base_url: https://openrouter.ai/api/v1
-  auth_env: OPENROUTER_API_KEY
-  cost: paid
-  status: unauthorized
-  last_tested: '2026-06-27T12:23:58.705222+00:00'
-  throttle_reason: User not found.
+  - id: zen-big-pickle-free
+    provider: opencode-zen
+    model: big-pickle
+    base_url: https://opencode.ai/zen/v1
+    auth_env: OPENCODE_ZEN_API_KEY
+    cost: free
+    intelligence: medium
+    status: throttled
+    last_tested: '2026-06-27T21:35:00+10:00'
+    throttle_reason: 'Free tier daily limit — resets ~5:00 AEST'
+
+  - id: zen-v4-flash-free
+    provider: opencode-zen
+    model: deepseek-v4-flash
+    base_url: https://opencode.ai/zen/v1
+    auth_env: OPENCODE_ZEN_API_KEY
+    cost: free
+    intelligence: low
+    status: insufficient
+    last_tested: '2026-06-27T21:35:00+10:00'
+    notes: 'Free tier, but account needs minimal balance to unlock (opencode.ai/workspace)'
+
+  - id: go-v4-pro-budget
+    provider: opencode-go
+    model: deepseek-v4-pro
+    base_url: https://opencode.ai/zen/v1
+    auth_env: OPENCODE_GO_API_KEY
+    cost: budget
+    intelligence: high
+    status: insufficient
+    last_tested: '2026-06-27T21:35:00+10:00'
+    notes: 'Affordable for daily Coach reviews. Add credits via opencode.ai/workspace'
+
+  - id: go-minimax3-free
+    provider: opencode-go
+    model: minimax-m3-free
+    base_url: https://opencode.ai/zen/v1
+    auth_env: OPENCODE_GO_API_KEY
+    cost: free
+    intelligence: high
+    status: insufficient
+    last_tested: '2026-06-27T21:35:00+10:00'
+    notes: 'Free tier minimax-3 on OpenCode — good budget option'
+
+  - id: or-minimax3-free
+    provider: openrouter
+    model: minimax/minimax-m3
+    base_url: https://openrouter.ai/api/v1
+    auth_env: OPENROUTER_API_KEY
+    cost: free
+    intelligence: high
+    status: insufficient
+    last_tested: '2026-06-27T21:35:00+10:00'
+    notes: 'Alternative minimax-3 via OpenRouter'
+
+  - id: or-v4-flash-free
+    provider: openrouter
+    model: deepseek/deepseek-v4-flash
+    base_url: https://openrouter.ai/api/v1
+    auth_env: OPENROUTER_API_KEY
+    cost: free
+    intelligence: low
+    status: insufficient
+    last_tested: '2026-06-27T21:35:00+10:00'
+    notes: 'Free on OR, but OR needs minimum credit balance to route'
+
+  - id: or-claude-sonnet-occasional
+    provider: openrouter
+    model: anthropic/claude-sonnet-4
+    base_url: https://openrouter.ai/api/v1
+    auth_env: OPENROUTER_API_KEY
+    cost: paid-occasional
+    intelligence: very_high
+    budget_per_day: 2
+    status: insufficient
+    last_tested: '2026-06-27T21:35:00+10:00'
+    notes: 'Max 2 calls/day. For tough methodology/architecture questions'
+
+  - id: or-gpt-54-pro-occasional
+    provider: openrouter
+    model: openai/gpt-5.4-pro
+    base_url: https://openrouter.ai/api/v1
+    auth_env: OPENROUTER_API_KEY
+    cost: paid-occasional
+    intelligence: very_high
+    budget_per_day: 2
+    status: insufficient
+    last_tested: '2026-06-27T21:35:00+10:00'
+    notes: 'Max 2 calls/day. For architecture/design feedback'
