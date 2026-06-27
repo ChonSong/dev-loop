@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-27T13:05:00Z",
-  "consecutive_on_project": 0,
+  "last_run": "2026-06-27T16:08:15Z",
+  "consecutive_on_project": 1,
   "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
@@ -13,20 +13,20 @@
       "last_review": "2026-06-27T12:45:00Z",
       "review_quality": "approved",
       "consecutive_on_project": 0,
-      "note": "Tick 2026-06-27T12:45 UTC. No new Player commits since df00a19. RefQA passes. Site up (200). AI territory expansion stagnant (13 cycles). GitHub auth token expired — push blocked."
+      "note": "Tick 2026-06-27T12:45 UTC. No new Player commits since df00a19. RefQA passes. Site up (200). AI territory expansion stagnant (13 cycles). GitHub auth token expired \u2014 push blocked."
     },
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "fix-gitignore-agent-qa-artifacts",
-      "health": "build_passes_53_frontend_tests_pass_status_indicator_decoupled",
-      "last_sha": "4371b5e",
+      "current_task": "fix-utg-range-low-pairs-frequency",
+      "health": "site_up_200_build_clean_gitignore_fixed_repo_slim",
+      "last_sha": "9dad815",
       "blocker": null,
-      "last_review": "2026-06-27T13:05:00Z",
+      "last_review": "2026-06-28T01:00:00Z",
       "review_quality": "pending",
       "consecutive_on_project": 1,
-      "note": "Tick 2026-06-27T13:05:00Z. Fixed solver status indicator flicker — added independent useSolverHealth hook polling /api/v1/solver/health. Status no longer derived from fetchRange loading/error. 53 tests pass, build clean. Pushed. Next: fix-gitignore-agent-qa-artifacts."
+      "note": "Tick 2026-06-27T16:08:15Z. Fixed .gitignore for .agent-qa/, removed 39 tracked .webm test artifacts (33MB). Also rebuilt .next (was missing, causing 502) and restarted web service. Push OK."
     }
   },
-  "note": "Tick 2026-06-27T13:05:00Z. GTO Wizard: fixed solver status indicator flicker (4371b5e). Independent health polling via useSolverHealth hook. 53 tests pass, build clean. Next: fix-gitignore-agent-qa-artifacts. Polytopia: no new commits, AI stagnant 13 cycles, push blocked (auth token expired)."
+  "note": "Tick 2026-06-27T16:08:15Z. gto-wizard-clone: gitignore .agent-qa/ fix + repo rebuild/restart. Site was 502 (missing .next build) \u2014 fixed. Push OK."
 }
