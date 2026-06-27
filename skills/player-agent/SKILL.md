@@ -93,8 +93,22 @@ Write a mini-plan with all six fields: **Touches** (files), **Specification** (w
    d. **Time-box**: max 2 minutes for this step. If the query is slow or returns nothing, proceed with empty past_patterns
    This replaces the ad-hoc investigation that used to happen inside the mini-plan step. See `references/problem-decoder-prompt.md` for the full prompt template.
 3. Write mini-plan (touches, specification, e2e_baseline, happy, negative, boundary) — then self-audit: verify all six fields populated before proceeding. **Feed the decoder analysis into the plan as context.**
-4. Investigate codebase, then implement minimal change
-5. For UI tasks: load reference image (`vision_analyze`) + live page (`browser_navigate` + `browser_vision`) before coding. Do NOT manually specify pixel values.
+4. **Solution Mapper (MANDATORY — produce a code change plan)** — Following the prompt at `references/solution-mapper-prompt.md`:
+   a. **Reproduce**: verify you can trigger/observe the issue or feature gap
+   b. **Explore**: identify minimal files to change (use search_files, view_directory)
+   c. **Plan**: design changes following minimal-viable-change principles
+   d. **Output**: produce a `<code_change_plan>` block with file-level changes, edge cases, and verification steps
+   e. **Time-box**: max 3 minutes. Do NOT skip this step — it prevents over-engineering.
+   See `references/solution-mapper-prompt.md` for the full prompt template.
+4.5. **Problem Solver (MANDATORY — implement the plan)** — Following the prompt at `references/problem-solver-prompt.md`:
+   a. **Execute**: implement every change in the Mapper's plan using `patch` (not write_file for large files)
+   b. **Verify incrementally**: after each file change, run tests + check live page
+   c. **Handle edge cases**: implement every edge case from the Mapper's plan
+   d. **Stop if stuck**: 3+ failed attempts → revert all, document for Coach, skip task
+   e. **Output**: produce a `<solver_summary>` block appended to the mini-plan
+   f. **Time-box**: max 5 minutes.
+   See `references/problem-solver-prompt.md` for the full prompt template.
+5. For UI tasks: after implementation, load reference image (`vision_analyze`) + live page (`browser_navigate` + `browser_vision`) to verify visual match. Do NOT manually specify pixel values.
    - **Visual comparison protocol:** vision_analyze(reference) → browser_navigate(live) → browser_vision(live) → compare the two descriptions element-by-element. Do not assume you know what the reference looks like — always load both images.
    - **Page purpose check:** Before coding any new feature or component, verify the page's actual purpose. A range browser should not get quiz/training flows bolted on. Read the AGENTS.md task description, the reference screenshot, and the interaction spec if one exists. If they disagree with your assumption, the task description wins.
    - **When to remove vs extend:** If an existing feature is architecturally wrong (e.g., quiz state management in a read-only page), prefer stripping it cleanly before extending. Removing the wrong abstraction is the prerequisite for building the right one.
