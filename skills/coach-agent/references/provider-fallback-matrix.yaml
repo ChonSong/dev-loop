@@ -1,120 +1,125 @@
 # Provider Fallback Matrix
 # Ordered: first available model wins. Coach iterates through tiers on failure.
-# Status: active | throttled | no_balance | ended
-# Models tested 2026-06-27 across all 49 opencode-zen models + OpenRouter
+# Status: "active" = available, "throttled" = rate-limited, "insufficient" = no credits, "unauthorized" = bad key
 
 tiers:
-  # ── FREE TIERS (zen) — zero cost, throttled as pool ──
-  - id: zen-nemotron-free
-    provider: opencode-zen
-    model: nemotron-3-ultra-free
-    base_url: https://opencode.ai/zen/v1
-    auth_env: OPENCODE_ZEN_API_KEY
-    cost: free
-    intelligence: medium
-    status: active
-    last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Cohere Nvidia Nemotron 3 Ultra — WORKING, free tier'
+- id: zen-nemotron-free
+  provider: opencode-zen
+  model: nemotron-3-ultra-free
+  base_url: https://opencode.ai/zen/v1
+  auth_env: OPENCODE_ZEN_API_KEY
+  cost: free
+  intelligence: medium
+  status: unreachable
+  last_tested: '2026-06-27T13:30:53.089519+00:00'
+  notes: "Cohere Nvidia Nemotron 3 Ultra \u2014 WORKING, free tier"
+  throttle_reason: 'HTTP 200: Error from provider: Upstream error from Nvidia: ResourceExhausted:
+    Worker local total request limit reached (1877/32)'
+- id: zen-north-mini-code-free
+  provider: opencode-zen
+  model: north-mini-code-free
+  base_url: https://opencode.ai/zen/v1
+  auth_env: OPENCODE_ZEN_API_KEY
+  cost: free
+  intelligence: low
+  status: active
+  last_tested: '2026-06-27T13:30:53.089519+00:00'
+  notes: "Cohere North Mini Code \u2014 WORKING, free tier"
+- id: zen-big-pickle-free
+  provider: opencode-zen
+  model: big-pickle
+  base_url: https://opencode.ai/zen/v1
+  auth_env: OPENCODE_ZEN_API_KEY
+  cost: free
+  intelligence: medium
+  status: throttled
+  last_tested: '2026-06-27T13:30:53.089519+00:00'
+  throttle_reason: Rate limit exceeded. Please try again later.
+- id: zen-v4-flash-free
+  provider: opencode-zen
+  model: deepseek-v4-flash-free
+  base_url: https://opencode.ai/zen/v1
+  auth_env: OPENCODE_ZEN_API_KEY
+  cost: free
+  intelligence: low
+  status: throttled
+  last_tested: '2026-06-27T13:30:53.089519+00:00'
+  throttle_reason: Rate limit exceeded. Please try again later.
+- id: zen-mimo-v25-free
+  provider: opencode-zen
+  model: mimo-v2.5-free
+  base_url: https://opencode.ai/zen/v1
+  auth_env: OPENCODE_ZEN_API_KEY
+  cost: free
+  intelligence: unknown
+  status: throttled
+  last_tested: '2026-06-27T13:30:53.089519+00:00'
+  throttle_reason: Rate limit exceeded. Please try again later.
+- id: or-v4-flash-free
+  provider: openrouter
+  model: deepseek/deepseek-v4-flash
+  base_url: https://openrouter.ai/api/v1
+  auth_env: OPENROUTER_API_KEY
+  cost: free
+  intelligence: low
+  status: insufficient
+  last_tested: '2026-06-27T13:30:53.089519+00:00'
+  notes: "Free model on OR \u2014 needs ~$2 minimum credit balance"
+  throttle_reason: Insufficient credits. Add more using https://openrouter.ai/settings/credits
+- id: go-v4-pro-budget
+  provider: opencode-go
+  model: deepseek-v4-pro
+  base_url: https://opencode.ai/zen/v1
+  auth_env: OPENCODE_GO_API_KEY
+  cost: budget
+  intelligence: high
+  status: testing
+  last_tested: '2026-06-27T21:35:00+10:00'
+  notes: 'User confirms go key has credits. Router tests at runtime.'
 
-  - id: zen-north-mini-code-free
-    provider: opencode-zen
-    model: north-mini-code-free
-    base_url: https://opencode.ai/zen/v1
-    auth_env: OPENCODE_ZEN_API_KEY
-    cost: free
-    intelligence: low
-    status: active
-    last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Cohere North Mini Code — WORKING, free tier'
+- id: go-claude-sonnet
+  provider: opencode-go
+  model: claude-sonnet-4
+  base_url: https://opencode.ai/zen/v1
+  auth_env: OPENCODE_GO_API_KEY
+  cost: budget
+  intelligence: very_high
+  status: testing
+  last_tested: '2026-06-27T21:35:00+10:00'
+  notes: 'Go key — sonnet via opencode. User confirms credits available.'
 
-  - id: zen-big-pickle-free
-    provider: opencode-zen
-    model: big-pickle
-    base_url: https://opencode.ai/zen/v1
-    auth_env: OPENCODE_ZEN_API_KEY
-    cost: free
-    intelligence: medium
-    status: throttled
-    last_tested: '2026-06-27T21:35:00+10:00'
-    throttle_reason: 'Free tier daily limit — resets ~5:00 AEST'
-
-  - id: zen-v4-flash-free
-    provider: opencode-zen
-    model: deepseek-v4-flash-free
-    base_url: https://opencode.ai/zen/v1
-    auth_env: OPENCODE_ZEN_API_KEY
-    cost: free
-    intelligence: low
-    status: throttled
-    last_tested: '2026-06-27T21:35:00+10:00'
-    throttle_reason: 'Free tier daily limit — same pool as big-pickle'
-
-  - id: zen-mimo-v25-free
-    provider: opencode-zen
-    model: mimo-v2.5-free
-    base_url: https://opencode.ai/zen/v1
-    auth_env: OPENCODE_ZEN_API_KEY
-    cost: free
-    intelligence: unknown
-    status: throttled
-    last_tested: '2026-06-27T21:35:00+10:00'
-
-  # ── FREE TIERS (OR) — need minimum credit balance to route ──
-  - id: or-v4-flash-free
-    provider: openrouter
-    model: deepseek/deepseek-v4-flash
-    base_url: https://openrouter.ai/api/v1
-    auth_env: OPENROUTER_API_KEY
-    cost: free
-    intelligence: low
-    status: no_balance
-    last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Free model on OR — needs ~$2 minimum credit balance'
-
-  # ── PAID TIERS (zen) — need balance on opencode.ai ──
-  - id: zen-v4-pro-budget
-    provider: opencode-go
-    model: deepseek-v4-pro
-    base_url: https://opencode.ai/zen/v1
-    auth_env: OPENCODE_GO_API_KEY
-    cost: budget
-    intelligence: high
-    status: no_balance
-    last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Best intelligence-per-dollar on zen. Add ~$10 via opencode.ai/workspace'
-
-  - id: zen-minimax-27-budget
-    provider: opencode-go
-    model: minimax-m2.7
-    base_url: https://opencode.ai/zen/v1
-    auth_env: OPENCODE_GO_API_KEY
-    cost: budget
-    intelligence: high
-    status: no_balance
-    last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Good alternative to v4-pro'
-
-  # ── OCCASIONAL PAID (OR) — max 2/day total ──
-  - id: or-claude-sonnet-occasional
-    provider: openrouter
-    model: anthropic/claude-sonnet-4
-    base_url: https://openrouter.ai/api/v1
-    auth_env: OPENROUTER_API_KEY
-    cost: paid-occasional
-    intelligence: very_high
-    budget_per_day: 2
-    status: no_balance
-    last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Max 2 calls/day total across paid OR tiers'
-
-  - id: or-gpt-54-pro-occasional
-    provider: openrouter
-    model: openai/gpt-5.4-pro
-    base_url: https://openrouter.ai/api/v1
-    auth_env: OPENROUTER_API_KEY
-    cost: paid-occasional
-    intelligence: very_high
-    budget_per_day: 2
-    status: no_balance
-    last_tested: '2026-06-27T21:35:00+10:00'
-    notes: 'Max 2 calls/day total across paid OR tiers'
+- id: go-gpt-54
+  provider: opencode-go
+  model: gpt-5.4
+  base_url: https://opencode.ai/zen/v1
+  auth_env: OPENCODE_GO_API_KEY
+  cost: budget
+  intelligence: very_high
+  status: testing
+  last_tested: '2026-06-27T21:35:00+10:00'
+  notes: 'Go key — gpt-5.4 via opencode. User confirms credits available.'
+  throttle_reason: 'Insufficient balance. Manage your billing here: https://opencode.ai/workspace/wrk_01KVANSGWP951MKFE3Y8FHQS7H/billing'
+- id: or-claude-sonnet-occasional
+  provider: openrouter
+  model: anthropic/claude-sonnet-4
+  base_url: https://openrouter.ai/api/v1
+  auth_env: OPENROUTER_API_KEY
+  cost: paid-occasional
+  intelligence: very_high
+  budget_per_day: 2
+  status: insufficient
+  last_tested: '2026-06-27T13:30:53.089519+00:00'
+  notes: Max 2 calls/day total across paid OR tiers
+  throttle_reason: Insufficient credits. Add more using https://openrouter.ai/settings/credits
+- id: or-gpt-54-pro-occasional
+  provider: openrouter
+  model: openai/gpt-5.4-pro
+  base_url: https://openrouter.ai/api/v1
+  auth_env: OPENROUTER_API_KEY
+  cost: paid-occasional
+  intelligence: very_high
+  budget_per_day: 2
+  status: insufficient
+  last_tested: '2026-06-27T13:30:53.089519+00:00'
+  notes: Max 2 calls/day total across paid OR tiers
+  throttle_reason: Insufficient credits. Add more using https://openrouter.ai/settings/credits

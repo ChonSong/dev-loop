@@ -30,12 +30,13 @@ python3 /home/sc/repos/autonomous-dev-system/skills/coach-agent/scripts/fallback
 | 1 | opencode-zen | north-mini-code-free | free | low | **active** |
 | 2 | opencode-zen | big-pickle | free | medium | throttled ~5AM |
 | 3 | opencode-zen | deepseek-v4-flash-free | free | low | throttled ~5AM |
-| 4 | opencode-zen | mimo-v2.5-free | free | unknown | throttled ~5AM |
-| 5 | openrouter | deepseek/deepseek-v4-flash | free | low | needs OR credit |
-| 6 | opencode-go | deepseek-v4-pro | budget | high | needs balance |
-| 7 | opencode-go | minimax-m2.7 | budget | high | needs balance |
-| 8 | openrouter | claude-sonnet-4 | paid | very high | **max 2/day** |
-| 9 | openrouter | gpt-5.4-pro | paid | very high | **max 2/day** |
+| 4 | opencode-go | deepseek-v4-pro | budget | high | testing — user verified |
+| 5 | opencode-go | claude-sonnet-4 | budget | very high | testing — user verified |
+| 6 | opencode-go | gpt-5.4 | budget | very high | testing — user verified |
+| 7 | opencode-zen | mimo-v2.5-free | free | unknown | throttled |
+| 8 | openrouter | deepseek/deepseek-v4-flash | free | low | needs OR credit |
+| 9 | openrouter | claude-sonnet-4 | paid | very high | **max 2/day** |
+| 10 | openrouter | gpt-5.4-pro | paid | very high | **max 2/day** |
 
 ### Budget Rules
 
