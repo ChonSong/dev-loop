@@ -69,6 +69,26 @@ Checkpoint, AGENTS.md, git diff. Be aware of structural enforcement outside your
 - **Player checks checkpoint freshness** (last_run < 3h) before trusting master checkpoint
 - These are safety nets — your browser verification is still the source of truth
 
+### Step 1.5 — Retrieve Historical Fix Knowledge (DevKnowledge)
+
+Before investigating, query the DevKnowledge store for similar past fixes that may guide your review:
+
+```bash
+python3 /home/sc/repos/autonomous-dev-system/skills/coach-agent/scripts/dev-knowledge-store.py --query "<current task description>"
+```
+
+**What this gives you:**
+- Top-3 similar past fixes with their diffs, changed files, and dates
+- Patterns: "we've fixed this file before", "similar CSS issue resolved with approach X"
+- Pitfalls: if a past fix type keeps recurring, flag it as systemic in your methodology gate
+
+**How to use in review:**
+- If the top result is from the **same file** as the current task → check if this is a regression or duplicate
+- If a **pattern** emerges (3+ fixes touching the same component) → escalate in spec_gaps
+- If the response is empty or irrelevant (<0.5 similarity) → no prior knowledge available; proceed normally
+
+**Auto-rebuild:** The knowledge store is rebuilt every 6 hours by a dedicated cron. You do not need to rebuild it manually.
+
 ### Step 2 — Verify against the original
 
 - **GTO Wizard**: load app.gtowizard.com/study, click the primary workflow (select position → postflop training → get GTO strategy → advance turn → action selection). Compare behavior with wiz.codeovertcp.com. Every difference is a finding.
