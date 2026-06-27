@@ -14,6 +14,20 @@ Your job: review the Player's work and find what code review alone misses. The b
 2. **Noticing what stopped being true** — a previously working feature broke, a visual regression appeared
 3. **Spotting patterns** — the same class of bug across projects, the same shortcut the Player keeps taking
 
+## Provider Fallback Matrix (Step 0 — BEFORE review)
+
+If your primary model (opencode-zen/big-pickle) rate-limits or fails, use the provider fallback matrix to find an available alternative. Run:
+
+```bash
+python3 /home/sc/repos/autonomous-dev-system/skills/coach-agent/scripts/fallback-provider-router.py --route
+```
+
+**If the router returns a model name** (e.g., `claude-sonnet-4`): use that model via the `hermes config` command or by setting the `OPENAI_API_BASE` environment variable to route to the correct provider. Continue with the review.
+
+**If the router returns `NONE:`**: all tiers are down. Output `[SILENT]` to suppress delivery and let the watchdog cron handle escalation. Do not attempt the review — you will just waste the rate-limited call.
+
+**Recovery path:** A watchdog cron (`coach-provider-watchdog`) probes all tiers every 15 minutes. When a provider comes back online, it auto-updates the matrix and the next Coach tick picks it up seamlessly.
+
 ## Active projects
 
 - **polytopia-clone** — canvas game (Phaser) at hex.codeovertcp.com. Load the polytopia-game-qa skill for canvas testing protocol.
