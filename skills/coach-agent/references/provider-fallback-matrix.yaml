@@ -11,7 +11,7 @@ tiers:
   cost: free
   intelligence: medium
   status: active
-  last_tested: '2026-06-27T14:00:53.618184+00:00'
+  last_tested: '2026-06-27T14:15:54.302871+00:00'
   notes: "Cohere Nvidia Nemotron 3 Ultra \u2014 WORKING, free tier"
   throttle_reason: 'HTTP 200: Error from provider: Upstream error from Nvidia: ResourceExhausted:
     Worker local total request limit reached (1877/32)'
@@ -23,7 +23,7 @@ tiers:
   cost: free
   intelligence: low
   status: active
-  last_tested: '2026-06-27T14:00:53.618184+00:00'
+  last_tested: '2026-06-27T14:15:54.302871+00:00'
   notes: "Cohere North Mini Code \u2014 WORKING, free tier"
 - id: zen-big-pickle-free
   provider: opencode-zen
@@ -33,7 +33,7 @@ tiers:
   cost: free
   intelligence: medium
   status: throttled
-  last_tested: '2026-06-27T14:00:53.618184+00:00'
+  last_tested: '2026-06-27T14:15:54.302871+00:00'
   throttle_reason: Rate limit exceeded. Please try again later.
 - id: zen-v4-flash-free
   provider: opencode-zen
@@ -43,7 +43,7 @@ tiers:
   cost: free
   intelligence: low
   status: throttled
-  last_tested: '2026-06-27T14:00:53.618184+00:00'
+  last_tested: '2026-06-27T14:15:54.302871+00:00'
   throttle_reason: Rate limit exceeded. Please try again later.
 - id: zen-mimo-v25-free
   provider: opencode-zen
@@ -53,7 +53,7 @@ tiers:
   cost: free
   intelligence: unknown
   status: throttled
-  last_tested: '2026-06-27T14:00:53.618184+00:00'
+  last_tested: '2026-06-27T14:15:54.302871+00:00'
   throttle_reason: Rate limit exceeded. Please try again later.
 - id: or-v4-flash-free
   provider: openrouter
@@ -63,7 +63,7 @@ tiers:
   cost: free
   intelligence: low
   status: insufficient
-  last_tested: '2026-06-27T14:00:53.618184+00:00'
+  last_tested: '2026-06-27T14:15:54.302871+00:00'
   notes: "Free model on OR \u2014 needs ~$2 minimum credit balance"
   throttle_reason: Insufficient credits. Add more using https://openrouter.ai/settings/credits
 - id: go-v4-pro-budget
@@ -74,7 +74,7 @@ tiers:
   cost: budget
   intelligence: high
   status: insufficient
-  last_tested: '2026-06-27T14:00:53.618184+00:00'
+  last_tested: '2026-06-27T14:15:54.302871+00:00'
   notes: User confirms go key has credits. Router tests at runtime.
   throttle_reason: 'Insufficient balance. Manage your billing here: https://opencode.ai/workspace/wrk_01KVANSGWP951MKFE3Y8FHQS7H/billing'
 - id: go-claude-sonnet
@@ -85,7 +85,7 @@ tiers:
   cost: budget
   intelligence: very_high
   status: insufficient
-  last_tested: '2026-06-27T14:00:53.618184+00:00'
+  last_tested: '2026-06-27T14:15:54.302871+00:00'
   notes: "Go key \u2014 sonnet via opencode. User confirms credits available."
   throttle_reason: 'Insufficient balance. Manage your billing here: https://opencode.ai/workspace/wrk_01KVANSGWP951MKFE3Y8FHQS7H/billing'
 - id: go-gpt-54
@@ -96,7 +96,7 @@ tiers:
   cost: budget
   intelligence: very_high
   status: insufficient
-  last_tested: '2026-06-27T14:00:53.618184+00:00'
+  last_tested: '2026-06-27T14:15:54.302871+00:00'
   notes: "Go key \u2014 gpt-5.4 via opencode. User confirms credits available."
   throttle_reason: 'Insufficient balance. Manage your billing here: https://opencode.ai/workspace/wrk_01KVANSGWP951MKFE3Y8FHQS7H/billing'
 - id: or-claude-sonnet-occasional
@@ -108,7 +108,7 @@ tiers:
   intelligence: very_high
   budget_per_day: 2
   status: insufficient
-  last_tested: '2026-06-27T14:00:53.618184+00:00'
+  last_tested: '2026-06-27T14:15:54.302871+00:00'
   notes: Max 2 calls/day total across paid OR tiers
   throttle_reason: Insufficient credits. Add more using https://openrouter.ai/settings/credits
 - id: or-gpt-54-pro-occasional
@@ -120,6 +120,6 @@ tiers:
   intelligence: very_high
   budget_per_day: 2
   status: insufficient
-  last_tested: '2026-06-27T14:00:53.618184+00:00'
+  last_tested: '2026-06-27T14:15:54.302871+00:00'
   notes: Max 2 calls/day total across paid OR tiers
   throttle_reason: Insufficient credits. Add more using https://openrouter.ai/settings/credits

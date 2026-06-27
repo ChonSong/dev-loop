@@ -86,7 +86,13 @@ Write a mini-plan with all six fields: **Touches** (files), **Specification** (w
 0. **Check Coach verdict** — read the project's `.checkpoint.json`. If `coach_review.verdict` is `"REVERT"`, revert last commit and investigate BEFORE doing anything else. If `"FIX"`, pick the highest-priority task from AGENTS.md that the Coach generated (Coach owns the backlog). If `"APPROVE"` and backlog is empty, trigger Task Exhaustion Recovery.
 1. Read master checkpoint → find active project (round-robin if consecutive_on_project ≥ 2)
 2. Read project `.checkpoint.json` + `current_task` from AGENTS.md
-3. Write mini-plan (touches, specification, e2e_baseline, happy, negative, boundary) — then self-audit: verify all six fields populated before proceeding
+2.5. **Decoder Analysis (MANDATORY before planning)** — Run a structured pre-implementation analysis following the Problem Decoder prompt at `references/problem-decoder-prompt.md`. Steps:
+   a. **Query DevKnowledge**: `python3 /home/sc/repos/autonomous-dev-system/skills/coach-agent/scripts/dev-knowledge-store.py --query "<current task description>"`
+   b. **Analyze**: explore the repo, find relevant files, understand past patterns
+   c. **Produce** a `<decoder_analysis>` block containing: problem_statement, relevant_files, past_patterns, expected_behavior, risk_assessment
+   d. **Time-box**: max 2 minutes for this step. If the query is slow or returns nothing, proceed with empty past_patterns
+   This replaces the ad-hoc investigation that used to happen inside the mini-plan step. See `references/problem-decoder-prompt.md` for the full prompt template.
+3. Write mini-plan (touches, specification, e2e_baseline, happy, negative, boundary) — then self-audit: verify all six fields populated before proceeding. **Feed the decoder analysis into the plan as context.**
 4. Investigate codebase, then implement minimal change
 5. For UI tasks: load reference image (`vision_analyze`) + live page (`browser_navigate` + `browser_vision`) before coding. Do NOT manually specify pixel values.
    - **Visual comparison protocol:** vision_analyze(reference) → browser_navigate(live) → browser_vision(live) → compare the two descriptions element-by-element. Do not assume you know what the reference looks like — always load both images.
