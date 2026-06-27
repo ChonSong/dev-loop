@@ -1,70 +1,66 @@
-# Provider Fallback Matrix — v3 (with working OR2 key + Gemini)
-
-# Keys inventory:
-# ZEN: wrk_01KSP3YVERNXTG58J0HGQ9TGC8 — opencode workspace (no paid credits)
-# GO:  same ZEN workspace — opencode Go plan ($10/mo)
-# NEW: wrk_01KW4VW942S8G444EVWRB13WMY — separate opencode workspace
-# OR:  sk-or-v1-73fe...151 — OpenRouter FREE tier, 4 models confirmed ACTIVE
-# GEMINI: AQ.Ab8RN6IzPX... — Google Gemini API key
-# NOUS: sk-nous-43jBLbVb... — Nous Portal key
+# Provider Fallback Matrix
+# Ordered: first available model wins. Coach iterates through tiers on failure.
+# Status: "active" = available, "throttled" = rate-limited, "insufficient" = no credits, "unauthorized" = bad key
 
 tiers:
-  - id: or-v4-flash-coach
-    provider: openrouter
-    model: deepseek/deepseek-v4-flash
-    base_url: https://openrouter.ai/api/v1
-    auth_env: OPENROUTER_API_KEY
-    cost: free
-    intelligence: high
-    status: active
-    notes: 'Primary Coach model. 79% SWE-bench. OR2 key confirmed ACTIVE.'
-
-  - id: or-owl-alpha-player
-    provider: openrouter
-    model: openrouter/owl-alpha
-    base_url: https://openrouter.ai/api/v1
-    auth_env: OPENROUTER_API_KEY
-    cost: free
-    intelligence: medium
-    status: active
-    notes: 'Player model. Confirmed ACTIVE on OR2 key.'
-
-  - id: or-minimax-m3
-    provider: openrouter
-    model: minimax/minimax-m3
-    base_url: https://openrouter.ai/api/v1
-    auth_env: OPENROUTER_API_KEY
-    cost: free
-    intelligence: very_high
-    status: active
-    notes: 'Coach premium upgrade. 80.5% SWE-bench, 1M ctx. Confirmed ACTIVE.'
-
-  - id: or-stepfun-37
-    provider: openrouter
-    model: stepfun/step-3.7-flash
-    base_url: https://openrouter.ai/api/v1
-    auth_env: OPENROUTER_API_KEY
-    cost: free
-    intelligence: high
-    status: active
-    notes: 'Stepfun 3.7 Flash via OR. Confirmed ACTIVE.'
-
-  - id: zen-paid-models
-    provider: opencode-zen
-    model: deepseek-v4-flash
-    base_url: https://opencode.ai/zen/v1
-    auth_env: OPENCODE_GO_API_KEY
-    cost: budget
-    intelligence: high
-    status: no_balance
-    notes: 'OpenCode Go plan — needs credits added to workspace'
-
-  - id: or2-reserve
-    provider: openrouter
-    model: openrouter/owl-alpha
-    base_url: https://openrouter.ai/api/v1
-    auth_env: OPENROUTER_API_KEY
-    cost: free
-    intelligence: medium
-    status: active
-    notes: 'OpenRouter free tier. 50 req/day without balance, 1000 with $10+'
+- id: or-v4-flash-coach
+  provider: openrouter
+  model: deepseek/deepseek-v4-flash
+  base_url: https://openrouter.ai/api/v1
+  auth_env: OPENROUTER_API_KEY
+  cost: free
+  intelligence: high
+  status: active
+  notes: Primary Coach model. 79% SWE-bench. OR2 key confirmed ACTIVE.
+  last_tested: '2026-06-27T16:30:13.883625+00:00'
+- id: or-owl-alpha-player
+  provider: openrouter
+  model: openrouter/owl-alpha
+  base_url: https://openrouter.ai/api/v1
+  auth_env: OPENROUTER_API_KEY
+  cost: free
+  intelligence: medium
+  status: active
+  notes: Player model. Confirmed ACTIVE on OR2 key.
+  last_tested: '2026-06-27T16:30:13.883625+00:00'
+- id: or-minimax-m3
+  provider: openrouter
+  model: minimax/minimax-m3
+  base_url: https://openrouter.ai/api/v1
+  auth_env: OPENROUTER_API_KEY
+  cost: free
+  intelligence: very_high
+  status: active
+  notes: Coach premium upgrade. 80.5% SWE-bench, 1M ctx. Confirmed ACTIVE.
+  last_tested: '2026-06-27T16:30:13.883625+00:00'
+- id: or-stepfun-37
+  provider: openrouter
+  model: stepfun/step-3.7-flash
+  base_url: https://openrouter.ai/api/v1
+  auth_env: OPENROUTER_API_KEY
+  cost: free
+  intelligence: high
+  status: active
+  notes: Stepfun 3.7 Flash via OR. Confirmed ACTIVE.
+  last_tested: '2026-06-27T16:30:13.883625+00:00'
+- id: zen-paid-models
+  provider: opencode-zen
+  model: deepseek-v4-flash
+  base_url: https://opencode.ai/zen/v1
+  auth_env: OPENCODE_GO_API_KEY
+  cost: budget
+  intelligence: high
+  status: insufficient
+  notes: "OpenCode Go plan \u2014 needs credits added to workspace"
+  last_tested: '2026-06-27T16:30:13.883625+00:00'
+  throttle_reason: 'Insufficient balance. Manage your billing here: https://opencode.ai/workspace/wrk_01KSP3YVERNXTG58J0HGQ9TGC8/billing'
+- id: or2-reserve
+  provider: openrouter
+  model: openrouter/owl-alpha
+  base_url: https://openrouter.ai/api/v1
+  auth_env: OPENROUTER_API_KEY
+  cost: free
+  intelligence: medium
+  status: active
+  notes: OpenRouter free tier. 50 req/day without balance, 1000 with $10+
+  last_tested: '2026-06-27T16:30:13.883625+00:00'
