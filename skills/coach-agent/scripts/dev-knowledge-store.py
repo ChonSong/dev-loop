@@ -124,7 +124,9 @@ def build_knowledge_store():
         # Document = task description + summary for semantic matching
         doc = f"[{project}] Task: {task_id}\nSummary: {summary}\nFiles changed: {changed_files}\nDate: {date}"
 
-        ids.append(f"{project}-{sha[:8]}")
+        # Use task_id in the ID to prevent duplicates when multiple tasks share the same SHA
+        entry_id = f"{project}-{task_id}-{sha[:8]}"
+        ids.append(entry_id)
         documents.append(doc)
         metadatas.append({
             "task_id": task_id,
