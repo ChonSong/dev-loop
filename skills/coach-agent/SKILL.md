@@ -172,6 +172,50 @@ A test failure is a **methodology failure** when ANY of these are true:
 - If systemic (3+ tests share the same failure pattern) → `methodology.systemic: true`
 - If systemic → add a spec_gap entry: `{"item": "Methodology: self-referential test suite for [area]", "type": "methodology_gap", "priority": 1}`
 
+### Step 2.6 — Code Fidelity Score (DELEGATE-52 port — MANDATORY before verdict)
+
+Before issuing your verdict, compute the **Code Fidelity Score (CFS)** to measure codebase degradation across ticks. This is ported from DELEGATE-52's Reconstruction Score — the benchmark that proves LLMs silently corrupt documents over long delegation chains.
+
+**Formula:**
+```
+CFS = (1 - diff_size_bytes / codebase_size_bytes) × (passed_tests / total_tests)
+```
+
+**Collection:**
+```bash
+# diff size
+diff_bytes=$(git diff HEAD~1 --stat | tail -1 | awk '{print $1}' || echo 0)
+# codebase size (exclude node_modules, .git)
+codebase_bytes=$(git ls-files -z | xargs -0 wc -c 2>/dev/null | tail -1 | awk '{print $1}' || echo 1)
+# test counts from last test run (grep for passed/total)
+passed=$(grep -c "PASS" /tmp/player-test-output.txt 2>/dev/null || echo 0)
+total=$(grep -c "PASS\|FAIL" /tmp/player-test-output.txt 2>/dev/null || echo 1)
+```
+
+**Tracking:**
+- **CFS < 0.90**: flag the project for structural review. The codebase is degrading faster than tests catch.
+- **CFS trending down for 3+ ticks**: escalate in findings as a systemic issue — not a code bug, but a structural degradation pattern.
+- **High files_read:files_changed ratio (≥10:1)**: the Player is distracted. This is DELEGATE-52's distractor file pattern — the agent reads non-target files and introduces noise. Flag as P2 methodology gap.
+
+**Fidelity object (goes in verdict JSON):**
+```json
+"fidelity": {
+  "diff_size_bytes": 1247,
+  "codebase_size_bytes": 48720,
+  "files_read": 8,
+  "files_changed": 2,
+  "cfs": 0.974,
+  "trend": "stable",
+  "token_budget_used": 45000,
+  "must_change_gate": true
+}
+```
+
+- `must_change_gate: false` → the Player produced zero changes. This is DELEGATE-52's `has_written` check — an empty commit is a failure signal. Verdict MUST be FIX.
+- `trend` is computed by comparing the current CFS against the previous tick's CFS (stored in `.checkpoint.json` → `fidelity_history`).
+- `token_budget_used` comes from the Player's tick summary.
+- **This data feeds Grand SIE** — when CFS trends down across multiple projects, Grand SIE recommends structural review or a project rewrite.
+
 ### Step 3 — Structured Verdict (JSON — MANDATORY)
 
 **Your final response MUST be a valid JSON object** following the schema at `references/verdict-schema.json`. This is the single source of truth the Player reads. Free-text verdicts are not machine-consumable and cause parsing failures downstream.
@@ -191,6 +235,16 @@ A test failure is a **methodology failure** when ANY of these are true:
     "methodology_failures": <int>,
     "systemic": <bool>,
     "can_approve": <bool>
+  },
+  "fidelity": {
+    "diff_size_bytes": <int>,
+    "codebase_size_bytes": <int>,
+    "files_read": <int>,
+    "files_changed": <int>,
+    "cfs": <0.0-1.0>,
+    "trend": "improving | stable | degrading | unknown",
+    "token_budget_used": <int>,
+    "must_change_gate": <bool>
   },
   "findings": [
     {

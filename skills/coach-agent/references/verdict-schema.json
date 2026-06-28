@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "coach-verdict-v1",
   "title": "Coach Review Verdict",
-  "description": "Structured verdict output from Coach Step 2.5/3. Machine-consumed by Player.",
+  "description": "Structured verdict output from Coach Step 2.5/3. Machine-consumed by Player. Includes fidelity tracking (ported from DELEGATE-52 corruption-measurement pattern).",
   "type": "object",
   "required": ["verdict", "project", "timestamp", "methodology", "findings", "tasks_generated"],
   "properties": {
@@ -47,6 +47,45 @@
         "methodology_failures": {"type": "integer", "description": "Self-referential tests, implementation-validating tests"},
         "systemic": {"type": "boolean", "description": "True if same failure pattern across 3+ tests"},
         "can_approve": {"type": "boolean", "description": "False if >50% are methodology failures (blocks APPROVE)"}
+      }
+    },
+    "fidelity": {
+      "type": "object",
+      "description": "Code Fidelity Score — ported from DELEGATE-52 Reconstruction Score pattern. Measures codebase degradation across tick cycles.",
+      "properties": {
+        "diff_size_bytes": {
+          "type": "integer",
+          "description": "Total bytes changed in this Player tick (from git diff --stat)"
+        },
+        "codebase_size_bytes": {
+          "type": "integer",
+          "description": "Total project size in bytes (from git ls-files -z | xargs -0 wc -c)"
+        },
+        "files_read": {
+          "type": "integer",
+          "description": "Files the Player read (from Player telemetry). High read:change ratio flags distraction (DELEGATE-52 distractor analysis)."
+        },
+        "files_changed": {
+          "type": "integer",
+          "description": "Files the Player actually modified (from git diff --name-only | wc -l)"
+        },
+        "cfs": {
+          "type": "number",
+          "description": "Code Fidelity Score = (1 - diff_size/codebase_size) × (passed_tests/total_tests). Range 0.0-1.0. Tracks codebase degradation across ticks. <0.90 triggers structural review recommendation."
+        },
+        "trend": {
+          "type": "string",
+          "enum": ["improving", "stable", "degrading", "unknown"],
+          "description": "CFS trend vs previous tick. 'degrading' for 3+ consecutive ticks flags to Grand SIE."
+        },
+        "token_budget_used": {
+          "type": "integer",
+          "description": "Tokens consumed this tick. If exceeds budget cap, the task should be split."
+        },
+        "must_change_gate": {
+          "type": "boolean",
+          "description": "Did the Player produce non-zero changes? False = empty commit (DELEGATE-52 has_written guard). Blocks APPROVE."
+        }
       }
     },
     "findings": {

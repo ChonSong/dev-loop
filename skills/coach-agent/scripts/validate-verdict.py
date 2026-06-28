@@ -83,7 +83,27 @@ def validate(verdict: dict) -> list[str]:
             if "description" not in f:
                 errors.append(f"findings[{i}] missing description")
 
-    # tasks_generated
+    # fidelity (optional — from DELEGATE-52 port)
+    if "fidelity" in verdict and isinstance(verdict["fidelity"], dict):
+        f = verdict["fidelity"]
+        for field in ["diff_size_bytes", "codebase_size_bytes", "files_read", "files_changed"]:
+            if field in f and not isinstance(f[field], int):
+                errors.append(f"fidelity.{field} must be integer, got: {type(f[field]).__name__}")
+        if "cfs" in f:
+            if not isinstance(f["cfs"], (int, float)):
+                errors.append(f"fidelity.cfs must be number, got: {type(f['cfs']).__name__}")
+            elif f["cfs"] < 0 or f["cfs"] > 1:
+                errors.append(f"fidelity.cfs out of range [0.0–1.0]: {f['cfs']}")
+        if "trend" in f and f["trend"] not in ("improving", "stable", "degrading", "unknown"):
+            errors.append(f"fidelity.trend must be one of: improving, stable, degrading, unknown")
+        if "token_budget_used" in f and not isinstance(f["token_budget_used"], int):
+            errors.append(f"fidelity.token_budget_used must be integer")
+        if "must_change_gate" in f:
+            if not isinstance(f["must_change_gate"], bool):
+                errors.append(f"fidelity.must_change_gate must be boolean")
+            elif f["must_change_gate"] is False:
+                # DELEGATE-52 has_written guard: empty commits block APPROVE
+                errors.append("GATE VIOLATION: must_change_gate is false — Player produced zero changes. Blocks APPROVE.")
     if "tasks_generated" in verdict and isinstance(verdict["tasks_generated"], list):
         for i, t in enumerate(verdict["tasks_generated"]):
             if not isinstance(t, dict):

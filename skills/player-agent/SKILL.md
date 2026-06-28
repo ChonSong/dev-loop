@@ -114,6 +114,11 @@ Write a mini-plan with all six fields: **Touches** (files), **Specification** (w
    - **When to remove vs extend:** If an existing feature is architecturally wrong (e.g., quiz state management in a read-only page), prefer stripping it cleanly before extending. Removing the wrong abstraction is the prerequisite for building the right one.
 6. Delegate test suites to parallel subagents (API + frontend + E2E). Collect results, fix regressions. If unfixable after 3 attempts, revert.
 7. Pre-commit self-review (security, YAGNI, regression)
+7.5. **Pre-Commit Gates (DELEGATE-52 pattern — MANDATORY before git add/commit):**
+   - **Must-change gate**: Verify actual changes exist. If `git diff --stat` is empty, this tick produced no work and should not commit. Abort and report: "⛔ MUST-CHANGE GATE: no modifications — task was a no-op."
+   - **File telemetry**: Count files read vs files changed. Report in tick summary: "📊 Telemetry: read N files, changed M." High read:change ratio (e.g., 15:1) flags confusion/distraction — the DELEGATE-52 distractor analysis shows this predicts corruption risk.
+   - **Token budget check**: If you're approaching the tick token budget (~50K tokens), flag it: "⚠️ Token budget at N/tick — consider splitting remaining work."
+   - **Diff size check**: If `git diff --stat` exceeds 500 lines, pause and verify: is this scope creep? The task should have been split. Flag in tick report if yes.
 8. `git add -A && git commit -m "type(scope): description"` + `git push origin main`
 9. Verify push succeeded: `git push origin main 2>&1 | tail -3`. Deploy verification is handled by the `deploy-verify` cron (every 30min, no_agent) — do NOT inline deploy URL curl checks here.
 10. Update both checkpoints. Write end-of-tick capture: what changed, what was learned, what's pending.
