@@ -25,6 +25,7 @@ Exit codes:
 
 import argparse
 import json
+import math
 import os
 import subprocess
 import sys
@@ -183,7 +184,7 @@ def scan_github_trending(domain_config: dict, domain: str) -> list[Signal]:
                     f"topic:{topic}",
                     "--sort", "stars",
                     "--limit", str(CONFIG["filters"]["max_signals_per_source"]),
-                    "--json", "name,url,description,updatedAt,stargazerCount",
+                    "--json", "name,url,description,updatedAt,stargazersCount",
                 ],
                 capture_output=True, text=True, timeout=30,
             )
@@ -197,9 +198,9 @@ def scan_github_trending(domain_config: dict, domain: str) -> list[Signal]:
                     description=r.get("description", "") or "",
                     source="github",
                     domain=domain,
-                    relevance=min(5, max(1, r.get("stargazerCount", 0) // 100 + 1)),
-                    novelty=4,  # trending repos are likely new
-                    actionability=3,
+                    relevance=min(5, max(1, round(math.log(r.get("stargazersCount", 0) + 1, 10000) * 5))),
+                    novelty=3,  # trending repos are rarely surprises
+                    actionability=2,  # needs evaluation before actionable
                     recommendation="WATCH",
                     rationale="GitHub trending — worth evaluating",
                 )
@@ -341,9 +342,13 @@ def scan_hacker_news(domain_config: dict, domain: str) -> list[Signal]:
             title = item.get("title", "")
             title_lower = title.lower()
 
-            # Check if any keyword matches
-            if not any(k.lower() in title_lower for k in keywords):
-                continue
+            # Check if any keyword matches (word boundary, not substring)
+            words = title_lower.split()
+            keywords_lower = [k.lower() for k in keywords]
+            if not any(kw in words for kw in keywords_lower):
+                # Also check multi-word keywords
+                if not any(kw in title_lower for kw in keywords_lower if ' ' in kw):
+                    continue
 
             sig = Signal(
                 title=title,
