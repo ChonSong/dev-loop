@@ -1,19 +1,27 @@
 # Dev Loop — Autonomous Development System
 
 A multi-loop autonomous development system:
+- **Grand SIE** (Strategic Intelligence Engine) — the top-layer brain. Scans the external world weekly (GitHub trending, arXiv, competitors, HN), decides what's worth building, and produces requirements specs. See [`docs/grand-sie-architecture.md`](docs/grand-sie-architecture.md).
 - **Player** agents implement tasks from a backlog
 - **Coach** agents adversarially review each commit, probe for gaps, and generate the next batch of tasks
 - **Observation Memory** (`coach_memory.py`) — persistent, self-correcting behavioral knowledge store for the Coach. FTS5 query, trust-scored observations, circuit breaker for safety. Ported from agent-qa's A.U.D.N. curator pattern.
-- **Self-Improvement Engine** (SIE) scans every 48h for coverage blind spots, processes learnings, and authors skills
+- **Self-Improvement Engine** (SIE) scans every 48h for coverage blind spots, processes learnings, and authors skills. Extended by Grand SIE for outward-facing strategic intelligence.
 
 Inspired by g3's dialectical autocoding (Block AI Research, Dec 2025) and built by composing patterns from 10+ existing agent skills.
 
 ## Core Concept
 
-Three autonomous loops with increasing cycle times, plus an auto-generated E2E test layer:
+Four autonomous loops with increasing cycle times:
 
 ```mermaid
 flowchart TB
+    subgraph GRAND_SIE["GRAND SIE — STRATEGIC INTELLIGENCE (weekly)"]
+        direction LR
+        RADAR[Opportunity Radar] -->|external signals| SYNTH[Synthesis Engine]
+        SYNTH -->|strategic brief| REQ[Requirements Engine]
+        REQ -->|specs + tasks| PLAYER_COACH
+    end
+
     subgraph PLAYER_COACH["PLAYER/COACH LOOP (every 30m)"]
         AGENTS[AGENTS.md] -->|tasks + criteria| Player
         Player -->|implemented code| Checkpoint
@@ -35,6 +43,7 @@ flowchart TB
     end
 
     PLAYER_COACH -->|learnings| SIE
+    SIE -->|knowledge + patterns| GRAND_SIE
 
     subgraph SELF_IMP["SELF-IMPROVEMENT ENGINE (every 48h)"]
         P0[Phase 0: Coverage blind-spot scan]
@@ -161,7 +170,8 @@ dev-loop/
 │   ├── scoring-model.md          # Backlog prioritisation formula
 │   ├── cron-setup.md             # Cron job configuration reference
 │   ├── e2e-infrastructure.md     # E2E test infra: POM design, file layout, agent resp.
-│   └── observation-memory.md     # Observation memory: curator, breaker, classifier
+│   ├── grand-sie-architecture.md # Grand SIE: Opportunity Radar + Requirements Engine (Phase 1-2)
+│   ├── observation-memory.md     # Observation memory: curator, breaker, classifier
 ├── observation_memory/           # Python library: store, index, curator, breaker, classifier, similarity
 ├── coach_memory.py               # Coach integration CLI (inject, curate, classify, breaker)
 ├── enforce_qa_gate.py            # Post-cycle gate — rejects rubber-stamp approvals
