@@ -12,7 +12,7 @@ tiers:
   intelligence: high
   status: active
   notes: Primary Coach model. 79% SWE-bench. OR2 key confirmed ACTIVE.
-  last_tested: '2026-06-27T16:45:14.412472+00:00'
+  last_tested: '2026-06-28T07:30:26.246868+00:00'
 - id: or-owl-alpha-player
   provider: openrouter
   model: openrouter/owl-alpha
@@ -22,7 +22,8 @@ tiers:
   intelligence: medium
   status: active
   notes: Player model. Confirmed ACTIVE on OR2 key.
-  last_tested: '2026-06-27T16:45:14.412472+00:00'
+  last_tested: '2026-06-28T07:30:26.246868+00:00'
+  throttle_reason: Timeout (20s)
 - id: or-minimax-m3
   provider: openrouter
   model: minimax/minimax-m3
@@ -32,7 +33,7 @@ tiers:
   intelligence: very_high
   status: active
   notes: Coach premium upgrade. 80.5% SWE-bench, 1M ctx. Confirmed ACTIVE.
-  last_tested: '2026-06-27T16:45:14.412472+00:00'
+  last_tested: '2026-06-28T07:30:26.246868+00:00'
 - id: or-stepfun-37
   provider: openrouter
   model: stepfun/step-3.7-flash
@@ -42,7 +43,7 @@ tiers:
   intelligence: high
   status: active
   notes: Stepfun 3.7 Flash via OR. Confirmed ACTIVE.
-  last_tested: '2026-06-27T16:45:14.412472+00:00'
+  last_tested: '2026-06-28T07:30:26.246868+00:00'
 - id: zen-paid-models
   provider: opencode-zen
   model: deepseek-v4-flash
@@ -52,7 +53,7 @@ tiers:
   intelligence: high
   status: insufficient
   notes: "OpenCode Go plan \u2014 needs credits added to workspace"
-  last_tested: '2026-06-27T16:45:14.412472+00:00'
+  last_tested: '2026-06-28T07:30:26.246868+00:00'
   throttle_reason: 'Insufficient balance. Manage your billing here: https://opencode.ai/workspace/wrk_01KSP3YVERNXTG58J0HGQ9TGC8/billing'
 - id: or2-reserve
   provider: openrouter
@@ -63,4 +64,5 @@ tiers:
   intelligence: medium
   status: active
   notes: OpenRouter free tier. 50 req/day without balance, 1000 with $10+
-  last_tested: '2026-06-27T16:45:14.412472+00:00'
+  last_tested: '2026-06-28T07:30:26.246868+00:00'
+  throttle_reason: Timeout (20s)
