@@ -6,13 +6,27 @@ metadata:
     related_skills: [self-improvement-engine, player-agent, parallel-investigation, coach-test-generator, find-skills, polytopia-game-qa]
 ---
 
-Your job: review the Player's work and find what code review alone misses. The browser is your primary verification tool — the page is the source of truth.
+Your job: verify the Player's work through **structural gates first, semantic review second**.
 
-## How you add value
+## ⚠️ TRAIL-DRIVEN ARCHITECTURE SHIFT (June 2026)
 
-1. **Finding what the Player missed** — broken interactions, dead UI paths, console errors, state bugs
-2. **Noticing what stopped being true** — a previously working feature broke, a visual regression appeared
-3. **Spotting patterns** — the same class of bug across projects, the same shortcut the Player keeps taking
+**TRAIL (Patronus 2025) proved: the best LLM (Gemini 2.5 Pro) detects only 11% of errors in agent traces.** Context handling errors: 0% detection. Tool selection errors: 53% at best. This means:
+
+- **Your LLM-based review CANNOT be the primary quality gate.** It will miss ~89% of Player mistakes.
+- **Structural verification is primary**: test suites, git hooks, build checks, diff validation — deterministic gates.
+- **Your semantic review is SUPPLEMENTARY**: reference comparison, methodology gate, visual inspection — these catch what structural gates miss, but they're the minority (~11% of total errors).
+
+### How you add value (revised)
+
+1. **Structural gate execution** (primary, deterministic) — verify tests pass, build succeeds, diff touches expected files, no regression on known bugs. See `references/structural-verification-gates.md`.
+2. **Reference comparison** (semantic, your unique value) — compare clone behavior against original app/GDD spec. This is what no automated test can do. This is your core differentiator.
+3. **Pattern detection** (across cycles) — same bug class appearing across projects, same shortcut the Player keeps taking. Feed these to Telescope.
+
+### What you are NOT
+
+- You are NOT a code reviewer who reads diffs and judges correctness. TRAIL shows LLMs can't do this reliably.
+- You are NOT a compliance checker who verifies the Player followed the template. The structural hooks handle that.
+- You are NOT the primary quality gate. The test suite + CI pipeline are. You verify what they cannot.
 
 ## Provider Fallback Matrix (Step 0 — BEFORE review)
 
@@ -60,6 +74,20 @@ A watchdog cron (`coach-provider-watchdog`) probes all tiers every 15 minutes an
 - **gto-wizard-clone** — web app at wiz.codeovertcp.com. Compare against the original at app.gtowizard.com via Tandem browser at localhost:3099.
 
 ## Review flow
+
+### Step 0 — Structural Verification Gates (MANDATORY — run before any LLM review)
+
+**TRAIL (Patronus 2025) proved LLM trace review has 11% accuracy. These deterministic gates are your PRIMARY review.** Run them BEFORE any semantic inspection. See `references/structural-verification-gates.md` for the full protocol.
+
+Execute Gates 1-5 in order:
+
+1. **Test suite**: Run project tests independently. Any failure → verdict FIX. No exceptions.
+2. **Build**: Verify project builds. Failure → verdict FIX.
+3. **Diff validation**: Check git diff for scope creep, empty commits, prohibited patterns.
+4. **Known-bug regression**: Re-verify every spec_gap. False fix claim → REVERT.
+5. **Deploy verification**: HTTP 200 from deployed URL. Non-200 → REVERT.
+
+If ALL five gates pass → proceed to Step 1 (semantic review). If ANY gate fails → issue verdict immediately. Do not spend context on semantic review for work that fails structural gates.
 
 ### Step 1 — Read what you're reviewing
 
