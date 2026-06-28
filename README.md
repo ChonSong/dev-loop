@@ -15,9 +15,10 @@ Four autonomous loops with increasing cycle times:
 
 ```mermaid
 flowchart TB
-    subgraph GRAND_SIE["GRAND SIE — STRATEGIC INTELLIGENCE (weekly)"]
+    subgraph GRAND_SIE["GRAND SIE — STRATEGIC INTELLIGENCE (weekly/biweekly)"]
         direction LR
         RADAR[Opportunity Radar] -->|external signals| SYNTH[Synthesis Engine]
+        AUDIT[Self-Audit Engine] -->|internal waste| SYNTH
         SYNTH -->|strategic brief| REQ[Requirements Engine]
         REQ -->|specs + tasks| PLAYER_COACH
     end
@@ -175,6 +176,9 @@ dev-loop/
 ├── observation_memory/           # Python library: store, index, curator, breaker, classifier, similarity
 ├── coach_memory.py               # Coach integration CLI (inject, curate, classify, breaker)
 ├── enforce_qa_gate.py            # Post-cycle gate — rejects rubber-stamp approvals
+├── scripts/
+│   ├── opportunity-radar.py       # Grand SIE Phase 1 — external signal scan
+│   └── self-audit.py              # Grand SIE Phase 1.5 — inward system audit
 ├── templates/
 │   ├── AGENTS.md                 # Blank AGENTS.md
 │   ├── checkpoint.json           # Blank checkpoint
