@@ -1,27 +1,29 @@
 # Grand SIE — Strategic Intelligence Engine
 
-Extends the Self-Improvement Engine from *retrospective fix tracking* to *prospective strategic intelligence*. Two new subsystems sit above the existing Coach/Player loop:
+Extends the Self-Improvement Engine from *retrospective fix tracking* to *prospective strategic intelligence*. Three subsystems sit above the existing Coach/Player loop:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                  GRAND SIE (Strategic Layer)                  │
-│                                                               │
-│  ┌──────────────────────┐  ┌──────────────────────────────┐  │
-│  │  Opportunity Radar   │  │  Requirements Engine          │  │
-│  │  (Phase 1 — weekly)  │  │  (Phase 2 — on-demand)       │  │
-│  │                      │  │                               │  │
-│  │  Scans external      │  │  Takes Radar findings +      │  │
-│  │  world for signals   │  │  produces specs, tasks,      │  │
-│  │  worth acting on     │  │  and prioritised roadmap      │  │
-│  └──────────┬───────────┘  └──────────────┬───────────────┘  │
-│             │                              │                   │
-│             └──────────┬───────────────────┘                  │
-│                        │                                      │
-│               ┌────────▼────────┐                             │
-│               │ Strategic Brief │                             │
-│               │ (weekly output) │                             │
-│               └────────┬────────┘                             │
-└────────────────────────┼─────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│                       GRAND SIE (Strategic Layer)                    │
+│                                                                       │
+│  ┌────────────────┐  ┌────────────────────┐  ┌──────────────────────┐│
+│  │ Opportunity    │  │ Requirements       │  │ Self-Audit           ││
+│  │ Radar          │  │ Engine             │  │ Engine               ││
+│  │ (Phase 1)      │  │ (Phase 2)          │  │ (Phase 1.5)          ││
+│  │ weekly         │  │ on-demand          │  │ biweekly             ││
+│  │                │  │                    │  │                       ││
+│  │ outward: scan  │  │ how to build it    │  │ inward: scan our      ││
+│  │ external world │  │ → spec → tasks     │  │ own system           ││
+│  │ → what to build│  │ → Coach/Player     │  │ → what to automate   ││
+│  └───────┬────────┘  └─────────┬──────────┘  └────────┬─────────────┘│
+│          │                     │                        │             │
+│          └──────────┬──────────┴────────────────────────┘             │
+│                     │                                                 │
+│            ┌────────▼────────┐                                       │
+│            │ Strategic Brief │                                       │
+│            │ (weekly output) │                                       │
+│            └────────┬────────┘                                       │
+└─────────────────────┼────────────────────────────────────────────────┘
                          │ feeds into
 ┌────────────────────────▼─────────────────────────────────────┐
 │              Coach / Player Loop (unchanged)                   │
@@ -141,6 +143,91 @@ script: scripts/opportunity-radar.py
 no_agent: true                # Script output IS the message
 deliver: morning-briefing     # or a dedicated channel
 ```
+
+---
+
+## Phase 1.5: Self-Audit Engine
+
+The inward-facing complement to the Opportunity Radar. Where the Radar scans the external world for **what to build**, the Self-Audit scans our own operation for **what to automate, improve, or kill**.
+
+### Schedule
+
+- **Biweekly** — every 2nd Saturday 02:00 UTC
+
+### Audits
+
+| Audit | Data Source | What It Catches |
+|-------|------------|-----------------|
+| **Manual Patterns** | `state.db` → messages where role=user | Repeated Sean requests worth automating (47× "summarise state of wiz", 18× "not happy with changes") |
+| **Coach Trends** | Project `.checkpoint.json` files | Sysmic rejection reasons recurring across projects |
+| **Dead Skills** | `~/.hermes/skills/*/SKILL.md` mtime | Skills never loaded in 60+ days (candidates for deletion) |
+| **Zombie Crons** | `~/.hermes/cron/output/*` mtime | Cron jobs with no useful output in 30+ days (candidates for pausing) |
+| **System Health** | Aggregated from above + session DB | Session volume, cost trends, token usage, project health |
+
+### Automation Fitness Scoring
+
+Every repeated pattern gets scored against three rules (from automation best practices):
+
+| Rule | How Measured |
+|------|-------------|
+| **Repetitive?** | Occurrence count in 60 days. ≥3 = candidate, ≥10 = strong candidate |
+| **Stable inputs/outputs?** | Heuristic: does the output follow a pattern? Is it deterministic? |
+| **Not messy/rare/personal?** | Heuristic: if human judgment involved >50% of the time, skip |
+
+### Right-Size Recommendation
+
+Not everything needs Coach/Player. The audit recommends the right tier:
+
+| Tier | Hermes Equivalent | When |
+|------|-------------------|------|
+| Reusable prompt | Saved in AGENTS.md or a skill | < 3×/month, stable I/O |
+| Template | checkpoint.json, verdict-schema.json | Structured output needed |
+| Workflow automation | Cron job (no_agent: true) | Connects tools, no reasoning |
+| AI Agent | Cron job (LLM-driven) | Needs light reasoning |
+| Script | Python script on schedule | Deterministic processing |
+| Full Coach/Player | Coach + Player loop | Code implementation only |
+
+### Output: System Health & What to Automate
+
+A Markdown brief with sections:
+- **Automation Candidates** — ranked by frequency, with recommended tier
+- **Sysmic Coach Trends** — recurring rejection reasons with project context
+- **Dead Automation** — skills/crons ready for deletion or pausing
+- **System Health** — session counts, cost, project status
+
+### Implementation: `scripts/self-audit.py`
+
+Single Python script, queries `state.db` directly (SQLite), no LLM needed.
+
+```bash
+python3 scripts/self-audit.py            # Full audit → deliver to Discord
+python3 scripts/self-audit.py --dry-run  # Print to stdout
+python3 scripts/self-audit.py --section patterns  # Single section
+```
+
+### Cron Job
+
+```yaml
+name: self-audit
+schedule: "0 2 * * SAT/2"     # Every 2nd Saturday 02:00 UTC
+script: scripts/self-audit.py
+no_agent: true                 # Deterministic — no LLM needed
+deliver: all                   # Discord + local
+```
+
+### Connection to DELEGATE-52 + CFS
+
+The Self-Audit, DELEGATE-52, and Code Fidelity Score form a unified quality framework:
+
+```
+Self-Audit → identify what to automate
+Right-size → prompt / template / workflow / agent / script
+Coach/Player → execute
+Code Fidelity Score → is the automation degrading?
+Prune → kill what's no longer useful → back to Self-Audit
+```
+
+When CFS trends down and the Self-Audit flags the project as having sysmic Coach rejections, Grand SIE recommends a structural review — not a code fix, but a systematic redesign.
 
 ---
 
