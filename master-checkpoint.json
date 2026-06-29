@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-30T00:10:00Z",
-  "consecutive_on_project": 0,
+  "last_run": "2026-06-30T01:10:00Z",
+  "consecutive_on_project": 1,
   "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
@@ -19,14 +19,14 @@
       "status": "active",
       "priority": 2,
       "current_task": "fix-solver-status-indicator-flicker",
-      "health": "no_new_code_changes_chore_commits_only",
-      "last_sha": "3775503",
+      "health": "53_tests_pass_build_clean",
+      "last_sha": "a4a73aa",
       "blocker": null,
       "last_review": "2026-06-29T23:45:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 2,
-      "note": "Tick 2026-06-29T23:45:00Z. Coach APPROVED — no new code changes. Recent commits are chore/checkpoint updates. Last code change (8a71a4b, frequency action letters) already approved. Study page verified: action letters visible, solver GTO, 0 errors. 53/53 vitest pass. Next: fix-solver-status-indicator-flicker."
+      "consecutive_on_project": 3,
+      "note": "Tick 2026-06-30T01:10:00Z. Fixed solver status indicator flicker (a4a73aa). Root cause: useSolverHealth effect deps only [pollMs], never re-ran on tree navigation. Fix: added recheckDeps parameter with [treePath.length, activePosition] to trigger immediate health re-check on state transitions. 53/53 vitest pass, build clean. Next: await Coach review."
     }
   },
-  "note": "Tick 2026-06-30T00:10:00Z. Polytopia: completed add-keyboard-shortcuts (3c1dbf9) — all 4 shortcuts verified live. 522/522 tests pass. Next: add-end-turn-confirmation. GTO wizard: fix-solver-status-indicator-flicker next tick. Active project set to gto-wizard-clone."
+  "note": "Tick 2026-06-30T01:10:00Z. GTO wizard: fixed solver status indicator flicker (a4a73aa). useSolverHealth now re-checks on tree navigation and position changes via recheckDeps param. 53/53 vitest, build clean. Next: await Coach review on gto-wizard-clone. Polytopia: add-end-turn-confirmation pending."
 }

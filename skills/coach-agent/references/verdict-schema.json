@@ -92,7 +92,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["severity", "type", "description"],
+        "required": ["severity", "type", "description", "evidence"],
         "properties": {
           "severity": {"type": "string", "enum": ["P1", "P2", "P3"]},
           "type": {"type": "string", "enum": ["bug", "regression", "visual_gap", "methodology_gap", "perf", "security", "other"]},

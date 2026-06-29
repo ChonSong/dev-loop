@@ -10,6 +10,8 @@ Usage:
     python3 opportunity-radar.py --sources github     # Single source
     python3 opportunity-radar.py --dry-run            # Print brief to stdout
     python3 opportunity-radar.py --deliver discord    # Deliver to Discord (default)
+    python3 opportunity-radar.py --pipeline           # Run full pipeline: radar → evaluate → spec → tasks
+    python3 opportunity-radar.py --pipeline --pipeline-output-dir ./siegen-out
 
 Sources:
     - GitHub trending (per-domain: poker, 3DCP, AI agents, game dev)
@@ -129,6 +131,10 @@ class StrategicBrief:
     signals: list[Signal]
     recommendation: str = ""
     project_health: dict = field(default_factory=dict)
+
+    def to_json(self) -> str:
+        """Serialize to JSON string."""
+        return json.dumps(asdict(self), indent=2, default=str)
 
     def to_markdown(self) -> str:
         lines = [f"# Strategic Brief — {self.date}", ""]
@@ -485,6 +491,16 @@ def main():
         default="discord",
         help="Delivery target (default: discord)",
     )
+    parser.add_argument(
+        "--pipeline", action="store_true",
+        help="After scanning, run the Requirements Engine pipeline "
+             "(evaluate → spec → create-tasks)",
+    )
+    parser.add_argument(
+        "--pipeline-output-dir",
+        help="Output directory for pipeline artifacts "
+             "(default: siegen/pipeline-output)",
+    )
     args = parser.parse_args()
 
     scanners = {
@@ -512,6 +528,80 @@ def main():
     brief = synthesize(all_signals)
 
     build_count = len([s for s in brief.signals if s.recommendation == "BUILD"])
+
+    # ── Pipeline mode: chain into Requirements Engine ─────────────────
+    if args.pipeline:
+        import tempfile
+
+        engine_script = (
+            Path(__file__).resolve().parent.parent
+            / "sie" / "requirements-engine" / "requirements-engine.py"
+        )
+        if not engine_script.exists():
+            print(
+                f"[ERROR] Requirements Engine not found at {engine_script}",
+                file=sys.stderr,
+            )
+            sys.exit(2)
+
+        # Write radar JSON to temp file so the engine can read it
+        radar_json = brief.to_json()
+        with tempfile.NamedTemporaryFile(
+            mode="w", suffix=".json", delete=False, prefix="radar-"
+        ) as tmp:
+            tmp.write(radar_json)
+            tmp_path = tmp.name
+
+        pipeline_cmd = [
+            sys.executable,
+            str(engine_script),
+            "pipeline",
+            tmp_path,
+        ]
+        if args.pipeline_output_dir:
+            pipeline_cmd.extend(["--output-dir", args.pipeline_output_dir])
+
+        print(
+            f"[Pipeline] Launching Requirements Engine...",
+            file=sys.stderr,
+        )
+        try:
+            result = subprocess.run(
+                pipeline_cmd,
+                capture_output=False,
+                text=True,
+                timeout=600,
+            )
+        except subprocess.TimeoutExpired:
+            print("[Pipeline] Requirements Engine timed out", file=sys.stderr)
+            result = None
+        finally:
+            # Clean up temp file
+            try:
+                os.unlink(tmp_path)
+            except OSError:
+                pass
+
+        if result and result.returncode == 0:
+            print("[Pipeline] Requirements Engine completed successfully",
+                  file=sys.stderr)
+        elif result:
+            print(
+                f"[Pipeline] Requirements Engine exited with code "
+                f"{result.returncode}",
+                file=sys.stderr,
+            )
+        # Still deliver the brief even in pipeline mode
+        if not args.dry_run and args.deliver != "none":
+            if args.deliver == "discord":
+                ok = deliver_discord(brief)
+                if not ok:
+                    print(brief.to_markdown())
+            elif args.deliver == "stdout":
+                print(brief.to_markdown())
+        sys.exit(0 if build_count > 0 else 1)
+
+    # ── Normal (non-pipeline) delivery ────────────────────────────────
 
     if args.dry_run:
         print(brief.to_markdown())

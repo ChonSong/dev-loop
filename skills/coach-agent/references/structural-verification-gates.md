@@ -74,11 +74,43 @@ curl -s -o /dev/null -w "%{http_code}" https://hex.codeovertcp.com
 
 **CRITICAL DISTINCTION**: Gate 5 verifies the page LOADS (structural). It does NOT verify the page WORKS (semantic). For "does it work", proceed to Step 2 (reference comparison). Do not conflate these.
 
+### Gate 6: Secret Exposure Check 🔑
+
+> **Source:** OWASP LLM Top 10 — LLM02:2025 Sensitive Information Disclosure; Security Spine Rule 5.
+
+```bash
+# Scan the Player's latest commit + session output for credential leakage
+cd <repo>
+# Check commit diff for secret patterns
+git diff HEAD~1 | grep -iE '(sk-[a-zA-Z0-9]{20,}|api_key\s*=\s*["'"'"'][a-zA-Z0-9_-]{20,}|ghp_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9_]{20,}|Bearer\s+[A-Za-z0-9+/=]{30,}|eyJ[a-zA-Z0-9_-]{10,}\.[a-zA-Z0-9_-]{10,}\.[a-zA-Z0-9_-]{10,})' || echo "CLEAN: No secrets detected"
+```
+
+**Pass**: No secrets in diff. Clean output.
+**Fail**: Secret pattern found → verdict REVERT. IMMEDIATELY notify user. The Player may have leaked a credential.
+**Warning**: If `grep` finds something ambiguous (long base64-like string), flag as P2 and investigate manually before approving.
+
+**Integration with Player pre-commit**: The Player's pre-commit hook already runs a lighter version of this scan. This Gate 6 is a second, independent check using a broader pattern set. Two layers of secret detection catch what a single layer might miss.
+
+**Why this matters**: Anthropic's (Feb 2026) research shows indirect injection is the dominant threat. A compromised Player session that echoes secrets into commits or session output creates a permanent leak. This gate catches it post-commit, independently of whatever the Player may or may not have checked.
+
+### Gate 7: Injection Content Check 🧪
+
+```bash
+# Check if the Player's commit or AGENTS.md contains possible injection artifacts
+cd <repo>
+# Patterns that indicate the Player may have echoed injected content
+git diff HEAD~1 | grep -iE '(ignore (all )?(previous |prior )?(instructions|rules|constraints|security)|you are now (an |a )?(unfiltered|unrestricted|DAN|jailbroken)|bypass (the |all )?(security|filter|gate|pre-commit)|skip (the |all )?(tests?|review|gate|verification)|commit (directly )?to (main|master|production))' || echo "CLEAN: No injection patterns detected"
+```
+
+**Pass**: No injection patterns found. Clean output.
+**Fail**: Injection pattern found → verdict REVERT. The Player may have been compromised by injection content. Investigation required.
+**Note**: This gate catches known injection patterns but is NOT comprehensive. Unknown injection patterns will pass. This is a defense-in-depth measure, not a guarantee.
+
 ## Gate Results → Verdict Mapping
 
 | Gates Result | Minimum Verdict |
 |-------------|----------------|
-| All 5 pass | Can proceed to semantic review (Step 2) |
+| All 7 pass | Can proceed to semantic review (Step 2) |
 | Gate 1 (tests) fail | FIX |
 | Gate 2 (build) fail | FIX |
 | Gate 3 (empty diff) | FIX |
@@ -86,6 +118,8 @@ curl -s -o /dev/null -w "%{http_code}" https://hex.codeovertcp.com
 | Gate 4 (known bug unfixed) | FIX |
 | Gate 4 (false fix claimed) | REVERT |
 | Gate 5 (page down) | REVERT |
+| Gate 6 (secret leaked) | **REVERT + immediate user notification** |
+| Gate 7 (injection detected) | **REVERT + investigation required** |
 
 ## Why This Order
 
