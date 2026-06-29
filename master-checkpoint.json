@@ -1,19 +1,19 @@
 {
-  "last_run": "2026-06-29T09:36:46Z",
-  "consecutive_on_project": 4,
-  "active_project": "gto-wizard-clone",
+  "last_run": "2026-06-29T12:07:53Z",
+  "consecutive_on_project": 2,
+  "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "fix-in-game-settings-panel",
-      "health": "522_tests_pass_volume_slider",
-      "last_sha": "c6af629",
+      "current_task": "add-keyboard-shortcuts",
+      "health": "522_tests_pass_recovery",
+      "last_sha": "683587a",
       "blocker": null,
       "last_review": "2026-06-29T00:13:07Z",
       "review_quality": "approved",
       "consecutive_on_project": 2,
-      "note": "Tick 2026-06-29T00:13:07Z. Coach APPROVED fix-sound-volume-slider (c6af629). 522/522 tests pass. CFS 0.973 stable. No regressions. Next: fix-in-game-settings-panel."
+      "note": "Tick 2026-06-29T12:07:53Z. Task exhaustion recovery: generated 3 Phase 3 tasks. Next: add-keyboard-shortcuts."
     },
     "gto-wizard-clone": {
       "status": "active",
@@ -25,8 +25,8 @@
       "last_review": "2026-06-29T18:07:00Z",
       "review_quality": "approved",
       "consecutive_on_project": 4,
-      "note": "Tick 2026-06-29T09:36:46Z. No new Player commits since fc5a4ba. Player actively working (uncommitted reference screenshot + urlmap). Deploy HTTP 200. Silent \u2014 no commit to review."
+      "note": "Tick 2026-06-29T09:36:46Z. No new Player commits since fc5a4ba. Round-robin switched to polytopia-clone this tick."
     }
   },
-  "note": "Tick 2026-06-29T09:36:46Z. GTO: No new commits since fc5a4ba (Player working on fix-position-tile-range-percentage, uncommitted files present). Polytopia: No new commits since 86e9216. Both deploys HTTP 200. Silent \u2014 no commit to review."
+  "note": "Tick 2026-06-29T12:07:53Z. Polytopia: Task exhaustion recovery — generated 3 Phase 3 tasks (keyboard shortcuts, end-turn confirmation, in-game stats panel). 522/522 tests pass. Next: add-keyboard-shortcuts. GTO: No new commits. 3 unstarted tasks in AGENTS.md (consecutive_on_project=4, round-robin candidate)."
 }
