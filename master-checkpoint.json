@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-30T04:10:00Z",
-  "consecutive_on_project": 0,
+  "last_run": "2026-06-30T05:10:00Z",
+  "consecutive_on_project": 1,
   "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
@@ -18,15 +18,15 @@
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "fix-study-top-bar-blinds",
-      "health": "53_tests_pass_matrix_color_fixed",
-      "last_sha": "fb88a3d",
+      "current_task": "full-e2e-test-validation",
+      "health": "53_tests_pass_blinds_added",
+      "last_sha": "2e5fb03",
       "blocker": null,
-      "last_review": "2026-06-30T03:30:00Z",
-      "review_quality": "pending",
-      "consecutive_on_project": 2,
-      "note": "Tick 2026-06-30T04:10:00Z. Completed fix-study-matrix-cell-colors (fb88a3d). Swapped matrix cell colors to match reference: raise/all_in/bet→BLUE, call/check→GREEN, fold→GRAY/dark. Legend and GTO sizing text updated. 53/53 vitest pass. Live verified blue raise cells. Next: fix-study-top-bar-blinds (P3)."
+      "last_review": "2026-06-30T01:18:00Z",
+      "review_quality": "approved",
+      "consecutive_on_project": 1,
+      "note": "Tick 2026-06-30T05:10:00Z. Completed fix-study-top-bar-blinds (2e5fb03). Added blinds display '0.5/1' with green circle icon to study page top bar. 53/53 vitest. 0 console errors. Next: full-e2e-test-validation."
     }
   },
-  "note": "Tick 2026-06-30T04:10:00Z. GTO Wizard Clone: completed P1 fix-study-matrix-cell-colors (fb88a3d). Matrix cells now use blue for raise (matching reference), green for call, dark for fold. Polytopia: awaiting next tick for fix-settings-speed-labels-agents-spec."
+  "note": "Tick 2026-06-30T05:10:00Z. Completed fix-study-top-bar-blinds (2e5fb03). GTO Wizard Clone: added blinds display '0.5/1' with green circle icon to study page top bar. 53/53 vitest pass, 0 console errors. Polytopia: awaiting next tick for fix-settings-speed-labels-agents-spec."
 }
