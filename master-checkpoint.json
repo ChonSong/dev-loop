@@ -1,32 +1,32 @@
 {
-  "last_run": "2026-06-29T17:04:00Z",
-  "consecutive_on_project": 1,
+  "last_run": "2026-06-30T04:10:00Z",
+  "consecutive_on_project": 0,
   "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
       "current_task": "fix-settings-speed-labels-agents-spec",
-      "health": "522_tests_pass_end_turn_confirm",
-      "last_sha": "74508ca",
+      "health": "522_tests_pass_keyboard_shortcuts",
+      "last_sha": "3c1dbf9",
       "blocker": null,
-      "last_review": "2026-06-30T00:17:00+10:00",
+      "last_review": "2026-06-30T03:30:00Z",
       "review_quality": "approved",
       "consecutive_on_project": 2,
-      "note": "Tick 2026-06-30T02:30:00Z. Completed add-end-turn-confirmation (74508ca). End-turn confirmation dialog with unactioned unit count, settings toggle in GAMEPLAY section, smart skip when 0 unactioned. 522/522 tests pass. Live verified at hex.codeovertcp.com. Next: fix-settings-speed-labels-agents-spec."
+      "note": "Tick 2026-06-30T03:30:00Z. Coach APPROVED add-keyboard-shortcuts (3c1dbf9). Enter/E end turn, Tab/Shift+Tab cycle units, Arrow keys pan, Space select — all verified. 522/522 tests pass. Next: fix-settings-speed-labels-agents-spec."
     },
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "full-e2e-test-validation",
-      "health": "53_tests_pass_report_new",
-      "last_sha": "101a186",
+      "current_task": "fix-study-top-bar-blinds",
+      "health": "53_tests_pass_matrix_color_fixed",
+      "last_sha": "fb88a3d",
       "blocker": null,
-      "last_review": "2026-06-30T01:18:00Z",
-      "review_quality": "approved",
-      "consecutive_on_project": 1,
-      "note": "Tick 2026-06-29T17:04:00Z. Completed visual-comparison-study-reference investigation (101a186). Compared reference screenshots vs live clone. Found 1 new P1 gap (matrix colors inverted), 2 P3 gaps. Full report at docs/visual-comparison-study-report.md. Verified fix-practice-poker-table-visualization already on /practice. 53/53 vitest pass. Next: full-e2e-test-validation."
+      "last_review": "2026-06-30T03:30:00Z",
+      "review_quality": "pending",
+      "consecutive_on_project": 2,
+      "note": "Tick 2026-06-30T04:10:00Z. Completed fix-study-matrix-cell-colors (fb88a3d). Swapped matrix cell colors to match reference: raise/all_in/bet→BLUE, call/check→GREEN, fold→GRAY/dark. Legend and GTO sizing text updated. 53/53 vitest pass. Live verified blue raise cells. Next: fix-study-top-bar-blinds (P3)."
     }
   },
-  "note": "Tick 2026-06-29T17:04:00Z. Player round-robined to gto-wizard-clone (polytopia at 2 consecutive). Completed visual-comparison-study-reference investigation (101a186). Found P1 matrix color inversion gap. 53/53 vitest pass. Next: full-e2e-test-validation."
+  "note": "Tick 2026-06-30T04:10:00Z. GTO Wizard Clone: completed P1 fix-study-matrix-cell-colors (fb88a3d). Matrix cells now use blue for raise (matching reference), green for call, dark for fold. Polytopia: awaiting next tick for fix-settings-speed-labels-agents-spec."
 }
