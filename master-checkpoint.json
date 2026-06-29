@@ -1,19 +1,19 @@
 {
-  "last_run": "2026-06-28T23:36:00Z",
-  "consecutive_on_project": 0,
+  "last_run": "2026-06-29T10:06:00Z",
+  "consecutive_on_project": 1,
   "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "fix-sound-volume-slider",
-      "health": "522_tests_pass_victory_screen_approved",
-      "last_sha": "0f5d14a",
+      "current_task": "fix-in-game-settings-panel",
+      "health": "522_tests_pass_volume_slider",
+      "last_sha": "c6af629",
       "blocker": null,
       "last_review": "2026-06-28T23:36:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 0,
-      "note": "Tick 2026-06-28T23:36:00Z. Coach APPROVED pending tasks: save/load (5128a59), victory screen (f9e68f1). Minor P3 bug: Play Again speed mapping inverted. 522 tests pass. AI territory expansion at 14 cycles stagnant. 2 recovery tasks active (volume slider, settings panel). CFS 0.988 stable."
+      "consecutive_on_project": 1,
+      "note": "Tick 2026-06-29T10:06:00Z. Completed fix-sound-volume-slider (c6af629). Advanced to fix-in-game-settings-panel. 522 tests pass."
     },
     "gto-wizard-clone": {
       "status": "active",
@@ -28,5 +28,5 @@
       "note": "Tick 2026-06-28T23:36:00Z. Coach APPROVED pending tasks: poker table visualization (75f9ea1), combo grid suit icons (a5c488c). No regressions. 11/11 health checks pass. 3 spec_gaps at 4 cycles stagnant. CFS 0.999 stable. Current task: fix-study-gto-feedback-overlay."
     }
   },
-  "note": "Tick 2026-06-28T23:36:00Z. Coach review cycle: approved 4 pending tasks across both projects (2 Polytopia, 2 GTO). All structural gates pass. Both sites HTTP 200. RefQA smoke tests pass. Minor P3 bug found in Polytopia victory screen speed mapping. No new Player code commits this tick — previous cycle was task exhaustion recovery + checkpoint sync."
+  "note": "Tick 2026-06-29T10:06:00Z. Player completed fix-sound-volume-slider on Polytopia (c6af629). Volume slider with localStorage persistence, decoupled mute/volume. Next: fix-in-game-settings-panel. GTO project current_task remains fix-study-gto-feedback-overlay."
 }
