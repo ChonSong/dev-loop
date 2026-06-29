@@ -1,32 +1,32 @@
 {
-  "last_run": "2026-06-29T13:50:00Z",
+  "last_run": "2026-06-30T00:10:00Z",
   "consecutive_on_project": 0,
   "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "add-keyboard-shortcuts",
-      "health": "522_tests_pass_recovery",
-      "last_sha": "683587a",
+      "current_task": "add-end-turn-confirmation",
+      "health": "522_tests_pass_keyboard_shortcuts",
+      "last_sha": "3c1dbf9",
       "blocker": null,
-      "last_review": "2026-06-29T00:13:07Z",
+      "last_review": "2026-06-29T23:45:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 2,
-      "note": "Tick 2026-06-29T12:07:53Z. Task exhaustion recovery: generated 3 Phase 3 tasks. 522/522 tests pass."
+      "consecutive_on_project": 1,
+      "note": "Tick 2026-06-30T00:10:00Z. Completed add-keyboard-shortcuts (3c1dbf9). Enter/E end turn, Tab/Shift+Tab cycle units, Arrow keys pan, Space select. Live verified. 522/522 tests pass. Next: add-end-turn-confirmation."
     },
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
       "current_task": "fix-solver-status-indicator-flicker",
-      "health": "all_tasks_complete_exhaustion_recovery",
+      "health": "no_new_code_changes_chore_commits_only",
       "last_sha": "3775503",
       "blocker": null,
-      "last_review": "2026-06-29T18:07:00Z",
+      "last_review": "2026-06-29T23:45:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 1,
-      "note": "Tick ~13:50. Round-robin switched from polytopia. All 3 Phase 4 recovery tasks already complete. Exhaustion recovery: generated 3 Phase 5 tasks. Next: fix-solver-status-indicator-flicker (P2, real unfixed bug). 53/53 vitest + 368 Python + 142 E2E tests pass, 11/11 health checks pass."
+      "consecutive_on_project": 2,
+      "note": "Tick 2026-06-29T23:45:00Z. Coach APPROVED — no new code changes. Recent commits are chore/checkpoint updates. Last code change (8a71a4b, frequency action letters) already approved. Study page verified: action letters visible, solver GTO, 0 errors. 53/53 vitest pass. Next: fix-solver-status-indicator-flicker."
     }
   },
-  "note": "Tick ~13:50. Switched to gto-wizard-clone (polytopia consecutive=2). Found all 3 Phase 4 recovery tasks already complete. Triggered exhaustion recovery — generated 3 Phase 5 tasks. Next tick should work on fix-solver-status-indicator-flicker."
+  "note": "Tick 2026-06-30T00:10:00Z. Polytopia: completed add-keyboard-shortcuts (3c1dbf9) — all 4 shortcuts verified live. 522/522 tests pass. Next: add-end-turn-confirmation. GTO wizard: fix-solver-status-indicator-flicker next tick. Active project set to gto-wizard-clone."
 }
