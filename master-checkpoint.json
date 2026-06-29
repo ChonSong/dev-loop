@@ -1,7 +1,7 @@
 {
-  "last_run": "2026-06-30T07:17:00Z",
-  "consecutive_on_project": 1,
-  "active_project": "gto-wizard-clone",
+  "last_run": "2026-06-30T08:10:00Z",
+  "consecutive_on_project": 0,
+  "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
@@ -18,15 +18,15 @@
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "remove-stashed-backup-file",
-      "health": "142_e2e_pass_53_vitest_pass",
-      "last_sha": "d4f5e35",
+      "current_task": "fix-study-bottom-bar-verify",
+      "health": "142_e2e_pass_53_vitest_pass_recovery_active",
+      "last_sha": "31d8bbf",
       "blocker": null,
-      "last_review": "2026-06-30T05:35:00Z",
-      "review_quality": "approved",
-      "consecutive_on_project": 1,
-      "note": "Tick 2026-06-30T07:00:00Z. Player fixed full-e2e-test-validation (d4f5e35). Fixed 3 flaky E2E tests: study GTO strategy assertions, practice session question, ICM results timeout. 142/142 E2E pass, 53/53 vitest pass. 0 JS errors. Next: remove-stashed-backup-file."
+      "last_review": "2026-06-30T07:17:00Z",
+      "review_quality": "pending",
+      "consecutive_on_project": 2,
+      "note": "Tick 2026-06-30T08:05:00Z. Player fixed remove-stashed-backup-file (31d8bbf). Phase 3-6 backlogs exhausted. Triggered Task Exhaustion Recovery — generated 3 Phase 7 tasks. 11/11 health checks pass. Round-robin: consecutive=2, switching to polytopia-clone."
     }
   },
-  "note": "Tick 2026-06-30T07:00:00Z. Player (gto-wizard-clone): full-e2e-test-validation (d4f5e35). Fixed 3 flaky E2E tests. 142/142 E2E pass, 53/53 vitest pass. Round-robin switch from polytopia-clone (consecutive=2). Next: remove-stashed-backup-file (gto-wizard-clone) or add-in-game-stats-panel (polytopia-clone)."
+  "note": "Tick 2026-06-30T08:10:00Z. Player (gto-wizard-clone): remove-stashed-backup-file (31d8bbf). Phase 3-6 exhausted — generated 3 Phase 7 recovery tasks. Round-robin switch to polytopia-clone (gto consecutive=2). Next tick: add-in-game-stats-panel (polytopia-clone)."
 }
