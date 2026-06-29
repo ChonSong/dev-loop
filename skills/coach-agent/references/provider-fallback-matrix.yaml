@@ -12,7 +12,7 @@ tiers:
   intelligence: high
   status: active
   notes: Primary Coach model. 79% SWE-bench. OR2 key confirmed ACTIVE.
-  last_tested: '2026-06-29T15:00:46.626029+00:00'
+  last_tested: '2026-06-29T21:30:51.926418+00:00'
   throttle_reason: Timeout (20s)
 - id: or-owl-alpha-player
   provider: openrouter
@@ -23,7 +23,7 @@ tiers:
   intelligence: medium
   status: throttled
   notes: Player model. Confirmed ACTIVE on OR2 key.
-  last_tested: '2026-06-29T15:00:46.626029+00:00'
+  last_tested: '2026-06-29T21:30:51.926418+00:00'
   throttle_reason: 'Rate limit exceeded: free-models-per-day-stealth. '
 - id: or-minimax-m3
   provider: openrouter
@@ -34,7 +34,7 @@ tiers:
   intelligence: very_high
   status: active
   notes: Coach premium upgrade. 80.5% SWE-bench, 1M ctx. Confirmed ACTIVE.
-  last_tested: '2026-06-29T15:00:46.626029+00:00'
+  last_tested: '2026-06-29T21:30:51.926418+00:00'
   throttle_reason: 'HTTP , non-JSON: 000'
 - id: or-stepfun-37
   provider: openrouter
@@ -45,7 +45,7 @@ tiers:
   intelligence: high
   status: active
   notes: Stepfun 3.7 Flash via OR. Confirmed ACTIVE.
-  last_tested: '2026-06-29T15:00:46.626029+00:00'
+  last_tested: '2026-06-29T21:30:51.926418+00:00'
   throttle_reason: 'HTTP , non-JSON: 000'
 - id: zen-paid-models
   provider: opencode-zen
@@ -56,7 +56,7 @@ tiers:
   intelligence: high
   status: insufficient
   notes: "OpenCode Go plan \u2014 needs credits added to workspace"
-  last_tested: '2026-06-29T15:00:46.626029+00:00'
+  last_tested: '2026-06-29T21:30:51.926418+00:00'
   throttle_reason: 'Insufficient balance. Manage your billing here: https://opencode.ai/workspace/wrk_01KSP3YVERNXTG58J0HGQ9TGC8/billing'
 - id: or2-reserve
   provider: openrouter
@@ -67,5 +67,5 @@ tiers:
   intelligence: medium
   status: throttled
   notes: OpenRouter free tier. 50 req/day without balance, 1000 with $10+
-  last_tested: '2026-06-29T15:00:46.626029+00:00'
+  last_tested: '2026-06-29T21:30:51.926418+00:00'
   throttle_reason: 'Rate limit exceeded: free-models-per-day-stealth. '
