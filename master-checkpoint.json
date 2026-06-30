@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-30T06:20:00Z",
-  "consecutive_on_project": 1,
+  "last_run": "2026-06-30T17:10:00Z",
+  "consecutive_on_project": 2,
   "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
@@ -8,7 +8,7 @@
       "priority": 1,
       "current_task": "add-tribe-card-tooltips",
       "health": "523_tests_pass_grid_centered",
-      "last_sha": "3735ec6",
+      "last_sha": "cf75894",
       "blocker": null,
       "last_review": "2026-06-30T13:20:00Z",
       "review_quality": "approved",
@@ -18,14 +18,14 @@
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "fix-postflop-training-timer-cleanup-systematic",
-      "health": "53_tests_pass_postflop_layout_fixed",
-      "last_sha": "7ad9ad9",
+      "current_task": "audit-gitignore-pattern-breadth",
+      "health": "53_tests_pass_precommit_gate6_added",
+      "last_sha": "36a8f7a",
       "blocker": null,
-      "last_review": "2026-06-30T05:10:00Z",
+      "last_review": "2026-06-30T16:50:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 1,
-      "note": "Player tick 2026-06-30 ~06:20Z. Completed fix-postflop-action-button-registration (7ad9ad9). Root cause: layout/viewport issue — PostflopTraining container lacked overflow-y:auto, pushing action buttons below fold. Fix: added overflow-y:auto to root div. Verified both small & large action buttons work. 53/53 vitest pass. Next: fix-postflop-training-timer-cleanup-systematic (P2). Consecutive_on_project=1 — one more tick before round-robin."
+      "consecutive_on_project": 2,
+      "note": "Tick 2026-06-30T17:10: fix-deployment-hash-tracking complete (8d404b4). Added GATE 6 to pre-commit: blocks .deployed-hash-only commits. 53/53 vitest pass. All 6 structural gates pass. Advanced to audit-gitignore-pattern-breadth (P3). Coach pending."
     },
     "cluster-mine-queue": {
       "status": "archived",
@@ -52,5 +52,5 @@
       "note": "Archived. 75 tests pass, Phase 7 complete. Repo moved to /home/sc/repos/archive/energy-aware-task-router/. LRN-014 resolved."
     }
   },
-  "note": "Player tick 2026-06-30 ~06:20Z. GTO Wizard Clone: Completed fix-postflop-action-button-registration (7ad9ad9). Investigation found the bug was not a missing handler but a viewport/layout issue — PostflopTraining lacked overflow-y:auto, pushing action buttons below the fold. Fix: added overflow-y:auto. Verified all action buttons work. 53/53 vitest pass. Next: fix-postflop-training-timer-cleanup-systematic (P2). Round-robin: consecutive_on_project=1, one more tick allowed before switch."
+  "note": "Player tick 2026-06-30T17:10: fix-deployment-hash-tracking on gto-wizard-clone (8d404b4). Added GATE 6 to pre-commit hook — blocks commits where .deployed-hash is the only staged file. Prevents the 7ad9ad9 pattern. 53/53 vitest, all 6 structural gates pass. Advanced to audit-gitignore-pattern-breadth (P3). gto-wizard-clone at 2 consecutive ticks — next tick MUST switch to polytopia-clone."
 }
