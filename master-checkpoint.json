@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-07-01T00:12:47+10:00",
-  "consecutive_on_project": 3,
+  "last_run": "2026-07-01T01:05:00+10:00",
+  "consecutive_on_project": 4,
   "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
@@ -18,14 +18,14 @@
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "audit-gitignore-pattern-breadth",
-      "health": "53_tests_pass_all_in_short_circuit",
+      "current_task": "fix-game-tree-equal-action-rule-preflop-allin",
+      "health": "53_tests_pass_audit_complete",
       "last_sha": "5069922",
       "blocker": null,
-      "last_review": "2026-06-30T21:17:27+10:00",
-      "review_quality": "pending",
-      "consecutive_on_project": 3,
-      "note": "Player tick 2026-07-01 ~00:10: fix-gate7-protect-all-coach-fields complete. Commit 2411ef5 extends GATE 7 to all 9 coach_review fields + top-level note. 53/53 vitest pass. Commit 5069922 checkpoint update. ⚠️ Top-level note now protected by GATE 7 — added player_note field. Advanced to audit-gitignore-pattern-breadth. Next tick: round-robin to polytopia-clone (gto-wizard consecutive=3)."
+      "last_review": "2026-06-30T17:38:00+10:00",
+      "review_quality": "fix",
+      "consecutive_on_project": 4,
+      "note": "Player tick 2026-07-01 ~01:05: audit-gitignore-pattern-breadth complete. *~* pattern verified correctly scoped — 0 legitimate files masked. Stale sw.js~Stashed changes deleted from disk. 53/53 vitest pass. Advanced to fix-game-tree-equal-action-rule-preflop-allin. ⚠️ Skipped round-robin to polytopia (backlog exhausted — no tasks). AGENTS.md stale: fix-destructive-hook-overwrite, fix-makefile-phony-install, fix-precommit-gate6-meaningful-changes already completed but listed 'New'."
     },
     "cluster-mine-queue": {
       "status": "archived",
@@ -52,5 +52,5 @@
       "note": "Archived. 75 tests pass, Phase 7 complete. Repo moved to /home/sc/repos/archive/energy-aware-task-router/. LRN-014 resolved."
     }
   },
-  "note": "Player tick 2026-07-01 ~00:10: fix-gate7-protect-all-coach-fields complete. Commit 2411ef5 extends GATE 7 to all 9 coach_review fields + top-level note. 53/53 vitest pass. Commit 5069922 checkpoint update. ⚠️ Top-level note now protected by GATE 7 — added player_note field. Advanced to audit-gitignore-pattern-breadth. Next tick: round-robin to polytopia-clone (gto-wizard consecutive=3)."
+  "note": "Player tick 2026-07-01 ~01:05: audit-gitignore-pattern-breadth complete on gto-wizard-clone. *~* pattern verified correct. Skipped round-robin to polytopia (backlog exhausted). Advanced to fix-game-tree-equal-action-rule-preflop-allin — remaining all-in short-circuit for preflop. ⚠️ AGENTS.md for gto-wizard is stale: 3 tasks listed 'New' already completed."
 }
