@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-07-01T02:15:00+10:00",
-  "consecutive_on_project": 5,
+  "last_run": "2026-07-01T03:05:00+10:00",
+  "consecutive_on_project": 6,
   "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
@@ -18,14 +18,14 @@
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "fix-agents-md-stale-tasks",
-      "health": "53_tests_pass_preflop_allin_shortcircuit",
-      "last_sha": "4293d33",
+      "current_task": "fix-gate7-player-note-governance",
+      "health": "53_tests_pass_agents_md_clean",
+      "last_sha": "fd28e55",
       "blocker": null,
       "last_review": "2026-07-01T01:10:00+10:00",
       "review_quality": "fix",
-      "consecutive_on_project": 5,
-      "note": "Player tick 2026-07-01 ~02:15: create-preflop-allin-shortcircuit complete on gto-wizard-clone. Preflop all-in deals all 5 community cards to showdown. PostflopTraining now accepts externalStreet prop. 53/53 vitest pass, build clean. Advanced to fix-agents-md-stale-tasks. Polytopia backlog exhausted -> stayed on gto-wizard (consecutive=5, round-robin skipped)."
+      "consecutive_on_project": 6,
+      "note": "Player tick 2026-07-01 ~03:05: fix-agents-md-stale-tasks complete (51f16c2). Updated 5 stale AGENTS.md status markers. Also added missing create-preflop-allin-shortcircuit (4293d33) to checkpoint completed[]. 53/53 vitest pass. Advanced to fix-gate7-player-note-governance. 3 remaining Phase 8 tasks. Polytopia backlog exhausted — stayed on gto-wizard (consecutive=6)."
     },
     "cluster-mine-queue": {
       "status": "archived",
@@ -52,5 +52,5 @@
       "note": "Archived. 75 tests pass, Phase 7 complete. Repo moved to /home/sc/repos/archive/energy-aware-task-router/. LRN-014 resolved."
     }
   },
-  "note": "Player tick 2026-07-01 ~02:15: create-preflop-allin-shortcircuit complete on gto-wizard-clone. Preflop all-in short-circuit: when any position goes all-in preflop and all others call/fold, deal all 5 community cards to showdown (was only generating 3 flop cards). PostflopTraining.tsx now accepts externalStreet prop (flop/turn/river). 53/53 vitest pass, build clean. Advanced to fix-agents-md-stale-tasks. Polytopia backlog exhausted -> round-robin skipped (consecutive=5)."
+  "note": "Player tick 2026-07-01 ~03:05: fix-agents-md-stale-tasks complete on gto-wizard-clone. Updated 5 stale AGENTS.md status markers (In progress→Complete, New→Completed, Not started→Completed). Fixed |### markdown formatting error. Retroactively added create-preflop-allin-shortcircuit (4293d33) to checkpoint completed[] — was committed but never recorded. 53/53 vitest pass. Advanced to fix-gate7-player-note-governance. Polytopia backlog exhausted (still tbd). Consecutive=6 on gto-wizard."
 }
