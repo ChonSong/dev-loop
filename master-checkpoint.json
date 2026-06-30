@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-06-30T21:06:00+10:00",
-  "consecutive_on_project": 4,
+  "last_run": "2026-06-30T22:11:22+10:00",
+  "consecutive_on_project": 1,
   "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
@@ -18,14 +18,14 @@
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
-      "current_task": "fix-checkpoint-band-gate-respect",
-      "health": "53_tests_pass_hook_safety_check_added",
-      "last_sha": "f704ee9",
+      "current_task": "fix-game-tree-equal-action-rule",
+      "health": "53_tests_pass_hook_auto_installed",
+      "last_sha": "542589e",
       "blocker": null,
-      "last_review": "2026-06-30T18:45:00+10:00",
-      "review_quality": "fix",
-      "consecutive_on_project": 4,
-      "note": "Player: fix-destructive-hook-overwrite complete (f704ee9). Makefile install + npm prepare now detect non-symlink custom hooks, backup before overwrite. Added 'install' to .PHONY. 53/53 vitest pass. Advanced to fix-checkpoint-band-gate-respect (P3)."
+      "last_review": "2026-06-30T21:17:27+10:00",
+      "review_quality": "approved",
+      "consecutive_on_project": 1,
+      "note": "Player tick 2026-06-30 ~22:09: fix-checkpoint-band-gate-respect complete. Commit 542589e adds GATE 7 checkpoint band gate. 53/53 vitest pass. Advanced to fix-game-tree-equal-action-rule (all-in short-circuit remaining)."
     },
     "cluster-mine-queue": {
       "status": "archived",
@@ -52,5 +52,5 @@
       "note": "Archived. 75 tests pass, Phase 7 complete. Repo moved to /home/sc/repos/archive/energy-aware-task-router/. LRN-014 resolved."
     }
   },
-  "note": "Player tick 2026-06-30T21:06+10:00: fix-destructive-hook-overwrite (f704ee9) on gto-wizard-clone. Added safety check to Makefile install + npm prepare — non-symlink custom hooks backed up before ln -sf. Added 'install' to .PHONY. 53/53 vitest pass. Advanced to fix-checkpoint-band-gate-respect (P3)."
+  "note": "Coach tick 2026-06-30T21:17+10:00: APPROVE d01a59c + f704ee9 on gto-wizard-clone. GATE 6 enhanced (trivial companion bypass blocked). Destructive hook overwrite fixed (backup before ln -sf). 53/53 vitest + 368/368 Python, build clean, CFS 0.999985 improving. Postflop Training mode verified. Band-gated (commit_pending). Next tick: polytopia-clone (backlog exhausted, commit_pending from last cycle)."
 }
