@@ -1,7 +1,7 @@
 {
-  "last_run": "2026-06-30T13:05:00Z",
-  "consecutive_on_project": 2,
-  "active_project": "polytopia-clone",
+  "last_run": "2026-06-30T14:10:00Z",
+  "consecutive_on_project": 1,
+  "active_project": "gto-wizard-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
@@ -10,22 +10,22 @@
       "health": "523_tests_pass_grid_centered",
       "last_sha": "3735ec6",
       "blocker": null,
-      "last_review": "2026-06-30T02:35:00Z",
+      "last_review": "2026-06-30T13:20:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 2,
-      "note": "Player tick 2026-06-30T13:05:00Z: implemented fix-tribe-select-grid-balance (3735ec6). Centered Xin-xi on bottom row. 523/523 tests pass. Next: add-tribe-card-tooltips. Leave coach:pending."
+      "consecutive_on_project": 0,
+      "note": "Coach APPROVED 2026-06-30T13:20:00Z: fix-tribe-select-grid-balance (3735ec6) — centered orphan Xin-xi card. 523/523 tests, CFS 0.995. Parked — round-robin switched to gto-wizard-clone."
     },
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
       "current_task": "fix-game-tree-equal-action-rule",
       "health": "footer_reverted_game_tree_P1_exhaustion_disabled",
-      "last_sha": "e27f506",
+      "last_sha": "6e67d20",
       "blocker": null,
       "last_review": "2026-06-30T02:35:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 0,
-      "note": "Coach APPROVED (02:35Z): revert e27f506 removes recovery-generated footer, promotes game tree to P1, disables exhaustion recovery. Study page healthy. Next: fix-game-tree-equal-action-rule (P1)."
+      "consecutive_on_project": 1,
+      "note": "Player tick 2026-06-30: Implemented Phase 1 of fix-game-tree-equal-action-rule (6e67d20) — preflop round-complete detection (equal-action rule), auto-transition preflop→postflop, auto-advance streets in PostflopTraining. 53/53 vitest pass. Coach review pending."
     },
     "cluster-mine-queue": {
       "status": "archived",
@@ -52,5 +52,5 @@
       "note": "Archived. 75 tests pass, Phase 7 complete. Repo moved to /home/sc/repos/archive/energy-aware-task-router/. LRN-014 resolved."
     }
   },
-  "note": "Coach tick 2026-06-30T02:35:00Z. Polytopia: APPROVED fix-ai-proximity-weighting (c62f35c) — AI proximity penalty, 523/523 tests, browser QA passed. GTO: APPROVED revert (e27f506) — footer removed, game tree promoted, exhaustion disabled. Both healthy. Next Player tick determines active project."
+  "note": "Player tick 2026-06-30. Round-robin switched from polytopia-clone (3 consecutive ticks) to gto-wizard-clone. Implemented Phase 1 of fix-game-tree-equal-action-rule (6e67d20): preflop round-complete detection (equal-action rule), auto-transition to postflop, auto-advance streets in PostflopTraining. 53/53 vitest pass, build clean. Polytopia parked at fix-tribe-select-grid-balance (3735ec6)."
 }
