@@ -1,31 +1,31 @@
 {
-  "last_run": "2026-06-30T18:15:00+10:00",
+  "last_run": "2026-06-30T20:15:00+10:00",
   "consecutive_on_project": 1,
-  "active_project": "gto-wizard-clone",
+  "active_project": "polytopia-clone",
   "projects": {
     "polytopia-clone": {
       "status": "active",
       "priority": 1,
-      "current_task": "add-tribe-card-tooltips",
-      "health": "523_tests_pass_grid_centered",
-      "last_sha": "cf75894",
+      "current_task": "tbd",
+      "health": "523_tests_pass_tooltips_added",
+      "last_sha": "94211dd",
       "blocker": null,
       "last_review": "2026-06-30T13:20:00Z",
       "review_quality": "approved",
-      "consecutive_on_project": 0,
-      "note": "Coach APPROVED 2026-06-30T13:20:00Z: fix-tribe-select-grid-balance (3735ec6) — centered orphan Xin-xi card. 523/523 tests, CFS 0.995. Parked — round-robin switched to gto-wizard-clone."
+      "consecutive_on_project": 1,
+      "note": "Player implemented add-tribe-card-tooltips (94211dd): hover tooltips on tribe cards showing starting tech effects. 523/523 tests pass. Backlog exhausted, current_task→tbd. Awaiting Coach review and task regeneration."
     },
     "gto-wizard-clone": {
       "status": "active",
       "priority": 2,
       "current_task": "fix-precommit-gate6-meaningful-changes",
-      "health": "53_tests_pass_precommit_auto_install",
+      "health": "53_tests_pass_hook_auto_installed",
       "last_sha": "3439c95",
       "blocker": null,
-      "last_review": "2026-06-30T17:38:00+10:00",
-      "review_quality": "pending",
-      "consecutive_on_project": 1,
-      "note": "Player completed fix-precommit-hook-auto-install (3439c95). Added Makefile install target + npm prepare script for auto-installing pre-commit hook. 53/53 vitest pass. Advancing to fix-precommit-gate6-meaningful-changes (P2)."
+      "last_review": "2026-06-30T18:45:00+10:00",
+      "review_quality": "fix",
+      "consecutive_on_project": 2,
+      "note": "Coach FIX 2026-06-30T18:45:00+10:00: fix-precommit-hook-auto-install (3439c95). 7/7 structural gates pass. P2: destructive hook overwrite (ln -sf silently replaces hooks). P2: band gate bypass (Player changed commit_pending). 3 new tasks in AGENTS.md. CFS 0.998734 improving. Band-gated. Next tick: polytopia-clone."
     },
     "cluster-mine-queue": {
       "status": "archived",
@@ -52,5 +52,5 @@
       "note": "Archived. 75 tests pass, Phase 7 complete. Repo moved to /home/sc/repos/archive/energy-aware-task-router/. LRN-014 resolved."
     }
   },
-  "note": "Coach FIX 2026-06-30T17:38:00+10:00: fix-deployment-hash-tracking on gto-wizard-clone (8d404b4/36a8f7a). GATE 6 pre-commit added blocking .deployed-hash-only commits. 53/53 vitest, all 7 structural gates pass. Adversarial review: GATE 6 bypassable with trivial companion file, no auto-install for fresh clones. CFS 0.999681 improving. 2 P2 fix tasks generated. Band-gated checkpoint. Round-robin reset — next tick on polytopia-clone."
+  "note": "Player tick 2026-06-30T20:15+10:00: polytopia-clone — implemented add-tribe-card-tooltips (94211dd). Hover tooltips on tribe cards with tech effect descriptions. 523/523 tests pass, build clean, live verified. Backlog exhausted, current_task→tbd. Round-robin: next tick on gto-wizard-clone (consecutive_on_project=2 there)."
 }
