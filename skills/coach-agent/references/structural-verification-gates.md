@@ -22,6 +22,77 @@ npx playwright test 2>&1 | tail -20
 **Pass**: All tests pass (0 failures)
 **Fail**: Any test fails → verdict FIX. NO EXCEPTIONS. Do not approve with failing tests even if "it's just a flaky test" — flaky tests are infrastructure debt and must be fixed or quarantined.
 
+### Gate 1.5: Flake Detection 🧹
+
+> **Source:** Steward-OS Architecture — "A flaky test is a defect, not noise to be re-run away. Root-cause and fix it — never paper over with a rerun."
+
+After the test suite runs (Gate 1), analyze the output for flaky patterns. A test is **flaky** when it produces different results across runs with the same code.
+
+**Flake patterns to detect:**
+
+```bash
+cd <repo>
+# 1. Tests that passed on retry after failing (RefQA retry pattern)
+grep -E "(retry|retried|attempt [2-9]|attempt 1[0-9]).*PASS" /tmp/player-test-output.txt 2>/dev/null
+
+# 2. Tests that show inconsistent results across runs
+# Compare current test output with previous run's output
+diff /tmp/player-test-output.txt /tmp/player-test-output-prev.txt 2>/dev/null | grep "^[<>].*(PASS|FAIL)" 
+
+# 3. Tests that failed with timeout/network errors (categorized as transient vs real)
+grep -iE "(timeout|ECONNREFUSED|ETIMEDOUT|rate.limit|429|503)" /tmp/player-test-output.txt 2>/dev/null
+```
+
+**Transient infra vs. Real flake differentiation:**
+
+| Pattern | Category | Action |
+|---|---|---|
+| Network timeout, ECONNREFUSED, ETIMEDOUT | **Transient infra** | Retry up to 2x. Log. Don't escalate unless recurring 3+ times. |
+| API rate limit (429), 503 Service Unavailable | **Transient infra** | Retry up to 2x. Log. External service issue — not our code. |
+| Test passes 60-80% of runs with same code | **Real flake** | Escalate per flake ladder. Root-cause immediately. |
+| LLM returns `{}` (RefQA free model) | **Model nondeterminism** | RefQA internal retry handles this. Only escalate if retries exhaust. |
+| Test order dependency (passes when run alone, fails in suite) | **Real flake** | Escalate immediately. Order-dependent tests hide real bugs. |
+| Race condition, timing dependency | **Real flake** | Escalate immediately. Often a real product bug in disguise. |
+
+**Flake ledger (stored in project `.checkpoint.json`):**
+
+```json
+{
+  "flake_ledger": {
+    "test_study_page_load": {
+      "occurrences": 1,
+      "first_seen": "2026-06-30",
+      "last_seen": "2026-06-30",
+      "pattern": "timeout waiting for selector",
+      "category": "real_flake",
+      "status": "tracking"
+    }
+  }
+}
+```
+
+**Flake escalation ladder:**
+
+| Occurrence | Status | Action |
+|---|---|---|
+| 1st | `tracking` | Note in flake ledger. No escalation. |
+| 2nd | `p2_escalated` | Add to `spec_gaps`: `{"item": "Flake: [test name]", "type": "flake", "priority": 2}` |
+| 3rd | `p1_blocking` | Escalate to P1. This is now a blocking issue. Generate fix task in AGENTS.md. |
+| Systemic (3+ different tests flaking with same pattern) | `systemic` | Immediate verdict FIX. Add methodology gap: `{"item": "Systemic flake pattern: [pattern description]", "type": "methodology_gap"}` |
+
+**How to read flake data:**
+
+1. After Gate 1 (test suite), check the test output for flake patterns
+2. For each identified flake, check the project's `flake_ledger` in `.checkpoint.json`
+3. If first occurrence → add to ledger, `status: tracking`
+4. If second occurrence → bump to `p2_escalated`, add spec_gap
+5. If third occurrence → bump to `p1_blocking`, generate fix task
+6. If systemic (same pattern across 3+ tests) → verdict FIX, add methodology gap
+
+**Integration with Player:** The Player's pre-commit hook should flag any test that required a retry in the tick report. Coach cross-references this with the flake ledger.
+
+**RefQA-specific mitigation:** RefQA free-model flakiness (30-40% `{}` responses) is model nondeterminism, not test nondeterminism. These are handled by RefQA's internal retry logic and should NOT be escalated as flakes unless the retries exhaust.
+
 ### Gate 2: Build/Compile
 
 ```bash
@@ -110,8 +181,10 @@ git diff HEAD~1 | grep -iE '(ignore (all )?(previous |prior )?(instructions|rule
 
 | Gates Result | Minimum Verdict |
 |-------------|----------------|
-| All 7 pass | Can proceed to semantic review (Step 2) |
+| All gates pass (including 1.5) | Can proceed to semantic review (Step 2) |
 | Gate 1 (tests) fail | FIX |
+| Gate 1.5 (flake detected, third occurrence) | FIX (blocking — generate fix task) |
+| Gate 1.5 (systemic flake pattern) | FIX (methodology gap — root-cause the class) |
 | Gate 2 (build) fail | FIX |
 | Gate 3 (empty diff) | FIX |
 | Gate 3 (scope creep) | FIX with P2 flag |

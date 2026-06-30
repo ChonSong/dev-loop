@@ -63,6 +63,16 @@ Before starting ANY new task — even a well-defined one from AGENTS.md — veri
    - Switch to fixing the gameplay issue if it's a quick fix (<=20 lines), otherwise escalate to Coach
    - Document the barrier in `.checkpoint.json` under blocker
 
+4. **Read assertion_specs** from `.checkpoint.json` → `coach_review.assertion_specs`:
+   - If the array is non-empty and the target test file does NOT exist yet:
+     - **Write the Playwright test FIRST** (before implementing the feature)
+     - Encode each spec's `given` (preconditions), `expect` (assertions), and `selector_strategy` into the target `.spec.ts` file
+     - The test MUST FAIL on the current clone (validates the gap exists)
+     - Commit the test separately from the fix: `test(scope): add spec for [rule]`
+   - If the array is empty or the test file already exists:
+     - Proceed to Step 2 (Checkpoint Freshness Check) normally
+   - Priority: assertion_specs with `priority: "P1"` take precedence over the AGENTS.md task list. A test that doesn't exist yet IS a P1 task.
+
 Visual tasks (layout, spacing, colors) are worthless if the player can't even reach the screen they're on. Fix the pipeline first.
 
 ## Checkpoint Freshness Check (MANDATORY before reading master checkpoint)
@@ -112,7 +122,7 @@ Write a mini-plan with all six fields: **Touches** (files), **Specification** (w
 ```
 
 ## Workflow Per Tick
-0. **Check Coach verdict** — read the project's `.checkpoint.json`. If `coach_review.verdict` is `"REVERT"`, revert last commit and investigate BEFORE doing anything else. If `"FIX"`, pick the highest-priority task from AGENTS.md that the Coach generated (Coach owns the backlog). If `"APPROVE"` and backlog is empty, trigger Task Exhaustion Recovery.
+0. **Check Coach verdict** — read the project's `.checkpoint.json`. If `coach_review.verdict` is `"REVERT"`, revert last commit and investigate BEFORE doing anything else. If `"FIX"`, pick the highest-priority task from AGENTS.md that the Coach generated (Coach owns the backlog). If `"APPROVE"` and backlog is empty, **go SILENT** — do not generate recovery tasks. An empty backlog means the system has nothing to do. Do not invent work.
 1. Read master checkpoint → find active project (round-robin if consecutive_on_project ≥ 2)
 2. Read project `.checkpoint.json` + `current_task` from AGENTS.md
 2.5. **Decoder Analysis (MANDATORY before planning)** — Run a structured pre-implementation analysis following the Problem Decoder prompt at `references/problem-decoder-prompt.md`. Steps:
@@ -192,6 +202,7 @@ Write a mini-plan with all six fields: **Touches** (files), **Specification** (w
    - **File telemetry**: Count files read vs files changed. Report in tick summary: "📊 Telemetry: read N files, changed M." High read:change ratio (e.g., 15:1) flags confusion/distraction — the DELEGATE-52 distractor analysis shows this predicts corruption risk.
    - **Token budget check**: If you're approaching the tick token budget (~50K tokens), flag it: "⚠️ Token budget at N/tick — consider splitting remaining work."
    - **Diff size check**: If `git diff --stat` exceeds 500 lines, pause and verify: is this scope creep? The task should have been split. Flag in tick report if yes.
+   - **Flake check**: If any test required a retry (RefQA retry pattern, test re-run), flag it in the tick report: "⚠️ Flake: [test name] required [N] retries — see flake ledger." The Coach's Gate 1.5 tracks flakes across cycles. Never silently retry and move on — every retry is a signal. If a test is consistently flaky (3+ retries in this tick), add a note to `.checkpoint.json` flake_ledger.
 8. `git add -A && git commit -m "type(scope): description"` + `git push origin main`
 9. Verify push succeeded: `git push origin main 2>&1 | tail -3`. Deploy verification is handled by the `deploy-verify` cron (every 30min, no_agent) — do NOT inline deploy URL curl checks here.
 10. Update both checkpoints. Write end-of-tick capture: what changed, what was learned, what's pending.

@@ -1,0 +1,213 @@
+{
+  "version": 1,
+  "last_polled": {
+    "upstream-hermes-agent-prs": "2026-06-30T12:00:57.159246+10:00",
+    "own-gto-wizard-issues": "2026-06-30T12:00:57.159246+10:00",
+    "own-polytopia-issues": "2026-06-30T12:00:57.159246+10:00",
+    "own-hermes-webui-issues": "2026-06-30T12:00:57.159246+10:00"
+  },
+  "signals": [
+    {
+      "source_id": "upstream-hermes-agent-prs-4077",
+      "source": "upstream-hermes-agent-prs",
+      "source_name": "NousResearch/hermes-agent PRs",
+      "type": "feature",
+      "project": "hermes-agent",
+      "priority": "high",
+      "title": "feat: enable mouse support with config toggle",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/4077",
+      "number": 4077,
+      "author": "SHL0MS",
+      "created_at": "2026-03-30T23:40:34Z",
+      "updated_at": "2026-04-01T00:22:53Z",
+      "labels": [
+        "type/feature"
+      ],
+      "captured_at": "2026-06-30T11:32:51.250176+10:00",
+      "captured_by": "watcher-intake"
+    },
+    {
+      "source_id": "upstream-hermes-agent-prs-4111",
+      "source": "upstream-hermes-agent-prs",
+      "source_name": "NousResearch/hermes-agent PRs",
+      "type": "feature",
+      "project": "hermes-agent",
+      "priority": "high",
+      "title": "feat: show turn duration after each agent response",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/4111",
+      "number": 4111,
+      "author": "SHL0MS",
+      "created_at": "2026-03-31T00:42:43Z",
+      "updated_at": "2026-04-03T01:18:32Z",
+      "labels": [
+        "type/feature"
+      ],
+      "captured_at": "2026-06-30T11:32:51.250176+10:00",
+      "captured_by": "watcher-intake"
+    },
+    {
+      "source_id": "upstream-hermes-agent-prs-4924",
+      "source": "upstream-hermes-agent-prs",
+      "source_name": "NousResearch/hermes-agent PRs",
+      "type": "feature",
+      "project": "hermes-agent",
+      "priority": "high",
+      "title": "feat(skills): add video-toolkit \u2014 Remotion-based programmatic video production",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/4924",
+      "number": 4924,
+      "author": "SHL0MS",
+      "created_at": "2026-04-04T02:07:22Z",
+      "updated_at": "2026-04-04T02:07:23Z",
+      "labels": [
+        "type/feature"
+      ],
+      "captured_at": "2026-06-30T11:32:51.250176+10:00",
+      "captured_by": "watcher-intake"
+    },
+    {
+      "source_id": "upstream-hermes-agent-prs-4101",
+      "source": "upstream-hermes-agent-prs",
+      "source_name": "NousResearch/hermes-agent PRs",
+      "type": "feature",
+      "project": "hermes-agent",
+      "priority": "high",
+      "title": "feat: add !command inline shell for direct shell execution",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/4101",
+      "number": 4101,
+      "author": "SHL0MS",
+      "created_at": "2026-03-31T00:36:02Z",
+      "updated_at": "2026-04-09T15:42:27Z",
+      "labels": [
+        "type/feature"
+      ],
+      "captured_at": "2026-06-30T11:32:51.250176+10:00",
+      "captured_by": "watcher-intake"
+    },
+    {
+      "source_id": "upstream-hermes-agent-prs-4839",
+      "source": "upstream-hermes-agent-prs",
+      "source_name": "NousResearch/hermes-agent PRs",
+      "type": "feature",
+      "project": "hermes-agent",
+      "priority": "high",
+      "title": "feat: add /diff command to show git changes in working directory",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/4839",
+      "number": 4839,
+      "author": "SHL0MS",
+      "created_at": "2026-04-03T19:43:44Z",
+      "updated_at": "2026-04-09T15:47:09Z",
+      "labels": [
+        "type/feature"
+      ],
+      "captured_at": "2026-06-30T11:32:51.250176+10:00",
+      "captured_by": "watcher-intake"
+    },
+    {
+      "source_id": "upstream-hermes-agent-prs-4326",
+      "source": "upstream-hermes-agent-prs",
+      "source_name": "NousResearch/hermes-agent PRs",
+      "type": "feature",
+      "project": "hermes-agent",
+      "priority": "high",
+      "title": "feat: add markdown export option to /save",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/4326",
+      "number": 4326,
+      "author": "SHL0MS",
+      "created_at": "2026-03-31T19:47:10Z",
+      "updated_at": "2026-04-09T15:48:39Z",
+      "labels": [
+        "type/feature"
+      ],
+      "captured_at": "2026-06-30T11:32:51.250176+10:00",
+      "captured_by": "watcher-intake"
+    },
+    {
+      "source_id": "upstream-hermes-agent-prs-4859",
+      "source": "upstream-hermes-agent-prs",
+      "source_name": "NousResearch/hermes-agent PRs",
+      "type": "feature",
+      "project": "hermes-agent",
+      "priority": "high",
+      "title": "feat(skills): add contribution safety workflows to GitHub skills",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/4859",
+      "number": 4859,
+      "author": "SHL0MS",
+      "created_at": "2026-04-03T20:45:41Z",
+      "updated_at": "2026-04-11T07:21:49Z",
+      "labels": [
+        "type/feature"
+      ],
+      "captured_at": "2026-06-30T11:32:51.250176+10:00",
+      "captured_by": "watcher-intake"
+    },
+    {
+      "source_id": "upstream-hermes-agent-prs-7263",
+      "source": "upstream-hermes-agent-prs",
+      "source_name": "NousResearch/hermes-agent PRs",
+      "type": "feature",
+      "project": "hermes-agent",
+      "priority": "high",
+      "title": "feat: add /editor command to compose messages in $EDITOR",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/7263",
+      "number": 7263,
+      "author": "SHL0MS",
+      "created_at": "2026-04-10T16:03:36Z",
+      "updated_at": "2026-04-11T21:58:28Z",
+      "labels": [
+        "type/feature"
+      ],
+      "captured_at": "2026-06-30T11:32:51.250176+10:00",
+      "captured_by": "watcher-intake"
+    },
+    {
+      "source_id": "upstream-hermes-agent-prs-7987",
+      "source": "upstream-hermes-agent-prs",
+      "source_name": "NousResearch/hermes-agent PRs",
+      "type": "bug",
+      "project": "hermes-agent",
+      "priority": "high",
+      "title": "fix(delegate): allow delegation to local endpoints without API key",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/7987",
+      "number": 7987,
+      "author": "SHL0MS",
+      "created_at": "2026-04-11T23:25:04Z",
+      "updated_at": "2026-04-11T23:25:04Z",
+      "labels": [
+        "type/bug"
+      ],
+      "captured_at": "2026-06-30T11:32:51.250176+10:00",
+      "captured_by": "watcher-intake"
+    },
+    {
+      "source_id": "upstream-hermes-agent-prs-7990",
+      "source": "upstream-hermes-agent-prs",
+      "source_name": "NousResearch/hermes-agent PRs",
+      "type": "bug",
+      "project": "hermes-agent",
+      "priority": "high",
+      "title": "security: block cloud provider credentials and git credential prompts in subprocesses",
+      "url": "https://github.com/NousResearch/hermes-agent/pull/7990",
+      "number": 7990,
+      "author": "SHL0MS",
+      "created_at": "2026-04-11T23:30:36Z",
+      "updated_at": "2026-04-11T23:30:37Z",
+      "labels": [
+        "type/bug"
+      ],
+      "captured_at": "2026-06-30T11:32:51.250176+10:00",
+      "captured_by": "watcher-intake"
+    }
+  ],
+  "processed": [
+    "upstream-hermes-agent-prs-4077",
+    "upstream-hermes-agent-prs-4111",
+    "upstream-hermes-agent-prs-4924",
+    "upstream-hermes-agent-prs-4101",
+    "upstream-hermes-agent-prs-4839",
+    "upstream-hermes-agent-prs-4326",
+    "upstream-hermes-agent-prs-4859",
+    "upstream-hermes-agent-prs-7263",
+    "upstream-hermes-agent-prs-7987",
+    "upstream-hermes-agent-prs-7990"
+  ]
+}

@@ -4,11 +4,22 @@
   "title": "Coach Review Verdict",
   "description": "Structured verdict output from Coach Step 2.5/3. Machine-consumed by Player. Includes fidelity tracking (ported from DELEGATE-52 corruption-measurement pattern).",
   "type": "object",
-  "required": ["verdict", "project", "timestamp", "methodology", "findings", "tasks_generated"],
+  "required": [
+    "verdict",
+    "project",
+    "timestamp",
+    "methodology",
+    "findings",
+    "tasks_generated"
+  ],
   "properties": {
     "verdict": {
       "type": "string",
-      "enum": ["APPROVE", "FIX", "REVERT"],
+      "enum": [
+        "APPROVE",
+        "FIX",
+        "REVERT"
+      ],
       "description": "APPROVE: all checks pass. FIX: issues found, tasks generated. REVERT: last commit broken, must be reverted."
     },
     "project": {
@@ -26,32 +37,106 @@
     },
     "reference_match": {
       "type": "string",
-      "enum": ["exact", "minor_gaps", "significant_gaps", "broken", "not_checked"],
+      "enum": [
+        "exact",
+        "minor_gaps",
+        "significant_gaps",
+        "broken",
+        "not_checked"
+      ],
       "description": "How well the clone matches the reference original"
+    },
+    "assertion_specs": {
+      "type": "array",
+      "description": "Step 2.6.5: Reference-to-assertion derivation. Structured given/when/then specs the Player encodes as Playwright tests. Empty if Step 2c found no reference gaps.",
+      "items": {
+        "type": "object",
+        "required": ["assertion_id", "rule", "priority", "given", "expect", "selector_strategy", "test_file_target"],
+        "properties": {
+          "assertion_id": {
+            "type": "string",
+            "description": "Unique identifier (e.g. 'equal-action-two-callers')"
+          },
+          "rule": {
+            "type": "string",
+            "description": "The game rule or invariant being tested"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["P1", "P2", "P3"]
+          },
+          "source": {
+            "type": "string",
+            "description": "Where this behavior was observed (e.g. 'app.gtowizard.com/study — 2026-06-30')"
+          },
+          "given": {
+            "type": "object",
+            "description": "Preconditions that must be satisfied before the assertion runs"
+          },
+          "expect": {
+            "type": "object",
+            "description": "Observable outcomes expected. Keys: street_progression, community_cards_count, visible_elements, action_buttons_present, math_invariant, etc."
+          },
+          "selector_strategy": {
+            "type": "string",
+            "description": "DOM selectors to use (e.g. 'aria-label on position cards, text content on action buttons')"
+          },
+          "test_file_target": {
+            "type": "string",
+            "description": "Which spec file this assertion belongs in (e.g. 'e2e/study-game-tree.spec.ts')"
+          }
+        }
+      }
     },
     "checkpoint": {
       "type": "object",
       "description": "Checkpoint state before this review",
       "properties": {
-        "current_task": {"type": "string"},
-        "commit_sha": {"type": "string"},
-        "last_coach_review": {"type": "string"}
+        "current_task": {
+          "type": "string"
+        },
+        "commit_sha": {
+          "type": "string"
+        },
+        "last_coach_review": {
+          "type": "string"
+        }
       }
     },
     "methodology": {
       "type": "object",
-      "required": ["total_failures", "test_bugs", "methodology_failures", "systemic", "can_approve"],
+      "required": [
+        "total_failures",
+        "test_bugs",
+        "methodology_failures",
+        "systemic",
+        "can_approve"
+      ],
       "properties": {
-        "total_failures": {"type": "integer"},
-        "test_bugs": {"type": "integer", "description": "Technical failures: flaky timing, wrong API, coordinate errors"},
-        "methodology_failures": {"type": "integer", "description": "Self-referential tests, implementation-validating tests"},
-        "systemic": {"type": "boolean", "description": "True if same failure pattern across 3+ tests"},
-        "can_approve": {"type": "boolean", "description": "False if >50% are methodology failures (blocks APPROVE)"}
+        "total_failures": {
+          "type": "integer"
+        },
+        "test_bugs": {
+          "type": "integer",
+          "description": "Technical failures: flaky timing, wrong API, coordinate errors"
+        },
+        "methodology_failures": {
+          "type": "integer",
+          "description": "Self-referential tests, implementation-validating tests"
+        },
+        "systemic": {
+          "type": "boolean",
+          "description": "True if same failure pattern across 3+ tests"
+        },
+        "can_approve": {
+          "type": "boolean",
+          "description": "False if >50% are methodology failures (blocks APPROVE)"
+        }
       }
     },
     "fidelity": {
       "type": "object",
-      "description": "Code Fidelity Score — ported from DELEGATE-52 Reconstruction Score pattern. Measures codebase degradation across tick cycles.",
+      "description": "Code Fidelity Score \u2014 ported from DELEGATE-52 Reconstruction Score pattern. Measures codebase degradation across tick cycles.",
       "properties": {
         "diff_size_bytes": {
           "type": "integer",
@@ -71,11 +156,16 @@
         },
         "cfs": {
           "type": "number",
-          "description": "Code Fidelity Score = (1 - diff_size/codebase_size) × (passed_tests/total_tests). Range 0.0-1.0. Tracks codebase degradation across ticks. <0.90 triggers structural review recommendation."
+          "description": "Code Fidelity Score = (1 - diff_size/codebase_size) \u00d7 (passed_tests/total_tests). Range 0.0-1.0. Tracks codebase degradation across ticks. <0.90 triggers structural review recommendation."
         },
         "trend": {
           "type": "string",
-          "enum": ["improving", "stable", "degrading", "unknown"],
+          "enum": [
+            "improving",
+            "stable",
+            "degrading",
+            "unknown"
+          ],
           "description": "CFS trend vs previous tick. 'degrading' for 3+ consecutive ticks flags to Grand SIE."
         },
         "token_budget_used": {
@@ -92,14 +182,48 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["severity", "type", "description", "evidence"],
+        "required": [
+          "severity",
+          "type",
+          "description",
+          "evidence"
+        ],
         "properties": {
-          "severity": {"type": "string", "enum": ["P1", "P2", "P3"]},
-          "type": {"type": "string", "enum": ["bug", "regression", "visual_gap", "methodology_gap", "perf", "security", "other"]},
-          "area": {"type": "string", "description": "Component or feature area (e.g. 'study page', 'canvas render')"},
-          "description": {"type": "string"},
-          "evidence": {"type": "string", "description": "Screenshot path, console error, or specific behavior observed"},
-          "test_attribution": {"type": "string", "description": "Which test caught this (refqa run id, Playwright spec name, or 'browser manual')"}
+          "severity": {
+            "type": "string",
+            "enum": [
+              "P1",
+              "P2",
+              "P3"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "bug",
+              "regression",
+              "visual_gap",
+              "methodology_gap",
+              "perf",
+              "security",
+              "other"
+            ]
+          },
+          "area": {
+            "type": "string",
+            "description": "Component or feature area (e.g. 'study page', 'canvas render')"
+          },
+          "description": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Screenshot path, console error, or specific behavior observed"
+          },
+          "test_attribution": {
+            "type": "string",
+            "description": "Which test caught this (refqa run id, Playwright spec name, or 'browser manual')"
+          }
         }
       }
     },
@@ -107,20 +231,84 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "description"],
+        "required": [
+          "id",
+          "description"
+        ],
         "properties": {
-          "id": {"type": "string", "description": "Task identifier from AGENTS.md (e.g. 'fix-study-advance-turn')"},
-          "description": {"type": "string"},
-          "priority": {"type": "string", "enum": ["P1", "P2", "P3"]},
-          "success_criteria": {"type": "string"}
+          "id": {
+            "type": "string",
+            "description": "Task identifier from AGENTS.md (e.g. 'fix-study-advance-turn')"
+          },
+          "description": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "P1",
+              "P2",
+              "P3"
+            ]
+          },
+          "success_criteria": {
+            "type": "string"
+          }
         }
       },
       "description": "Tasks written to AGENTS.md during Step 4. Empty if APPROVE."
     },
     "errors": {
       "type": "array",
-      "items": {"type": "string"},
+      "items": {
+        "type": "string"
+      },
       "description": "Any errors during the review itself (subagent failures, browser crashes, etc.)"
+    },
+    "adversarial": {
+      "type": "object",
+      "description": "Adversarial review results \u2014 second-opinion pass from a differently-tuned reviewer. Skipped when REVERT, trivial diff, or rate-limited.",
+      "properties": {
+        "ran": {
+          "type": "boolean",
+          "description": "Did the adversarial review run this cycle? False when skipped."
+        },
+        "model": {
+          "type": "string",
+          "description": "Model used for adversarial review (e.g. 'deepseek-v4-flash')"
+        },
+        "findings_added": {
+          "type": "integer",
+          "description": "Total additional findings the adversarial reviewer found"
+        },
+        "findings_primary_missed": {
+          "type": "integer",
+          "description": "Findings the primary reviewer genuinely missed (not just differently classified)"
+        },
+        "conflicts": {
+          "type": "integer",
+          "description": "Number of conflicts where adversarial disagreed with primary reviewer"
+        },
+        "verdict_changed": {
+          "type": "boolean",
+          "description": "Did the adversarial review change the final verdict? (APPROVE to FIX or FIX to REVERT)"
+        },
+        "novel_finding_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Finding types the primary reviewer didn't identify (e.g. ['security', 'scope_creep'])"
+        },
+        "time_taken_seconds": {
+          "type": "integer",
+          "description": "How long the adversarial review took (for cost/performance tracking)"
+        },
+        "skipped_reason": {
+          "type": "string",
+          "description": "If ran=false: why (revert_trivial, trivial_diff, rate_limited, task_simple)"
+        }
+      }
     }
   }
 }

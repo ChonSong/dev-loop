@@ -104,6 +104,23 @@ def validate(verdict: dict) -> list[str]:
             elif f["must_change_gate"] is False:
                 # DELEGATE-52 has_written guard: empty commits block APPROVE
                 errors.append("GATE VIOLATION: must_change_gate is false — Player produced zero changes. Blocks APPROVE.")
+    # adversarial (optional — from adversarial review gate step 2.7)
+    if "adversarial" in verdict and isinstance(verdict["adversarial"], dict):
+        a = verdict["adversarial"]
+        if "ran" in a and not isinstance(a["ran"], bool):
+            errors.append(f"adversarial.ran must be boolean")
+        if "model" in a and not isinstance(a["model"], str):
+            errors.append(f"adversarial.model must be string")
+        for field in ["findings_added", "findings_primary_missed", "conflicts", "time_taken_seconds"]:
+            if field in a and not isinstance(a[field], int):
+                errors.append(f"adversarial.{field} must be integer")
+        if "verdict_changed" in a and not isinstance(a["verdict_changed"], bool):
+            errors.append(f"adversarial.verdict_changed must be boolean")
+        if "novel_finding_types" in a:
+            if not isinstance(a["novel_finding_types"], list):
+                errors.append(f"adversarial.novel_finding_types must be array")
+            elif not all(isinstance(x, str) for x in a["novel_finding_types"]):
+                errors.append(f"adversarial.novel_finding_types must contain only strings")
     if "tasks_generated" in verdict and isinstance(verdict["tasks_generated"], list):
         for i, t in enumerate(verdict["tasks_generated"]):
             if not isinstance(t, dict):

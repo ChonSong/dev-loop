@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-06-30T11:51:31.685955+10:00",
+  "overall": "red",
+  "subsystems": {
+    "storage": {
+      "status": "green",
+      "detail": "Disk: 81G/108G (79%)",
+      "checked_at": "2026-06-30T11:51:31.685955+10:00"
+    },
+    "session_db": {
+      "status": "red",
+      "detail": "Session DB: 2238MB",
+      "checked_at": "2026-06-30T11:51:31.685955+10:00"
+    },
+    "cron_health": {
+      "status": "yellow",
+      "detail": "Crons: 50 total, 14 errors, 1 paused",
+      "checked_at": "2026-06-30T11:51:31.685955+10:00"
+    },
+    "coach_gto-wizard-clone": {
+      "status": "green",
+      "detail": "Coach active: -20.3h ago",
+      "checked_at": "2026-06-30T11:51:31.685955+10:00"
+    },
+    "stalled_gto-wizard-clone": {
+      "status": "yellow",
+      "detail": "3 stalled tasks",
+      "checked_at": "2026-06-30T11:51:31.685955+10:00"
+    },
+    "coach_polytopia-clone": {
+      "status": "green",
+      "detail": "Coach active: 2.5h ago",
+      "checked_at": "2026-06-30T11:51:31.685955+10:00"
+    },
+    "stalled_polytopia-clone": {
+      "status": "yellow",
+      "detail": "3 stalled tasks",
+      "checked_at": "2026-06-30T11:51:31.685955+10:00"
+    },
+    "watcher": {
+      "status": "green",
+      "detail": "Active: 0h ago, 10 unprocessed signals",
+      "checked_at": "2026-06-30T11:51:31.685955+10:00"
+    },
+    "parsimony": {
+      "status": "yellow",
+      "detail": "50 crons \u00b7 204 skills \u00b7 19 repos",
+      "checked_at": "2026-06-30T11:51:31.685955+10:00"
+    }
+  },
+  "alerts": [
+    "\ud83d\udd34 [session_db] Session DB at 2238MB \u2014 prune now."
+  ]
+}

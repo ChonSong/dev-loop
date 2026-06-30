@@ -1,0 +1,59 @@
+{
+  "additional_findings": [
+    {
+      "severity": "HIGH",
+      "category": "methodology_bug",
+      "file": "apps/web/src/app/study/page.tsx",
+      "lines": "234-266",
+      "title": "isPreflopRoundComplete ignores folded players when checking actedAfter",
+      "detail": "The function tracks which positions have called/folded after the last raise via `actedAfter.set.add(position)`, but players who folded BEFORE the last raise never appear in this set. The final loop checks ALL 5 other positions after the raiser, including already-folded players. This causes a false negative — the function returns false for genuinely complete rounds.\n\nExample: [{UTG:fold}, {HJ:fold}, {CO:raise}, {BTN:call}, {SB:call}, {BB:call}]\n- lastRaiserIdx=2 (CO), actedAfter={BTN, SB, BB}\n- Loop: BTN✓ SB✓ BB✓ UTG✗(folded before raise, never in actedAfter) → returns false\n- Reality: Only CO,BTN,SB,BB are active — all have acted. Round IS complete.\n\nImpact: Auto-transition from preflop→postflop silently fails. User gets stuck in preflop mode after any scenario where a player folded before the last raise.",
+      "fix": "Track active (non-folded) positions and only check those against actedAfter. Or filter actedAfter to only include non-folded positions before the last-raise check."
+    },
+    {
+      "severity": "HIGH",
+      "category": "logic_bug",
+      "file": "apps/web/src/components/study/PostflopTraining.tsx",
+      "lines": "544-557",
+      "title": "advanceToNextStreet does not clear auto-advance timer",
+      "detail": "advanceToNextStreet() (line 544) modifies state but never calls `clearTimeout(autoAdvanceRef.current)`. If a user:\n1. Takes an action → 1.5s auto-advance timer starts\n2. Manually clicks \"Advance to Turn\" before timer fires\n3. Timer fires 1.5s from step 1 → calls advanceToNextStreetRef.current() again\n4. Double-advances to river with a default 'check' action for the skipped turn street\n\nThe Continue to Next Street button (line 1008) calls advanceToNextStreet directly with no timer guard. Additionally, config panel inputs for board/pot/stack (lines 649-657) reset street navigation but also don't clear the timer.",
+      "fix": "Add `if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current)` at the start of advanceToNextStreet(). Also add to config panel change handlers."
+    },
+    {
+      "severity": "LOW",
+      "category": "robustness",
+      "file": ".github/workflows/e2e-game-tree.yml",
+      "lines": "54",
+      "title": "Hardcoded production URL in CI workflow",
+      "detail": "BASE_URL is hardcoded to 'https://wiz.codeovertcp.com' instead of using a GitHub Actions secret or environment variable. This URL is specific to one deployment and will break if the deployment URL changes or in forked repos.",
+      "fix": "Use ${{ secrets.BASE_URL }} or ${{ vars.BASE_URL }} with a repository variable."
+    },
+    {
+      "severity": "LOW",
+      "category": "robustness",
+      "file": "apps/web/src/app/study/page.tsx",
+      "lines": "181",
+      "title": "|| instead of ?? for pot_size fallback",
+      "detail": "`setPfPot(treeNode?.pot_size || 5.5)` — the `||` operator will default to 5.5 if pot_size is literally 0 (edge case). Should use `??` (nullish coalescing) to only fallback when pot_size is null/undefined.",
+      "fix": "Change `||` to `??`"
+    },
+    {
+      "severity": "LOW",
+      "category": "extensibility",
+      "file": "apps/web/src/app/study/page.tsx",
+      "lines": "232",
+      "title": "Position order hardcoded to 6-max",
+      "detail": "POSITION_ORDER is hardcoded as ['UTG','HJ','CO','BTN','SB','BB']. Both isPreflopRoundComplete and isAllFold depend on exactly 6 entries with wrap-around modulo arithmetic. Heads-up (2 players) or short-handed (3-5) configurations would produce incorrect results via wrong index math.",
+      "fix": "Derive POSITION_ORDER from game configuration or make it a parameter."
+    }
+  ],
+  "conflicts": [
+    {
+      "item": "CI workflow references non-existent E2E test file",
+      "primary_finding": "File e2e/study-game-tree.spec.ts does not exist",
+      "my_assessment": "CONFIRMED — e2e/study-game-tree.spec.ts is absent (verified by ls e2e/). This would cause CI failure on any triggering push/PR. Primary verdict: APPROVE despite this; I agree it's a minor issue that doesn't block approval."
+    }
+  ],
+  "overridden": false,
+  "verdict_recommendation": "FIX",
+  "novel_findings_count": 5
+}

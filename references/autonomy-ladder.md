@@ -152,6 +152,8 @@ Track when capabilities move between bands. Empty until first promotion.
 | Player implementation | 2026-05 | - | 2026-05 | - | - |
 | Session pruning | 2026-05 | - | - | 2026-06 | no_agent=mechanical ✓ |
 | Cron healing | 2026-04 | - | - | 2026-04 | no_agent=mechanical ✓ |
+| Watcher intake | 2026-06 | - | - | 2026-06 | no_agent=mechanical ✓ |
+| Steward health | 2026-06 | - | - | 2026-06 | no_agent=mechanical ✓ |
 | (add new capabilities here) | | | | | |
 
 ---
